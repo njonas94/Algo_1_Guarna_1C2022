@@ -65,3 +65,9 @@ def obtener_palabras_validas():
             "video", "yates", "yemas", "yenes", "yogur", "zetas", "zonas", \
             "zurda", "zurdo", "zorro"]
 
+#from tkinter import *
+pal_adiv="mares"
+intento=#dato proviene de lo que se ingresa en la interfaz
+for pos in range(len(pal_adiv)):
+    if intento[pos] == pal_adiv[pos]:
+        obtener_color(color)

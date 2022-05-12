@@ -86,8 +86,8 @@ def fiuble():
                 colores.append(color_2)
                               
             elif (pos==pos_2 and pos_1!=pal_adiv.index(intento[pos_1]) and pos_2!=pal_adiv.index(intento[pos_1])):
-                color_2 = obtener_color("GrisOscuro") 
-                colores.append(color_2)
+                color_3 = obtener_color("GrisOscuro") 
+                colores.append(color_3)
                 
         elif intento[pos] == pal_adiv[pos]:
             color_1 = obtener_color("Verde") 

@@ -7,7 +7,6 @@ def obtener_color(color):
     }
     return colores[color]
 
-
 def obtener_palabras_validas():
     return ["abran", "abria", "acojo", "actuo", "aguda", "agudo", "algas", \
             "almas", "alojo", "alojo", "altas", "altos", "andes", "anima", \
@@ -75,32 +74,32 @@ def fiuble():
             pos_2=intento.rindex(intento[pos])
             
             if ((pos==pos_1 and pos_1==pal_adiv.index(intento[pos_1])) or (pos==pos_2 and pos_2==pal_adiv.index(intento[pos_2]))):
-                letra_1 = obtener_color("Verde") 
-                colores.append(letra_1)
+                color_1 = obtener_color("Verde") 
+                colores.append(color_1)
                                 
             elif ((pos==pos_2 and pos_1==pal_adiv.index(intento[pos_1])) or (pos==pos_1 and pos_2==pal_adiv.index(intento[pos_2]))):
-                letra_3 = obtener_color("GrisOscuro") 
-                colores.append(letra_3)
+                color_3 = obtener_color("GrisOscuro") 
+                colores.append(color_3)
                                
             elif (pos==pos_1 and pos_1!=pal_adiv.index(intento[pos_1]) and pos_2!=pal_adiv.index(intento[pos_1])):
-                letra_2=obtener_color("Amarillo") 
-                colores.append(letra_2)
+                color_2=obtener_color("Amarillo") 
+                colores.append(color_2)
                               
             elif (pos==pos_2 and pos_1!=pal_adiv.index(intento[pos_1]) and pos_2!=pal_adiv.index(intento[pos_1])):
-                letra_2 = obtener_color("GrisOscuro") 
-                colores.append(letra_2)
+                color_2 = obtener_color("GrisOscuro") 
+                colores.append(color_2)
                 
         elif intento[pos] == pal_adiv[pos]:
-            letra_1 = obtener_color("Verde") 
-            colores.append(letra_1)
+            color_1 = obtener_color("Verde") 
+            colores.append(color_1)
        
         elif intento[pos] in pal_adiv and intento[pos] != pal_adiv[pos]:
-            letra_2=obtener_color("Amarillo")
-            colores.append(letra_2)
+            color_2=obtener_color("Amarillo")
+            colores.append(color_2)
             
         elif intento[pos] not in pal_adiv:
-            letra_3=obtener_color("GrisOscuro")
-            colores.append(letra_3)
+            color_3=obtener_color("GrisOscuro")
+            colores.append(color_3)
                 
     print(f"\nPalabra a adivinar: {pal_adiv[0].upper()} {pal_adiv[1].upper()} {pal_adiv[2].upper()} {pal_adiv[3].upper()} {pal_adiv[4].upper()}")
     print("Arriesgo:",colores[0] + intento[0].upper(),colores[1] + intento[1].upper(), colores[2] + intento[2].upper(), colores[3] + intento[3].upper(), colores[4] + intento[4].upper(), obtener_color ("Defecto"))

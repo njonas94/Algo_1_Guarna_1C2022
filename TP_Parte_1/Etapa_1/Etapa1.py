@@ -64,9 +64,10 @@ def obtener_palabras_validas():
             "video", "yates", "yemas", "yenes", "yogur", "zetas", "zonas", \
             "zurda", "zurdo", "zorro"]
 def fiuble():
-    pal_adiv="mares"
+    pal_adiv="MARES"
     print("Palabra a adivinar: ? ? ? ? ?")
     intento=input("Arriesgo:")
+    intento=intento.upper()
     colores=[]
     for pos in range(len(pal_adiv)):
         if (pal_adiv.count(intento[pos])==1 and intento.count(intento[pos])==2):
@@ -89,20 +90,20 @@ def fiuble():
                 color_3 = obtener_color("GrisOscuro") 
                 colores.append(color_3)
                 
-        elif intento[pos] == pal_adiv[pos]:
-            color_1 = obtener_color("Verde") 
-            colores.append(color_1)
-       
+        elif intento[pos] not in pal_adiv:
+            color_3=obtener_color("GrisOscuro")
+            colores.append(color_3)
+        
         elif intento[pos] in pal_adiv and intento[pos] != pal_adiv[pos]:
             color_2=obtener_color("Amarillo")
             colores.append(color_2)
             
-        elif intento[pos] not in pal_adiv:
-            color_3=obtener_color("GrisOscuro")
-            colores.append(color_3)
+        elif intento[pos] == pal_adiv[pos]:
+            color_1 = obtener_color("Verde") 
+            colores.append(color_1)
                 
-    print(f"\nPalabra a adivinar: {pal_adiv[0].upper()} {pal_adiv[1].upper()} {pal_adiv[2].upper()} {pal_adiv[3].upper()} {pal_adiv[4].upper()}")
-    print("Arriesgo:",colores[0] + intento[0].upper(),colores[1] + intento[1].upper(), colores[2] + intento[2].upper(), colores[3] + intento[3].upper(), colores[4] + intento[4].upper(), obtener_color ("Defecto"))
+    print(f"\nPalabra a adivinar: {pal_adiv[0]} {pal_adiv[1]} {pal_adiv[2]} {pal_adiv[3]} {pal_adiv[4]}")
+    print("Arriesgo:",colores[0] + intento[0],colores[1] + intento[1], colores[2] + intento[2], colores[3] + intento[3], colores[4] + intento[4], obtener_color ("Defecto"))
     
     if pal_adiv==intento:
         print('Ganaste!')

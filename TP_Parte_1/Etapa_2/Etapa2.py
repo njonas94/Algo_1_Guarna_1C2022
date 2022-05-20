@@ -1,21 +1,28 @@
-def validacion (palabra_ingresada):
-    hola=True
-    if palabra_ingresada.isalpha()!=True:
-        hola=False
-        print("La palabra no puede contener numeros ni caracteres especiales, porfavor ingrese de nuevo la palabra")
-    if len(palabra_ingresada) != 5:
-        hola=False
-        print("La palabra solo puede contener 5 letras")
-
-    if hola:
-        palabra_ingresada_mayus = palabra_ingresada.upper()
-        a = 'ÁÉÍÓÚÝÄËÏÖÜŸ'
-        b = 'AEIOUYAEIOUY'
-        palabra_sin_acento=palabra_ingresada_mayus.maketrans(a,b)
-        arriesgo=palabra_ingresada_mayus.translate(palabra_sin_acento)
-              
+def cambiar_tilde(palabra_ingresada):
+    palabra_mayus = palabra_ingresada.upper()
+    a = 'ÁÉÍÓÚÝÄËÏÖÜŸ'
+    b = 'AEIOUYAEIOUY'
+    palabra_sin_acento = palabra_mayus.maketrans(a, b)
+    arriesgo = palabra_mayus.translate(palabra_sin_acento)
     return arriesgo
-#posibles arriesgos  arriesgo="SóFÁSs1"  arriesgo="SóFÁSS"   arriesgo="SóFÁ1" 
-arriesgo="SóFÁS"
-print("arriesgo",validacion(arriesgo))
 
+
+def validacion(palabra_ingresada):
+    verificacion = False
+    while not verificacion:
+        if not palabra_ingresada.isalpha():
+            print("La palabra no tiene que contener numero ni caracteres especiales")
+        if len(palabra_ingresada) != 5:
+            print("La palabra tiene que ser de 5 letras")
+        palabra_ingresada = input("Ingrese una palabra valida de 5 letras: ")
+        if palabra_ingresada.isalpha() and len(palabra_ingresada) == 5:
+            verificacion = True
+    return cambiar_tilde(palabra_ingresada)
+
+
+def etepa_2():
+    palabra_ingresada = input("Ingrese una palabra de 5 letras: ")
+    print(validacion(palabra_ingresada))
+
+
+etepa_2()

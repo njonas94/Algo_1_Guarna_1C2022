@@ -26,7 +26,7 @@ def mostrar_juego(lista_palabra_ingresada):
 
 def main():
     palabra_a_adivinar = generar_palabra_a_adivinar()
-    intentos_ingresados = ["? ? ? ? ?", "? ? ? ? ?", "? ? ? ? ?", "? ? ? ? ?", "? ? ? ? ?"]
+    intentos_ingresados = [["?", "?", "?", "?", "?"], ["?", "?", "?", "?", "?"], ["?", "?", "?", "?", "?"], ["?", "?", "?", "?", "?"], ["?", "?", "?", "?", "?"]]
     while True:
         mostrar_juego()
         break
@@ -73,7 +73,7 @@ def procesar_intento(pal_adiv, intento):
 #print("Arriesgo:",colores[0] + intento[0].upper(),colores[1] + intento[1].upper(), colores[2] + intento[2].upper(), colores[3] + intento[3].upper(), colores[4] + intento[4].upper(), obtener_color ("Defecto"))
 
 
-#mostrar_juego(lista_palabra_a_adivinar)
+mostrar_juego(lista_palabra_a_adivinar)
 """
 Pruebas
 

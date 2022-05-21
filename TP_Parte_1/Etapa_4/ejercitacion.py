@@ -183,7 +183,7 @@ def fiuble():
     puntos_obtenidos=puntaje(lista_de_intentos_ingresados,pal_adiv,puntos_por_partida) #Lista cargada de puntos obtenidos por partida#
     minutos,segundos=cronometro(inicio, fin)
     print(f'Palabra a adivinar: {pal_adiv[0]} {pal_adiv[1]} {pal_adiv[2]} {pal_adiv[3]} {pal_adiv[4]} {color_4}')
-    if pal_adiv in lista:
+    if pal_adiv in lista_de_intentos_ingresados:
         print('Ganaste! Tardaste',minutos,'minutos y',segundos,'segundos')
     else:
         print('Perdiste!')

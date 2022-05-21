@@ -146,11 +146,11 @@ def puntaje(lista,adivinar,puntos_por_partida):
             puntos_obtenidos=valores[3]
         elif len(lista)==5:
             puntos_obtenidos=valores[4]
-    return almacenamiento_puntos(suma,puntos_por_partida)
+    return almacenamiento_puntos(puntos_obtenidos,puntos_por_partida)
 
-def almacenamiento_puntos(puntos_obtenidos,partidos):
+def almacenamiento_puntos(puntos_obtenidos,puntos_por_partida):
     puntos_por_partida.append(puntos_obtenidos)
-    return partidos
+    return puntos_por_partida
 
 #FUNCION PARA CONTAR LOS PUNTOS DE CADA PARTIDA
 #def contador_puntos(puntos,partida):

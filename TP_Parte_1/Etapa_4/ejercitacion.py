@@ -131,7 +131,7 @@ def cronometro(comienzo, final):
         segundos=round(tiempo_tardado,0)
     return minutos, segundos
 
-def puntaje(lista,adivinar,lis_puntos):
+def puntaje(lista,adivinar,puntos_por_partida):
     valores=[50,40,30,20,10,-100]
     if adivinar not in lista and len(lista)==5:
         suma=-100
@@ -146,7 +146,7 @@ def puntaje(lista,adivinar,lis_puntos):
             suma=valores[3]
         elif len(lista)==5:
             suma=valores[4]
-    return almacenamiento_puntos(suma,lis_puntos)
+    return almacenamiento_puntos(suma,puntos_por_partida)
 
 def almacenamiento_puntos(puntos,partidos):
     partidos.append(puntos)
@@ -175,7 +175,7 @@ def fiuble():
     inicio=time.time()
     intento=input("Arriesgo:")
     partida=0#VER DONDE COLOCAR EL CONTADOR DE PARTIDAS Y LA PREGUNTA DE SI QUIERE JUGAR OTRA VEZ. ASOCIARLO A FUN CONTADOR_PUNTOS
-    registro_puntos=[]
+    puntos_por_partida=[]
     intento=validacion(intento)
     color_4=obtener_color("Defecto")
     lista=desarrollo_intentos(pal_adiv, intento,color_4)

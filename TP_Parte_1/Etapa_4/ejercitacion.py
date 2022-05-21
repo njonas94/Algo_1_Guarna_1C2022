@@ -116,8 +116,7 @@ def desarrollo_intentos(pal_adiv, intento,color_4):
 
 #ETAPA 3
 def acumular_intentos(palabra_ingresada,intentos_ingresados):
-    if palabra_ingresada not in intentos_ingresados:
-        intentos_ingresados.append(palabra_ingresada)
+    intentos_ingresados.append(palabra_ingresada)
     return intentos_ingresados
 
 #ETAPA 4

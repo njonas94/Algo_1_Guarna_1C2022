@@ -180,7 +180,7 @@ def fiuble():
     color_4=obtener_color("Defecto")
     lista_de_intentos_ingresados=desarrollo_intentos(pal_adiv, intento,color_4) #Esta lista, es la lista de str de palabras ingresadas#
     fin=time.time()
-    puntos_obtenidos=puntaje(lista,pal_adiv,puntos_por_partida) #Lista cargada de puntos obtenidos por partida#
+    puntos_obtenidos=puntaje(lista_de_intentos_ingresados,pal_adiv,puntos_por_partida) #Lista cargada de puntos obtenidos por partida#
     minutos,segundos=cronometro(inicio, fin)
     print(f'Palabra a adivinar: {pal_adiv[0]} {pal_adiv[1]} {pal_adiv[2]} {pal_adiv[3]} {pal_adiv[4]} {color_4}')
     if pal_adiv in lista:

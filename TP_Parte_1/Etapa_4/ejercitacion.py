@@ -178,7 +178,7 @@ def fiuble():
     puntos_por_partida=[]
     intento=validacion(intento)
     color_4=obtener_color("Defecto")
-    lista=desarrollo_intentos(pal_adiv, intento,color_4)
+    lista_de_palabra_ingresadas=desarrollo_intentos(pal_adiv, intento,color_4) #Esta lista, es la lista de str de palabras ingresadas#
     fin=time.time()
     puntos_obtenidos=puntaje(lista,pal_adiv,puntos_por_partida)
     minutos,segundos=cronometro(inicio, fin)

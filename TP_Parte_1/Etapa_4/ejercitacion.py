@@ -134,22 +134,22 @@ def cronometro(comienzo, final):
 def puntaje(lista,adivinar,puntos_por_partida):
     valores=[50,40,30,20,10,-100]
     if adivinar not in lista and len(lista)==5:
-        suma=-100
+        puntos_obtenidos=-100
     elif adivinar in lista:
         if len(lista)==1:
-            suma=valores[0]
+            puntos_obtenidos=valores[0]
         elif len(lista)==2:
-            suma=valores[1]
+            puntos_obtenidos=valores[1]
         elif len(lista)==3:
-            suma=valores[2]
+            puntos_obtenidos=valores[2]
         elif len(lista)==4:
-            suma=valores[3]
+            puntos_obtenidos=valores[3]
         elif len(lista)==5:
-            suma=valores[4]
+            puntos_obtenidos=valores[4]
     return almacenamiento_puntos(suma,puntos_por_partida)
 
-def almacenamiento_puntos(puntos,partidos):
-    partidos.append(puntos)
+def almacenamiento_puntos(puntos_obtenidos,partidos):
+    puntos_por_partida.append(puntos_obtenidos)
     return partidos
 
 #FUNCION PARA CONTAR LOS PUNTOS DE CADA PARTIDA

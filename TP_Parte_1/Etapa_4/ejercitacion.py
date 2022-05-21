@@ -188,5 +188,5 @@ def fiuble():
     else:
         print('Perdiste!')
     print((fin-inicio))
-    contador_puntos(puntos_obtenidos,puntos_por_partida)
+    contador_puntos(puntos_obtenidos,partida)
 fiuble()

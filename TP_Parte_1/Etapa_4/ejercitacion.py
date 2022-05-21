@@ -175,12 +175,12 @@ def fiuble():
     inicio=time.time()
     intento=input("Arriesgo:")
     partida=0#VER DONDE COLOCAR EL CONTADOR DE PARTIDAS Y LA PREGUNTA DE SI QUIERE JUGAR OTRA VEZ. ASOCIARLO A FUN CONTADOR_PUNTOS
-    puntos_por_partida=[]
+    puntos_por_partida=[] #Lista de puntos de cada partida#
     intento=validacion(intento)
     color_4=obtener_color("Defecto")
-    lista_de_palabra_ingresadas=desarrollo_intentos(pal_adiv, intento,color_4) #Esta lista, es la lista de str de palabras ingresadas#
+    lista_de_intentos_ingresadas=desarrollo_intentos(pal_adiv, intento,color_4) #Esta lista, es la lista de str de palabras ingresadas#
     fin=time.time()
-    puntos_obtenidos=puntaje(lista,pal_adiv,puntos_por_partida)
+    puntos_obtenidos=puntaje(lista,pal_adiv,puntos_por_partida) #Lista de puntos obtenidos por partida#
     minutos,segundos=cronometro(inicio, fin)
     print(f'Palabra a adivinar: {pal_adiv[0]} {pal_adiv[1]} {pal_adiv[2]} {pal_adiv[3]} {pal_adiv[4]} {color_4}')
     if pal_adiv in lista:

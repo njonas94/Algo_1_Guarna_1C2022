@@ -170,7 +170,7 @@ def almacenamiento_puntos(puntos_obtenidos,puntos_por_partida):
             
 #PRINCIPAL
 def fiuble():
-    pal_adiv=generar_palabra_a_adivinar():
+    pal_adiv=generar_palabra_a_adivinar()
     print("Palabra a adivinar: ? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?")
     inicio=time.time()
     intento=input("Arriesgo:")

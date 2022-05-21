@@ -169,7 +169,7 @@ def contador_puntos(puntos,partida):
             
 #PRINCIPAL
 def fiuble():
-    pal_adiv="MALOS"
+    pal_adiv=generar_palabra_a_adivinar():
     print("Palabra a adivinar: ? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?")
     inicio=time.time()
     intento=input("Arriesgo:")

@@ -11,7 +11,7 @@ def generar_palabra_a_adivinar():
 #ETAPA 2
 def validacion(palabra_ingresada):
     dicc=contador_letras(palabra_ingresada)
-    while not palabra_ingresada.isalpha() or palabra_ingresada not in obtener_palabras_validas():
+    while not palabra_ingresada.isalpha() or palabra_ingresada.lower() not in obtener_palabras_validas():
         if not palabra_ingresada.isalpha() and len(palabra_ingresada) != 5:
             print("Palabra inválida, tiene que ser de 5 letras y no puede contener número/s ni caracteres especiales.")
         elif len(palabra_ingresada) != 5:

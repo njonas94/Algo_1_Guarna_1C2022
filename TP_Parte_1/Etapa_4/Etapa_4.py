@@ -154,13 +154,13 @@ def almacenamiento_puntos(puntos_obtenidos,puntos_por_partida):
 #FUNCION PARA CONTAR LOS PUNTOS DE CADA PARTIDA
 #def contador_puntos(puntos,partida):
 #    ultima_partida=puntos[partida]
-#    if partida>1:
+#    if partida>=1:
 #        total=puntos[partida-1]+ultima_partida
-#        print(f'Total de puntos {puntos[partida-1]}+{ultima_partida}={total}')
+#        puntos[partida]=total
 #        if ultima_partida>0:
 #            print(f'Obtuviste un total de {ultima_partida} puntos, tenes acumulados {total} puntos')
 #        else:
-#            print(f'Perdiste un total de {ultima_partida} puntos, tenes acumulados {total} puntos')
+#            print(f'Perdiste un total de {-ultima_partida} puntos, tenes acumulados {total} puntos')
 #    else:
 #        if ultima_partida>0:
 #            print(f'Obtuviste un total de {ultima_partida} puntos.')

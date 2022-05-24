@@ -166,7 +166,34 @@ def almacenamiento_puntos(puntos_obtenidos,puntos_por_partida):
 #            print(f'Obtuviste un total de {ultima_partida} puntos.')
 #        else:
 #            print(f'Perdiste un total de {-ultima_partida} puntos.')
-            
+
+#def contador_puntos(puntos_por_partida):
+#    total = 0
+#    ultima_partida=puntos_por_partida[-1]
+#    if len(puntos_por_partida) > 1:
+#        for puntajes in puntos_por_partida:
+#            total += puntajes
+#        if ultima_partida>0:
+#            print(f'Obtuviste un total de {ultima_partida} puntos, tenes acumulados {total} puntos')
+#        else:
+#            print(f'Perdiste un total de {-ultima_partida} puntos, tenes acumulados {total} puntos')
+#    else:
+#        if ultima_partida>0:
+#            print(f'Obtuviste un total de {ultima_partida} puntos.')
+#        else:
+#            print(f'Perdiste un total de {-ultima_partida} puntos.')
+
+#def volver_a_jugar():
+#    desea_jugar = "a"
+#    while desea_jugar not in ("N,n,S,s"):
+#        desea_jugar = input("¿Desea volver a jugar?(S/N):")
+#    if desea_jugar in "s,S":
+#        fiuble(puntos_por_partida)
+#    elif desea_jugar in "n,N":
+#        pass
+
+#puntos_por_partida=[] (si no sacas esta lista afuera, nunca se van acumular los puntos)#
+
 #PRINCIPAL
 def fiuble():
     pal_adiv=generar_palabra_a_adivinar()
@@ -188,4 +215,5 @@ def fiuble():
         print('Perdiste!')
     print((fin-inicio))
     contador_puntos(puntos_obtenidos,partida)
+    #volver_a_jugar()
 fiuble()

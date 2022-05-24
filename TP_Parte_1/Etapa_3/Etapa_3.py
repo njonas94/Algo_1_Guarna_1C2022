@@ -11,9 +11,10 @@ def generar_palabra_a_adivinar():
     return random.choice(palabras_validas)
 
 
-def acumular_intentos(palabra_ingresada, contador_intentos, intentos_ingresados):
+def acumular_intentos(palabra_ingresada, contador_intentos, colores, intentos_ingresados_list, intentos_ingresados_str):
+    intentos_ingresados_str.append(palabra_ingresada)
     for i in range(len(palabra_ingresada)):
-        intentos_ingresados[contador_intentos][i] = palabra_ingresada[i]
+        intentos_ingresados_list[contador_intentos][i] = colores[i] + palabra_ingresada[i]
 
     return
 
@@ -23,13 +24,13 @@ def mostrar_palabra(lista_palabra_ingresada):
     Nos muestra la palabra una al lado de la otra
     """
     for letra in lista_palabra_ingresada:
-        print(letra + " ", end = "")
+        print(letra + " " + obtener_color("Defecto"), end = "")
     print()
 
     return
 
 
-def cambiar_tilde(palabra_ingresada):
+def dar_formato_al_intento(palabra_ingresada):
     """
     Recibimos la palabra ingresada y la retornamos sin tildes
     """
@@ -42,7 +43,7 @@ def cambiar_tilde(palabra_ingresada):
     return arriesgo
 
 
-def validacion(palabra_ingresada, intentos_ingresados):
+def validacion(palabra_ingresada, intentos_ingresados_str):
     """
     Recibimos la palabra ingresada y verificamos que cumpla con las condiciones
     """
@@ -51,18 +52,18 @@ def validacion(palabra_ingresada, intentos_ingresados):
         print("La palabra no tiene que contener numero ni caracteres especiales.")
     if len(palabra_ingresada) != 5:
         print("La palabra tiene que ser de 5 letras.")
-    if palabra_ingresada not in obtener_palabras_validas():
+    if dar_formato_al_intento(palabra_ingresada).lower() not in obtener_palabras_validas():
         print("La palabra no se encuentra en la lista de palabras válidas.")
-    if palabra_ingresada in intentos_ingresados:
+    if palabra_ingresada.upper() in intentos_ingresados_str:
         print("La palabra ya habia sido ingresada.")
-    if palabra_ingresada.isalpha() and len(
-            palabra_ingresada) == 5 and palabra_ingresada in obtener_palabras_validas() and palabra_ingresada not in intentos_ingresados:
+    #Consultar al profe sobre como tratar el if que quedo excesivamente largo    
+    if palabra_ingresada.isalpha() and len(palabra_ingresada) == 5 and dar_formato_al_intento(palabra_ingresada).lower() in obtener_palabras_validas() and palabra_ingresada.upper() not in intentos_ingresados_str:
         verificacion = True
 
     return verificacion
 
 
-def procesar_intento(pal_adiv, intento):
+def procesar_intento(pal_adiv, intento, lista_palabra_a_adivinar):
     """
     Este es el proceso para ver si las letras estan, se repiten o no estan en la palabra a adivinar
     """
@@ -76,6 +77,7 @@ def procesar_intento(pal_adiv, intento):
                     pos == pos_2 and pos_2 == pal_adiv.index(intento[pos_2]))):
                 color_1 = obtener_color("Verde")
                 colores.append(color_1)
+                lista_palabra_a_adivinar[pos] = pal_adiv[pos]
 
             elif ((pos == pos_2 and pos_1 == pal_adiv.index(intento[pos_1])) or (
                     pos == pos_1 and pos_2 == pal_adiv.index(intento[pos_2]))):
@@ -93,6 +95,7 @@ def procesar_intento(pal_adiv, intento):
         elif intento[pos] == pal_adiv[pos]:
             color_1 = obtener_color("Verde")
             colores.append(color_1)
+            lista_palabra_a_adivinar[pos] = pal_adiv[pos]
 
         elif intento[pos] in pal_adiv and intento[pos] != pal_adiv[pos]:
             color_2 = obtener_color("Amarillo")
@@ -105,40 +108,44 @@ def procesar_intento(pal_adiv, intento):
     return colores
 
 
+def juego_terminado(intentos_ingresados_list, palabra_a_adivinar):
+    print("Palabra a adivinar: ", end = "")
+    mostrar_palabra(palabra_a_adivinar)
+    for intento in intentos_ingresados_list:
+        mostrar_palabra(intento)
+
+    return
+
 def main():
-    palabra_a_adivinar = generar_palabra_a_adivinar()
-    intentos_ingresados = [["?", "?", "?", "?", "?"], ["?", "?", "?", "?", "?"], ["?", "?", "?", "?", "?"],
+    palabra_a_adivinar = generar_palabra_a_adivinar().upper()
+    intentos_ingresados_str = []
+    intentos_ingresados_list = [["?", "?", "?", "?", "?"], ["?", "?", "?", "?", "?"], ["?", "?", "?", "?", "?"],
                            ["?", "?", "?", "?", "?"], ["?", "?", "?", "?", "?"]]
     lista_palabra_a_adivinar = ["?", "?", "?", "?", "?"]
     contador_intentos = 0
-    while contador_intentos < 5:
+    victoria = False
+    while contador_intentos < 5 and victoria == False:
         print("Palabra a adivinar: ", end = "")
         mostrar_palabra(lista_palabra_a_adivinar)
-        for intento in intentos_ingresados:
+        for intento in intentos_ingresados_list:
             mostrar_palabra(intento)
         arriesgo = input("Arriesgo: ")
-        if validacion(arriesgo, intentos_ingresados):
-            arriesgo = cambiar_tilde(arriesgo)
-            acumular_intentos(arriesgo, contador_intentos, intentos_ingresados)
+        if validacion(arriesgo, intentos_ingresados_str):
+            arriesgo = dar_formato_al_intento(arriesgo)
+            colores = procesar_intento(palabra_a_adivinar, arriesgo, lista_palabra_a_adivinar)
+            acumular_intentos(arriesgo, contador_intentos, colores, intentos_ingresados_list, intentos_ingresados_str)
             contador_intentos += 1
             if palabra_a_adivinar == arriesgo:
-                print('Ganaste!')
+                juego_terminado(intentos_ingresados_list, palabra_a_adivinar)
+                print("Ganaste!")
+                victoria = True
             elif contador_intentos == 5:
-                print('Perdiste!')
+                juego_terminado(intentos_ingresados_list, palabra_a_adivinar)
+                print("Perdiste!")
+        print()
 
     return
 
 
 main()
 
-"""
-Pruebas
-
-print(intentos_ingresados)
-print(intentos_ingresados[0])
-print(intentos_ingresados[1])
-
-print("Arriesgo:",colores[0] + intento[0].upper(),colores[1] + intento[1].upper(), colores[2] + intento[2].upper(), colores[3] + intento[3].upper(), colores[4] + intento[4].upper(), obtener_color ("Defecto"))
-
-
-"""

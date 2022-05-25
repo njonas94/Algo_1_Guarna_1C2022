@@ -103,10 +103,10 @@ def desarrollo_intentos(pal_adiv, intento,color_4):
                     #print(adivinar)
                     
         print(f"\nPalabra a adivinar: {adivinar[0]} {adivinar[1]} {adivinar[2]} {adivinar[3]} {adivinar[4]}\n")
-        for i in range(len(palabras)):
-            for j in range(len(palabras)):
-                print(palabras[i][j], color_4, end=" ")
-            print('\n')
+        for palabra in palabras:
+            for letra in palabra:
+                print(letra, color_4, end="")
+            print()
             
         palabras_ingresadas = acumular_intentos(intento,palabras_ingresadas)
         if pal_adiv not in palabras_ingresadas and len(palabras_ingresadas)<5:
@@ -208,10 +208,10 @@ def fiuble():
     fin=time.time()
     puntos_obtenidos=puntaje(lista_de_intentos_ingresados,pal_adiv,puntos_por_partida) #Lista cargada de puntos obtenidos por partida#
     minutos,segundos=cronometro(inicio, fin)
-    print(f'Palabra a adivinar: {pal_adiv[0]} {pal_adiv[1]} {pal_adiv[2]} {pal_adiv[3]} {pal_adiv[4]} {color_4}')
     if pal_adiv in lista_de_intentos_ingresados:
         print('Ganaste! Tardaste',minutos,'minutos y',segundos,'segundos')
     else:
+        print(f'La palabra a adivinar era: {pal_adiv[0]} {pal_adiv[1]} {pal_adiv[2]} {pal_adiv[3]} {pal_adiv[4]} {color_4}')
         print('Perdiste!')
     print((fin-inicio))
     contador_puntos(puntos_obtenidos,partida)

@@ -151,22 +151,6 @@ def almacenamiento_puntos(puntos_obtenidos,puntos_por_partida):
     puntos_por_partida.append(puntos_obtenidos)
     return puntos_por_partida
 
-#FUNCION PARA CONTAR LOS PUNTOS DE CADA PARTIDA
-#def contador_puntos(puntos,partida):
-#    ultima_partida=puntos[partida]
-#    if partida>=1:
-#        total=puntos[partida-1]+ultima_partida
-#        puntos[partida]=total
-#        if ultima_partida>0:
-#            print(f'Obtuviste un total de {ultima_partida} puntos, tenes acumulados {total} puntos')
-#        else:
-#            print(f'Perdiste un total de {-ultima_partida} puntos, tenes acumulados {total} puntos')
-#    else:
-#        if ultima_partida>0:
-#            print(f'Obtuviste un total de {ultima_partida} puntos.')
-#        else:
-#            print(f'Perdiste un total de {-ultima_partida} puntos.')
-
 #def contador_puntos(puntos_por_partida):
 #    total = 0
 #    ultima_partida=puntos_por_partida[-1]
@@ -183,16 +167,15 @@ def almacenamiento_puntos(puntos_obtenidos,puntos_por_partida):
 #        else:
 #            print(f'Perdiste un total de {-ultima_partida} puntos.')
 
-#def volver_a_jugar():
-#    desea_jugar = "a"
+#def volver_a_jugar(partida):
+#    desea_jugar = input("¿Desea volver a jugar?(S/N):")
 #    while desea_jugar not in ("N,n,S,s"):
 #        desea_jugar = input("¿Desea volver a jugar?(S/N):")
 #    if desea_jugar in "s,S":
-#        fiuble(puntos_por_partida)
+#        partida+=1
 #    elif desea_jugar in "n,N":
-#        pass
-
-#puntos_por_partida=[] (si no sacas esta lista afuera, nunca se van acumular los puntos)#
+#        partida=-1
+#    return partida, desea_jugar
 
 #PRINCIPAL
 def fiuble():
@@ -215,5 +198,27 @@ def fiuble():
         print('Perdiste!')
     print((fin-inicio))
     contador_puntos(puntos_obtenidos,partida)
-    #volver_a_jugar()
+    
+'''PARA USAR LAS FUNCIONES QUE HIZO EMILIANO MODIFIQUE LA FUNCION PRINCIPAL Y COLOQUE LA CONDICION PARA JUGAR NUEVAMENTE CON UN WHILE'''
+#def fiuble():
+#    puntos_por_partida=[] #Lista de puntos de cada partida#
+#    partida=0#VER DONDE COLOCAR EL CONTADOR DE PARTIDAS Y LA PREGUNTA DE SI QUIERE JUGAR OTRA VEZ. ASOCIARLO A FUN CONTADOR_PUNTOS
+#    jugar=''
+#    while partida==0 or jugar=='s' or jugar=='S':
+#        pal_adiv=generar_palabra_a_adivinar()
+#        print("Palabra a adivinar: ? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?")
+#        inicio=time.time()
+#        intento=input("Arriesgo:")
+#        intento=validacion(intento)
+#        color_4=obtener_color("Defecto")
+#        lista_de_intentos_ingresados=desarrollo_intentos(pal_adiv, intento,color_4) #Esta lista, es la lista de str de palabras ingresadas#
+#        fin=time.time()
+#        puntos_obtenidos=puntaje(lista_de_intentos_ingresados,pal_adiv,puntos_por_partida) #Lista cargada de puntos obtenidos por partida#
+#        minutos,segundos=cronometro(inicio, fin)
+#        if pal_adiv in lista_de_intentos_ingresados:
+#            print('Ganaste! Tardaste',minutos,'minutos y',segundos,'segundos')
+#        else:
+#            print(f'Palabra a adivinar: {pal_adiv[0]} {pal_adiv[1]} {pal_adiv[2]} {pal_adiv[3]} {pal_adiv[4]} {color_4}\nPerdiste!')
+#        contador_puntos(puntos_obtenidos)
+#        partida, jugar = volver_a_jugar(partida)
 fiuble()

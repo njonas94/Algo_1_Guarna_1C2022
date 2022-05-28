@@ -26,8 +26,8 @@ def validacion(palabra_ingresada):
 
 #ETAPA 2
 def cambiar_tilde(palabra_ingresada):
-    a = 'áéíóúýäëïöüÿ'
-    b = 'aeiouyaeiouy'
+    a = 'áéíóúýäëïöüÿàèìòùâêîôû'
+    b = 'aeiouyaeiouyaeiouaeiou'
     palabra_sin_acento = palabra_ingresada.maketrans(a, b)
     arriesgo = palabra_ingresada.translate(palabra_sin_acento)
     return arriesgo

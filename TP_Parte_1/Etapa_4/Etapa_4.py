@@ -56,41 +56,34 @@ def desarrollo_intentos(pal_adiv, intento,color_4):
                     if pal_adiv[pos] != adivinar[pos]:
                         #reemplazo '?' en la lista por la letra acertada
                         adivinar[pos]=pal_adiv[pos]
-                        #print(adivinar)
-                                    
+                                                           
                 elif ((pos==pos_2 and pos_1==pal_adiv.index(intento[pos_1])) or (pos==pos_1 and pos_2==pal_adiv.index(intento[pos_2]))):
                     color_3 = obtener_color("GrisOscuro") 
                     palabras[orden_ingreso][pos]=(color_3+intento[pos])
-                    #print(adivinar)
-                                   
+                                                       
                 elif (pos==pos_1 and pos_1!=pal_adiv.index(intento[pos_1]) and pos_2!=pal_adiv.index(intento[pos_1])):
                     color_2=obtener_color("Amarillo") 
                     palabras[orden_ingreso][pos]=(color_2+intento[pos])
-                    #print(adivinar)
-                    
+                                        
                 elif (pos==pos_2 and pos_1!=pal_adiv.index(intento[pos_1]) and pos_2!=pal_adiv.index(intento[pos_1])):
                     color_3 = obtener_color("GrisOscuro") 
                     palabras[orden_ingreso][pos]=(color_3+intento[pos])
-                    #print(adivinar)
-                    
+                                        
             elif intento[pos] not in pal_adiv:
                 color_3=obtener_color("GrisOscuro")
                 palabras[orden_ingreso][pos]=(color_3+intento[pos])
-                #print(adivinar)
-                
+                                
             elif intento[pos] in pal_adiv and intento[pos] != pal_adiv[pos]:
                 color_2=obtener_color("Amarillo")
                 palabras[orden_ingreso][pos]=(color_2+intento[pos])
-                #print(adivinar)
-                
+                                
             elif intento[pos] == pal_adiv[pos]:
                 color_1 = obtener_color("Verde") 
                 palabras[orden_ingreso][pos]=(color_1+intento[pos])
                 if pal_adiv[pos] != adivinar[pos]:
                     adivinar[pos]=pal_adiv[pos]
-                    #print(adivinar)
-                    
-        print(f"\nPalabra a adivinar: {adivinar[0]} {adivinar[1]} {adivinar[2]} {adivinar[3]} {adivinar[4]}\n")
+                                        
+        print(f"\nPalabra a adivinar: {adivinar[0]} {adivinar[1]} {adivinar[2]} {adivinar[3]} {adivinar[4]}")
         for palabra in palabras:
             for letra in palabra:
                 print(letra, color_4, end="")

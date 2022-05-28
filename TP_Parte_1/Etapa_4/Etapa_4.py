@@ -1,5 +1,4 @@
-from utiles import obtener_color
-from utiles import obtener_palabras_validas
+from utiles import *
 import random
 import time
 #ETAPA 3
@@ -10,7 +9,7 @@ def generar_palabra_a_adivinar():
 
 #ETAPA 2
 def validacion(palabra_ingresada):
-    dicc=contador_letras(palabra_ingresada)
+    palabra_ingresada = cambiar_tilde(palabra_ingresada.lower())
     while not palabra_ingresada.isalpha() or palabra_ingresada.lower() not in obtener_palabras_validas():
         if not palabra_ingresada.isalpha() and len(palabra_ingresada) != 5:
             print("Palabra inválida, tiene que ser de 5 letras y no puede contener número/s ni caracteres especiales.")
@@ -21,27 +20,16 @@ def validacion(palabra_ingresada):
         else:#if not palabra_ingresada.isalpha():
             print("Palabra inválida, no puede contener números ni caracteres especiales.")
         palabra_ingresada = input("Ingrese una palabra valida de 5 letras: ")
-        dicc=contador_letras(palabra_ingresada)
-    return cambiar_tilde(palabra_ingresada)
+        palabra_ingresada = cambiar_tilde(palabra_ingresada.lower())
+    return palabra_ingresada.upper()
 
-#ETAPA 3
-def contador_letras(palabra_ingresada):
-    dicc={}
-    for letra in palabra_ingresada:
-        if letra not in dicc:
-            dicc[letra]=1
-        else:
-            dicc[letra]+=1
-    #print(dicc)
-    return dicc
 
 #ETAPA 2
 def cambiar_tilde(palabra_ingresada):
-    palabra_mayus = palabra_ingresada.upper()
-    a = 'ÁÉÍÓÚÝÄËÏÖÜŸ'
-    b = 'AEIOUYAEIOUY'
-    palabra_sin_acento = palabra_mayus.maketrans(a, b)
-    arriesgo = palabra_mayus.translate(palabra_sin_acento)
+    a = 'áéíóúýäëïöüÿ'
+    b = 'aeiouyaeiouy'
+    palabra_sin_acento = palabra_ingresada.maketrans(a, b)
+    arriesgo = palabra_ingresada.translate(palabra_sin_acento)
     return arriesgo
 
 #ETAPA 1 ADAPTADA A 3
@@ -151,74 +139,52 @@ def almacenamiento_puntos(puntos_obtenidos,puntos_por_partida):
     puntos_por_partida.append(puntos_obtenidos)
     return puntos_por_partida
 
-#def contador_puntos(puntos_por_partida):
-#    total = 0
-#    ultima_partida=puntos_por_partida[-1]
-#    if len(puntos_por_partida) > 1:
-#        for puntajes in puntos_por_partida:
-#            total += puntajes
-#        if ultima_partida>0:
-#            print(f'Obtuviste un total de {ultima_partida} puntos, tenes acumulados {total} puntos')
-#        else:
-#            print(f'Perdiste un total de {-ultima_partida} puntos, tenes acumulados {total} puntos')
-#    else:
-#        if ultima_partida>0:
-#            print(f'Obtuviste un total de {ultima_partida} puntos.')
-#        else:
-#            print(f'Perdiste un total de {-ultima_partida} puntos.')
+def contador_puntos(puntos_por_partida):
+    total = 0
+    ultima_partida=puntos_por_partida[-1]
+    if len(puntos_por_partida) > 1:
+        for puntajes in puntos_por_partida:
+            total += puntajes
+        if ultima_partida>0:
+            print(f'Obtuviste un total de {ultima_partida} puntos, tenes acumulados {total} puntos')
+        else:
+            print(f'Perdiste un total de {-ultima_partida} puntos, tenes acumulados {total} puntos')
+    else:
+        if ultima_partida>0:
+            print(f'Obtuviste un total de {ultima_partida} puntos.')
+        else:
+            print(f'Perdiste un total de {-ultima_partida} puntos.')
 
-#def volver_a_jugar(partida):
-#    desea_jugar = input("¿Desea volver a jugar?(S/N):")
-#    while desea_jugar not in ("N,n,S,s"):
-#        desea_jugar = input("¿Desea volver a jugar?(S/N):")
-#    if desea_jugar in "s,S":
-#        partida+=1
-#    elif desea_jugar in "n,N":
-#        partida=-1
-#    return partida, desea_jugar
+def volver_a_jugar(partida):
+    desea_jugar = input("¿Desea volver a jugar?(S/N):")
+    while desea_jugar not in ("N,n,S,s"):
+        desea_jugar = input("¿Desea volver a jugar?(S/N):")
+    if desea_jugar in "s,S":
+        partida+=1
+    elif desea_jugar in "n,N":
+        partida=-1
+    return partida, desea_jugar
 
 #PRINCIPAL
 def fiuble():
-    pal_adiv=generar_palabra_a_adivinar()
-    print("Palabra a adivinar: ? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?")
-    inicio=time.time()
-    intento=input("Arriesgo:")
-    intento=validacion(intento)
-    partida=0#VER DONDE COLOCAR EL CONTADOR DE PARTIDAS Y LA PREGUNTA DE SI QUIERE JUGAR OTRA VEZ. ASOCIARLO A FUN CONTADOR_PUNTOS
     puntos_por_partida=[] #Lista de puntos de cada partida#
-    color_4=obtener_color("Defecto")
-    lista_de_intentos_ingresados=desarrollo_intentos(pal_adiv, intento,color_4) #Esta lista, es la lista de str de palabras ingresadas#
-    fin=time.time()
-    puntos_obtenidos=puntaje(lista_de_intentos_ingresados,pal_adiv,puntos_por_partida) #Lista cargada de puntos obtenidos por partida#
-    minutos,segundos=cronometro(inicio, fin)
-    if pal_adiv in lista_de_intentos_ingresados:
-        print('Ganaste! Tardaste',minutos,'minutos y',segundos,'segundos')
-    else:
-        print(f'La palabra a adivinar era: {pal_adiv[0]} {pal_adiv[1]} {pal_adiv[2]} {pal_adiv[3]} {pal_adiv[4]} {color_4}')
-        print('Perdiste!')
-    print((fin-inicio))
-    contador_puntos(puntos_obtenidos,partida)
-    
-'''PARA USAR LAS FUNCIONES QUE HIZO EMILIANO MODIFIQUE LA FUNCION PRINCIPAL Y COLOQUE LA CONDICION PARA JUGAR NUEVAMENTE CON UN WHILE'''
-#def fiuble():
-#    puntos_por_partida=[] #Lista de puntos de cada partida#
-#    partida=0#VER DONDE COLOCAR EL CONTADOR DE PARTIDAS Y LA PREGUNTA DE SI QUIERE JUGAR OTRA VEZ. ASOCIARLO A FUN CONTADOR_PUNTOS
-#    jugar=''
-#    while partida==0 or jugar=='s' or jugar=='S':
-#        pal_adiv=generar_palabra_a_adivinar()
-#        print("Palabra a adivinar: ? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?")
-#        inicio=time.time()
-#        intento=input("Arriesgo:")
-#        intento=validacion(intento)
-#        color_4=obtener_color("Defecto")
-#        lista_de_intentos_ingresados=desarrollo_intentos(pal_adiv, intento,color_4) #Esta lista, es la lista de str de palabras ingresadas#
-#        fin=time.time()
-#        puntos_obtenidos=puntaje(lista_de_intentos_ingresados,pal_adiv,puntos_por_partida) #Lista cargada de puntos obtenidos por partida#
-#        minutos,segundos=cronometro(inicio, fin)
-#        if pal_adiv in lista_de_intentos_ingresados:
-#            print('Ganaste! Tardaste',minutos,'minutos y',segundos,'segundos')
-#        else:
-#            print(f'Palabra a adivinar: {pal_adiv[0]} {pal_adiv[1]} {pal_adiv[2]} {pal_adiv[3]} {pal_adiv[4]} {color_4}\nPerdiste!')
-#        contador_puntos(puntos_obtenidos)
-#        partida, jugar = volver_a_jugar(partida)
+    partida=0#VER DONDE COLOCAR EL CONTADOR DE PARTIDAS Y LA PREGUNTA DE SI QUIERE JUGAR OTRA VEZ. ASOCIARLO A FUN CONTADOR_PUNTOS
+    jugar=''
+    while partida==0 or jugar=='s' or jugar=='S':
+        pal_adiv=generar_palabra_a_adivinar()
+        print("Palabra a adivinar: ? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?")
+        inicio=time.time()
+        intento=input("Arriesgo:")
+        intento=validacion(intento)
+        color_4=obtener_color("Defecto")
+        lista_de_intentos_ingresados=desarrollo_intentos(pal_adiv, intento,color_4) #Esta lista, es la lista de str de palabras ingresadas#
+        fin=time.time()
+        puntos_obtenidos=puntaje(lista_de_intentos_ingresados,pal_adiv,puntos_por_partida) #Lista cargada de puntos obtenidos por partida#
+        minutos,segundos=cronometro(inicio, fin)
+        if pal_adiv in lista_de_intentos_ingresados:
+            print('Ganaste! Tardaste',minutos,'minutos y',segundos,'segundos')
+        else:
+            print(f'Palabra a adivinar: {pal_adiv[0]} {pal_adiv[1]} {pal_adiv[2]} {pal_adiv[3]} {pal_adiv[4]} {color_4}\nPerdiste!')
+        contador_puntos(puntos_obtenidos)
+        partida, jugar = volver_a_jugar(partida)
 fiuble()

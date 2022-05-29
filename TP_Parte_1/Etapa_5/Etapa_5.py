@@ -193,14 +193,13 @@ def contador_puntajes (puntos_obtenidos,usuarios,adjudicado,adjudicado_2):
     if puntos_obtenidos > 0:
         usuarios[adjudicado_2] += -puntos_obtenidos
         print(f"{adjudicado.upper()}, ha ganado: {puntos_obtenidos} puntos. Tiene acumulados {usuarios[adjudicado]} puntos.")
-        print(f"{adjudicado_2.upper()}, ha perdido: {puntos_obtenidos} puntos.Tiene acumulados {usuarios[adjudicado_2]} puntos")
+        print(f"{adjudicado_2.upper()}, ha perdido: {puntos_obtenidos} puntos. Tiene acumulados {usuarios[adjudicado_2]} puntos.")
         
     elif puntos_obtenidos == -100:
         usuarios[adjudicado_2] += -50
         print(f"{adjudicado.upper()}, ha perdido, 100 puntos. Tiene acumulados {usuarios[adjudicado]} puntos.")
-        print(f"{adjudicado_2.upper()}, ha perdido, 50 puntos. Tiene acumulados {usuarios[adjudicado_2]} puntos.")
-        
-    print(f"Puntajes parciales: {usuarios}")
+        print(f"{adjudicado_2.upper()}, ha perdido, 50 puntos. Tiene acumulados {usuarios[adjudicado_2]} puntos.")        
+#    print(f"Puntajes parciales: {usuarios}")
     return usuarios
 
 '''Devuelve la respuesta de seguir jugando.''' # Le agregue que devuelva tambien partida #

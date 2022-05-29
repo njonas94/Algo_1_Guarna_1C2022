@@ -157,34 +157,33 @@ def puntaje(intentos_ingresados_str,palabra_a_adivinar,puntos_por_partida):
 
     puntos_por_partida.append(puntos_obtenidos)
 
-    return puntos_obtenidos
-
-def contador_puntos(puntos_por_partida):
+def mostrar_puntaje(puntos_por_partida):
     """
-    
+    Muestra por pantalla el puntaje obtenido/perdido, y en caso de que corresponda, el acumulado.
     """
-    total = 0
-    ultima_partida = puntos_por_partida[-1]
+    acumulados = 0
+    puntaje_ultima_partida = puntos_por_partida[-1]
     if len(puntos_por_partida) > 1:
-        for puntajes in puntos_por_partida:
-            total += puntajes
-        if ultima_partida>0:
-            print(f'Obtuviste un total de {ultima_partida} puntos, tenes acumulados {total} puntos')
+        acumulados = sum(puntos_por_partida)
+        if puntaje_ultima_partida>0:
+            print(f"Obtuviste un total de {puntaje_ultima_partida} puntos, tenes acumulados {acumulados} puntos")
         else:
-            print(f'Perdiste un total de {-ultima_partida} puntos, tenes acumulados {total} puntos')
+            print(f"Perdiste un total de {-puntaje_ultima_partida} puntos, tenes acumulados {acumulados} puntos")
     else:
-        if ultima_partida>0:
-            print(f'Obtuviste un total de {ultima_partida} puntos.')
+        if puntaje_ultima_partida>0:
+            print(f"Obtuviste un total de {puntaje_ultima_partida} puntos.")
         else:
-            print(f'Perdiste un total de {-ultima_partida} puntos.')
+            print(f"Perdiste un total de {-puntaje_ultima_partida} puntos.")
 
 
 def main():
     partida = 0
     desea_jugar = True
     partida_terminada = False
+    puntos_por_partida = []
 
     while desea_jugar:
+
         if partida_terminada == True:
             volver_a_jugar = input("¿Desea volver a jugar?(S/N):")
             if volver_a_jugar in ["s", "S"]:
@@ -194,7 +193,6 @@ def main():
         else:    
             palabra_a_adivinar = generar_palabra_a_adivinar().upper()
             intentos_ingresados_str = []
-            puntos_por_partida = []
             intentos_ingresados_list = [["?", "?", "?", "?", "?"], ["?", "?", "?", "?", "?"], ["?", "?", "?", "?", "?"],
                                 ["?", "?", "?", "?", "?"], ["?", "?", "?", "?", "?"]]
             lista_palabra_a_adivinar = ["?", "?", "?", "?", "?"]
@@ -220,11 +218,13 @@ def main():
                         minutos_tardados, segundos_tardados = cronometro(inicio_tiempo, final_tiempo)
                         print("Ganaste! Tardaste", minutos_tardados ,"minutos y", segundos_tardados ,"segundos")
                         puntaje(intentos_ingresados_str, palabra_a_adivinar, puntos_por_partida)
+                        mostrar_puntaje(puntos_por_partida)
                         partida_terminada = True
                     elif contador_intentos == 5:
                         juego_terminado(intentos_ingresados_list, palabra_a_adivinar)
                         print("Perdiste!")
                         puntaje(intentos_ingresados_str, palabra_a_adivinar, puntos_por_partida)
+                        mostrar_puntaje(puntos_por_partida)
                         partida_terminada = True
 
                 print()

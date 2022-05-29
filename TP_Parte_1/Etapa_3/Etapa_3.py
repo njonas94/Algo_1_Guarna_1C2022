@@ -4,7 +4,8 @@ from utiles import *
 
 def generar_palabra_a_adivinar():
     """
-    Nos retorna la palabra a adivinar
+    Devuelve la palabra a adivinar en mayúscula, seleccionada aleatoriamente de la lista de palabras válidas.
+
     """
     palabras_validas = obtener_palabras_validas()
 
@@ -12,6 +13,10 @@ def generar_palabra_a_adivinar():
 
 
 def acumular_intentos(palabra_ingresada, contador_intentos, colores, intentos_ingresados_list, intentos_ingresados_str):
+    """
+    Acumula los intentos ingresados en una lista, con el respectivo color de letra correspondiente asociado.
+
+    """
     intentos_ingresados_str.append(palabra_ingresada)
     for i in range(len(palabra_ingresada)):
         intentos_ingresados_list[contador_intentos][i] = colores[i] + palabra_ingresada[i]
@@ -21,7 +26,7 @@ def acumular_intentos(palabra_ingresada, contador_intentos, colores, intentos_in
 
 def mostrar_palabra(lista_palabra_ingresada):
     """
-    Nos muestra la palabra una al lado de la otra
+    Muestra por pantalla las palabras en el formato deseado.
     """
     for letra in lista_palabra_ingresada:
         print(letra + " " + obtener_color("Defecto"), end = "")
@@ -32,7 +37,7 @@ def mostrar_palabra(lista_palabra_ingresada):
 
 def dar_formato_al_intento(palabra_ingresada):
     """
-    Recibimos la palabra ingresada y la retornamos sin tildes
+    Recibe un string con tildes y devuelve sin tildes y en mayuscula.
     """
     palabra_mayus = palabra_ingresada.upper()
     a = 'ÁÉÍÓÚÝÄËÏÖÜŸ'
@@ -45,7 +50,7 @@ def dar_formato_al_intento(palabra_ingresada):
 
 def validacion(palabra_ingresada, intentos_ingresados_str):
     """
-    Recibimos la palabra ingresada y verificamos que cumpla con las condiciones
+    Devuelve True o False si la palabra ingresada cumple con lo solicitado en las reglas del juego.
     """
     verificacion = False
     if not palabra_ingresada.isalpha():
@@ -65,7 +70,7 @@ def validacion(palabra_ingresada, intentos_ingresados_str):
 
 def procesar_intento(pal_adiv, intento, lista_palabra_a_adivinar):
     """
-    Este es el proceso para ver si las letras estan, se repiten o no estan en la palabra a adivinar
+    Procesa el intento ingresado, creando una lista con el correspondiente color asignado a cada letra en el mismo indice que el string ingresado.
     """
     colores = []
     for pos in range(len(pal_adiv)):
@@ -109,6 +114,9 @@ def procesar_intento(pal_adiv, intento, lista_palabra_a_adivinar):
 
 
 def juego_terminado(intentos_ingresados_list, palabra_a_adivinar):
+    """
+    Muestra en terminal la "Palabra a adivinar" y los intentos.
+    """
     print("Palabra a adivinar: ", end = "")
     mostrar_palabra(palabra_a_adivinar)
     for intento in intentos_ingresados_list:
@@ -117,6 +125,9 @@ def juego_terminado(intentos_ingresados_list, palabra_a_adivinar):
     return
 
 def main():
+    """
+    Inicializa las variables, y llama a las variables necesarias para correr el juego en un ciclo.
+    """
     palabra_a_adivinar = generar_palabra_a_adivinar().upper()
     intentos_ingresados_str = []
     intentos_ingresados_list = [["?", "?", "?", "?", "?"], ["?", "?", "?", "?", "?"], ["?", "?", "?", "?", "?"],

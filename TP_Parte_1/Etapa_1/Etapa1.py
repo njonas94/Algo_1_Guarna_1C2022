@@ -64,3 +64,4 @@ def fiuble():
         print('Ganaste!')
     else:
         print('Perdiste!')
+fiuble()

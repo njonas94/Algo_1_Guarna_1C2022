@@ -176,8 +176,7 @@ def puntaje(lista,adivinar,usuarios,todos_turnos):
             puntos_obtenidos=valores[3]
         elif len(lista)==5:
             puntos_obtenidos=valores[4]
-            
-''' Esto segun el largo de la lista, lo usa como indice para seleccionar en la lista de turnos '''
+#Esto segun el largo de la lista, lo usa como indice para seleccionar en la lista de turnos.
     indice = len(lista)-1
     adjudicado = todos_turnos[indice]
     if indice == 0:
@@ -185,7 +184,6 @@ def puntaje(lista,adivinar,usuarios,todos_turnos):
     else:
         adjudicado_2 = todos_turnos[indice -1]
         
-    #return almacenamiento_puntos(puntos_obtenidos,puntos_por_partida)
     return contador_puntajes (puntos_obtenidos,usuarios,adjudicado,adjudicado_2)
 
 
@@ -193,50 +191,17 @@ def puntaje(lista,adivinar,usuarios,todos_turnos):
 def contador_puntajes (puntos_obtenidos,usuarios,adjudicado,adjudicado_2):
     usuarios[adjudicado] += puntos_obtenidos
     if puntos_obtenidos > 0:
-        print(f"{adjudicado}, a ganado: {puntos_obtenidos} puntos")
-        print(f"{adjudicado_2}, a perdido: {puntos_obtenidos} puntos")
         usuarios[adjudicado_2] += -puntos_obtenidos
+        print(f"{adjudicado.upper()}, ha ganado: {puntos_obtenidos} puntos. Tiene acumulados {usuarios[adjudicado]} puntos.")
+        print(f"{adjudicado_2.upper()}, ha perdido: {puntos_obtenidos} puntos.Tiene acumulados {usuarios[adjudicado_2]} puntos")
+        
     elif puntos_obtenidos == -100:
-        print(f"{adjudicado}, a perdido, 100 puntos")
-        print(f"{adjudicado_2}, a perdido, 50 puntos")
         usuarios[adjudicado_2] += -50
+        print(f"{adjudicado.upper()}, ha perdido, 100 puntos. Tiene acumulados {usuarios[adjudicado]} puntos.")
+        print(f"{adjudicado_2.upper()}, ha perdido, 50 puntos. Tiene acumulados {usuarios[adjudicado_2]} puntos.")
+        
     print(f"Puntajes parciales: {usuarios}")
     return usuarios
-
-'''
-    Función: almacenamiento_puntos
-    Parámetros:
-        puntos_obtenidos: puntaje de la partida
-        puntos_por partida: lista vacia
-    Salida:
-        Devuelve la lista cargada con el puntaje.
-'''
-def almacenamiento_puntos(puntos_obtenidos,puntos_por_partida):
-    puntos_por_partida.append(puntos_obtenidos)
-    return puntos_por_partida
-
-'''
-    Función: contador_puntos
-    Parámetros:
-        puntos_por_partida: lista cargada con los puntos de las partidas.
-    Salida:
-        Imprime los puntos obtenidos en la partida y el total de puntos acumulados por el usuario.
-'''
-def contador_puntos(puntos_por_partida):
-    total = 0
-    ultima_partida=puntos_por_partida[-1]
-    if len(puntos_por_partida) > 1:
-        for puntajes in puntos_por_partida:
-            total += puntajes
-        if ultima_partida>0:
-            print(f'Obtuviste un total de {ultima_partida} puntos, tenes acumulados {total} puntos')
-        else:
-            print(f'Perdiste un total de {-ultima_partida} puntos, tenes acumulados {total} puntos')
-    else:
-        if ultima_partida>0:
-            print(f'Obtuviste un total de {ultima_partida} puntos.')
-        else:
-            print(f'Perdiste un total de {-ultima_partida} puntos.')
 
 '''Devuelve la respuesta de seguir jugando.''' # Le agregue que devuelva tambien partida #
 def volver_a_jugar(partida):
@@ -283,6 +248,10 @@ def turnos (partida,todos_turnos_2,todos_turnos_3):
         todos_turnos = todos_turnos_2
     return todos_turnos
 
+def determinar_ganador(usuarios):
+    orden =sorted(usuarios.items(), key=lambda x:x[1], reverse=True)
+    print(f'El ganador es {orden[0][0]} con un total de {orden[0][1]} puntos.')
+    
 #PRINCIPAL
 def fiuble():
     puntos_por_partida=[] #Lista de puntos de cada partida#
@@ -290,7 +259,7 @@ def fiuble():
     jugar=''
     usuarios=ingreso()
     todos_turnos_2, todos_turnos_3 = turno_ingreso(usuarios, partida)
-    todos_turnos=turnos(partida, todos_turnos_2, todos_turnos_3)
+   
     while (partida==0 and jugar=='') or jugar in 's, S':
         todos_turnos=turnos(partida, todos_turnos_2,todos_turnos_3)
         pal_adiv=generar_palabra_a_adivinar()
@@ -299,16 +268,15 @@ def fiuble():
         inicio=time.time()
         intento=input("Arriesgo:")
         intento=validacion(intento)
-#        color_4=obtener_color("Defecto")
         lista_de_intentos_ingresados=desarrollo_intentos(pal_adiv, intento, todos_turnos) #Esta lista, es la lista de str de palabras ingresadas#
         fin=time.time()
-        #puntos_obtenidos=puntaje(lista_de_intentos_ingresados,pal_adiv,puntos_por_partida) #Lista cargada de puntos obtenidos por partida#
+
         minutos,segundos=cronometro(inicio, fin)
         if pal_adiv in lista_de_intentos_ingresados:
             print('Ganaste! Tardaste',minutos,'minutos y',segundos,'segundos')
         else:
             print(f'Palabra a adivinar: {pal_adiv[0]} {pal_adiv[1]} {pal_adiv[2]} {pal_adiv[3]} {pal_adiv[4]} {obtener_color("Defecto")}\nPerdiste!')
-        #contador_puntos(puntos_obtenidos)
+     
         puntaje(lista_de_intentos_ingresados,pal_adiv,usuarios,todos_turnos)
         jugar, partida = volver_a_jugar(partida)
 fiuble()

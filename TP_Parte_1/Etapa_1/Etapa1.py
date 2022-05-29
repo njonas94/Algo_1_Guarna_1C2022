@@ -1,6 +1,15 @@
 from utiles import obtener_color
 
-
+'''
+    Función: desarrollo_intentos
+    Parámetros:
+        pal_adiv: palabra a adivinar, cadena de caracteres.
+        intento: palabra ingresada por el usuario, cadena de caracteres.
+    Salidas:
+        Devuelve una lista con los colores correspondientes a las letras de la palabra ingresada.
+    Precondiciones:
+        Se asume que las palabras ingresadas existen, tienen 5 letras, no poseen números ni caracteres especiales.
+'''
 def desarrollo_intentos(pal_adiv, intento):
     colores = []
     for pos in range(len(pal_adiv)):

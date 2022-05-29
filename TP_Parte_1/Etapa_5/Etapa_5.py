@@ -278,4 +278,5 @@ def fiuble():
      
         puntaje(lista_de_intentos_ingresados,pal_adiv,usuarios,todos_turnos)
         jugar, partida = volver_a_jugar(partida)
+    determinar_ganador(usuarios)        
 fiuble()

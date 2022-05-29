@@ -174,12 +174,20 @@ def mostrar_puntaje(puntos_por_partida):
         else:
             print(f"Perdiste un total de {-puntaje_ultima_partida} puntos.")
 
+def ingresar_usuarios():
+    usuario_1 = input("Ingrese el nombre del 1er usuario: ")
+    usuario_2 = input("Ingrese el nombre del 2do usuario: ")
+    lista_usuarios = [usuario_1, usuario_2]
+
+    return lista_usuarios
+
 
 def main():
     partida = 0
     desea_jugar = True
     partida_terminada = False
     puntos_por_partida = []
+    lista_usuarios = ingresar_usuarios()
 
     while desea_jugar:
 

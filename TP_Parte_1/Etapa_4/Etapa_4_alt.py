@@ -22,8 +22,6 @@ def acumular_intentos(palabra_ingresada, contador_intentos, colores, intentos_in
     for i in range(len(palabra_ingresada)):
         intentos_ingresados_list[contador_intentos][i] = colores[i] + palabra_ingresada[i]
 
-    return
-
 
 def mostrar_palabra(lista_palabra_ingresada):
     """
@@ -33,7 +31,6 @@ def mostrar_palabra(lista_palabra_ingresada):
         print(letra + " " + obtener_color("Defecto"), end = "")
     print()
 
-    return
 
 
 def dar_formato_al_intento(palabra_ingresada):
@@ -51,7 +48,7 @@ def dar_formato_al_intento(palabra_ingresada):
 
 def validacion(palabra_ingresada, intentos_ingresados_str):
     """
-    Devuelve True o False si la palabra ingresada cumple con lo solicitado en las reglas del juego.
+    Devuelve True o False si la palabra ingresada cumple con lo solicitado en las reglas del juego e informa por terminal en caso de errores.
     """
     verificacion = False
     if not palabra_ingresada.isalpha():
@@ -123,7 +120,6 @@ def juego_terminado(intentos_ingresados_list, palabra_a_adivinar):
     for intento in intentos_ingresados_list:
         mostrar_palabra(intento)
 
-    return
 
 def cronometro(comienzo, final):
     """
@@ -135,7 +131,7 @@ def cronometro(comienzo, final):
         segundos = round(tiempo_tardado%60,0)
     else:
         minutos = 0
-        segundos = round(tiempo_tardado,0)
+        segundos = round(tiempo_tardado,0)    
 
     return minutos, segundos
 
@@ -213,12 +209,10 @@ def main():
                 minutos_tardados, segundos_tardados = cronometro(inicio_tiempo, final_tiempo)
                 print("Ganaste! Tardaste", minutos_tardados ,"minutos y", segundos_tardados ,"segundos")
                 puntaje(intentos_ingresados_str, palabra_a_adivinar, puntos_por_partida)
-                print(puntos_por_partida)
             elif contador_intentos == 5:
                 juego_terminado(intentos_ingresados_list, palabra_a_adivinar)
                 print("Perdiste!")
                 puntaje(intentos_ingresados_str, palabra_a_adivinar, puntos_por_partida)
-                print(puntos_por_partida)
 
 
         print()

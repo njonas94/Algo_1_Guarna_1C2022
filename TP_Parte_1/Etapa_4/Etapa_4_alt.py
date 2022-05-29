@@ -1,3 +1,4 @@
+from functools import partialmethod
 from utiles import *
 import random
 import time
@@ -177,45 +178,56 @@ def contador_puntos(puntos_por_partida):
         else:
             print(f'Perdiste un total de {-ultima_partida} puntos.')
 
+
 def main():
-    """
-    Inicializa las variables, y llama a las variables necesarias para correr el juego en un ciclo.
-    """
-    palabra_a_adivinar = generar_palabra_a_adivinar().upper()
-    intentos_ingresados_str = []
-    puntos_por_partida = []
-    intentos_ingresados_list = [["?", "?", "?", "?", "?"], ["?", "?", "?", "?", "?"], ["?", "?", "?", "?", "?"],
-                           ["?", "?", "?", "?", "?"], ["?", "?", "?", "?", "?"]]
-    lista_palabra_a_adivinar = ["?", "?", "?", "?", "?"]
-    contador_intentos = 0
-    victoria = False
-    inicio_tiempo = time.time()
+    partida = 0
+    desea_jugar = True
+    partida_terminada = False
 
-    while contador_intentos < 5 and victoria == False:
-        print("Palabra a adivinar: ", end = "")
-        mostrar_palabra(lista_palabra_a_adivinar)
-        for intento in intentos_ingresados_list:
-            mostrar_palabra(intento)
-        arriesgo = input("Arriesgo: ")
-        if validacion(arriesgo, intentos_ingresados_str):
-            arriesgo = dar_formato_al_intento(arriesgo)
-            colores = procesar_intento(palabra_a_adivinar, arriesgo, lista_palabra_a_adivinar)
-            acumular_intentos(arriesgo, contador_intentos, colores, intentos_ingresados_list, intentos_ingresados_str)
-            contador_intentos += 1
-            if palabra_a_adivinar == arriesgo:
-                juego_terminado(intentos_ingresados_list, palabra_a_adivinar)
-                victoria = True
-                final_tiempo = time.time()
-                minutos_tardados, segundos_tardados = cronometro(inicio_tiempo, final_tiempo)
-                print("Ganaste! Tardaste", minutos_tardados ,"minutos y", segundos_tardados ,"segundos")
-                puntaje(intentos_ingresados_str, palabra_a_adivinar, puntos_por_partida)
-            elif contador_intentos == 5:
-                juego_terminado(intentos_ingresados_list, palabra_a_adivinar)
-                print("Perdiste!")
-                puntaje(intentos_ingresados_str, palabra_a_adivinar, puntos_por_partida)
+    while desea_jugar:
+        if partida_terminada == True:
+            volver_a_jugar = input("¿Desea volver a jugar?(S/N):")
+            if volver_a_jugar in ["s", "S"]:
+                partida_terminada = False
+            elif volver_a_jugar in ["n", "N"]:
+                desea_jugar = False
+        else:    
+            palabra_a_adivinar = generar_palabra_a_adivinar().upper()
+            intentos_ingresados_str = []
+            puntos_por_partida = []
+            intentos_ingresados_list = [["?", "?", "?", "?", "?"], ["?", "?", "?", "?", "?"], ["?", "?", "?", "?", "?"],
+                                ["?", "?", "?", "?", "?"], ["?", "?", "?", "?", "?"]]
+            lista_palabra_a_adivinar = ["?", "?", "?", "?", "?"]
+            contador_intentos = 0
+            victoria = False
+            inicio_tiempo = time.time()
 
+            while contador_intentos < 5 and victoria == False:
+                print("Palabra a adivinar: ", end = "")
+                mostrar_palabra(lista_palabra_a_adivinar)
+                for intento in intentos_ingresados_list:
+                    mostrar_palabra(intento)
+                arriesgo = input("Arriesgo: ")
+                if validacion(arriesgo, intentos_ingresados_str):
+                    arriesgo = dar_formato_al_intento(arriesgo)
+                    colores = procesar_intento(palabra_a_adivinar, arriesgo, lista_palabra_a_adivinar)
+                    acumular_intentos(arriesgo, contador_intentos, colores, intentos_ingresados_list, intentos_ingresados_str)
+                    contador_intentos += 1
+                    if palabra_a_adivinar == arriesgo:
+                        juego_terminado(intentos_ingresados_list, palabra_a_adivinar)
+                        victoria = True
+                        final_tiempo = time.time()
+                        minutos_tardados, segundos_tardados = cronometro(inicio_tiempo, final_tiempo)
+                        print("Ganaste! Tardaste", minutos_tardados ,"minutos y", segundos_tardados ,"segundos")
+                        puntaje(intentos_ingresados_str, palabra_a_adivinar, puntos_por_partida)
+                        partida_terminada = True
+                    elif contador_intentos == 5:
+                        juego_terminado(intentos_ingresados_list, palabra_a_adivinar)
+                        print("Perdiste!")
+                        puntaje(intentos_ingresados_str, palabra_a_adivinar, puntos_por_partida)
+                        partida_terminada = True
 
-        print()
+                print()
 
     return
 

@@ -267,7 +267,6 @@ def main():
                     colores = procesar_intento(palabra_a_adivinar, arriesgo, lista_palabra_a_adivinar)
                     acumular_intentos(arriesgo, contador_intentos, colores, intentos_ingresados_list, intentos_ingresados_str)
                     contador_intentos += 1
-                    turno_actual = cambiar_usuario(lista_usuarios, turno_actual)
                     if palabra_a_adivinar == arriesgo:
                         juego_terminado(intentos_ingresados_list, palabra_a_adivinar)
                         victoria = True
@@ -285,6 +284,7 @@ def main():
                         acumulador_de_puntos(dicc_puntajes_usuarios, lista_usuarios, turno_actual, puntaje)
                         mostrar_puntaje(dicc_puntajes_usuarios, puntaje, lista_usuarios, turno_actual, partida)
                         partida_terminada = True
+                    turno_actual = cambiar_usuario(lista_usuarios, turno_actual)
 
                 print()
 

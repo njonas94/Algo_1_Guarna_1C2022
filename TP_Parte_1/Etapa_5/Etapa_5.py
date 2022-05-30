@@ -259,7 +259,7 @@ def fiuble():
     usuarios=ingreso()
     todos_turnos_2, todos_turnos_3 = turno_ingreso(usuarios, partida)
    
-    while (partida==0 and jugar=='') or jugar in 's, S':
+    while (partida==0 and jugar=='') or jugar in ('s','S'):
         todos_turnos=turnos(partida, todos_turnos_2,todos_turnos_3)
         pal_adiv=generar_palabra_a_adivinar()
         print("Palabra a adivinar: ? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?")

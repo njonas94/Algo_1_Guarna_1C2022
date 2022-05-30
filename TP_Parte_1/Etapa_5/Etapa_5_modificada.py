@@ -190,7 +190,7 @@ def contador_puntajes (puntos_obtenidos,usuarios,turnos,indice):
 
 '''Devuelve la respuesta de seguir jugando, de ser afirmativa devuelve el nuevo orden de los turnos.''' 
 def volver_a_jugar(turnos):
-    desea_jugar = input("¿Desea volver a jugar?(S/N):")
+    desea_jugar = input("\n¿Desea volver a jugar?(S/N):")
     while desea_jugar not in ('N','n','s','S'):
         desea_jugar = input("¿Desea volver a jugar?(S/N):")
     if desea_jugar in ('s','S'):
@@ -237,7 +237,7 @@ def fiuble():
     turnos= orden_turnos(usuarios_y_puntaje)
     while (partida==0 and jugar=='') or jugar in ('s','S'):
         pal_adiv=generar_palabra_a_adivinar()
-        print("Palabra a adivinar: ? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?")
+        print("\nPalabra a adivinar: ? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?")
         print("Es el turno de:",turnos[0].upper())
         inicio=time.time()
         intento=input("Arriesgo:")

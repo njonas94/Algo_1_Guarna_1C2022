@@ -31,7 +31,6 @@ def validacion(palabra_ingresada):
         palabra_ingresada = cambiar_tilde(palabra_ingresada.lower())
     return palabra_ingresada.upper()
 
-
 #ETAPA 2
 '''
     Función: cambiar_tilde
@@ -186,7 +185,6 @@ def puntaje(lista,adivinar,usuarios,todos_turnos):
         
     return contador_puntajes (puntos_obtenidos,usuarios,adjudicado,adjudicado_2)
 
-
 ''' Funcion que haria lo mismo que contador de puntos, esta bastante feita '''
 def contador_puntajes (puntos_obtenidos,usuarios,adjudicado,adjudicado_2):
     usuarios[adjudicado] += puntos_obtenidos
@@ -257,8 +255,7 @@ def fiuble():
     partida=0
     jugar=''
     usuarios=ingreso()
-    todos_turnos_2, todos_turnos_3 = turno_ingreso(usuarios, partida)
-   
+    todos_turnos_2, todos_turnos_3 = turno_ingreso(usuarios, partida)   
     while (partida==0 and jugar=='') or jugar in ('s','S'):
         todos_turnos=turnos(partida, todos_turnos_2,todos_turnos_3)
         pal_adiv=generar_palabra_a_adivinar()
@@ -269,7 +266,6 @@ def fiuble():
         intento=validacion(intento)
         lista_de_intentos_ingresados=desarrollo_intentos(pal_adiv, intento, todos_turnos) #Esta lista, es la lista de str de palabras ingresadas#
         fin=time.time()
-
         minutos,segundos=cronometro(inicio, fin)
         if pal_adiv in lista_de_intentos_ingresados:
             print('Ganaste! Tardaste',minutos,'minutos y',segundos,'segundos')

@@ -222,10 +222,8 @@ def orden_turnos (usuarios):
 
 ''' Función que va alternando los turnos partida a partida'''
 def nueva_partida(orden_jugador):
-    inicio_anterior = orden_jugador[0]
-    inicio_siguiente = orden_jugador[1]
+    orden_jugador.append(orden_jugador[1])
     del(orden_jugador[0])
-    orden_jugador.append(inicio_siguiente)
     return orden_jugador
 
 def determinar_ganador(usuarios):

@@ -180,7 +180,10 @@ def puntaje(lista,adivinar,usuarios,turnos):
 ''' Funcion que acumula el puntaje para cada jugador.'''
 def contador_puntajes (puntos_obtenidos,usuarios,turnos,indice):
     jugador_acierto = turnos[indice]
-    jugador_fallo = turnos[indice-1]
+    if indice ==0:
+        jugador_fallo = turnos[indice-2]
+    else:
+        jugador_fallo = turnos[indice-1]
     usuarios[jugador_acierto] += puntos_obtenidos
     if puntos_obtenidos > 0:
         usuarios[jugador_fallo] += -puntos_obtenidos

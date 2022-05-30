@@ -175,11 +175,24 @@ def mostrar_puntaje(puntos_por_partida):
             print(f"Perdiste un total de {-puntaje_ultima_partida} puntos.")
 
 def ingresar_usuarios():
-    usuario_1 = input("Ingrese el nombre del 1er usuario: ")
-    usuario_2 = input("Ingrese el nombre del 2do usuario: ")
+    """
+    Solicita el ingreso de los nombres de los usuarios y los guarda en una lista.
+    """
+    usuario_1 = input("Ingrese el nombre del 1er usuario: ").upper()
+    usuario_2 = input("Ingrese el nombre del 2do usuario: ").upper()
     lista_usuarios = [usuario_1, usuario_2]
 
     return lista_usuarios
+
+def cambiar_turno(lista_usuarios, turno_actual):
+    """
+    Cambia el turno de un usuario al otro.
+    """
+    indice_usuario_actual = lista_usuarios.index(turno_actual)
+    turno_actual = lista_usuarios[indice_usuario_actual -1]
+
+    return turno_actual
+
 
 
 def main():
@@ -188,6 +201,8 @@ def main():
     partida_terminada = False
     puntos_por_partida = []
     lista_usuarios = ingresar_usuarios()
+    turno_actual = random.choice(lista_usuarios)
+    turno_inicial = turno_actual
 
     while desea_jugar:
 
@@ -195,10 +210,13 @@ def main():
             volver_a_jugar = input("¿Desea volver a jugar?(S/N):")
             if volver_a_jugar in ["s", "S"]:
                 partida_terminada = False
+                turno_inicial = cambiar_turno(lista_usuarios, turno_inicial)
+                turno_actual = turno_inicial
             elif volver_a_jugar in ["n", "N"]:
                 desea_jugar = False
         else:    
-            palabra_a_adivinar = generar_palabra_a_adivinar().upper()
+            #palabra_a_adivinar = generar_palabra_a_adivinar().upper()
+            palabra_a_adivinar = "MARES"
             intentos_ingresados_str = []
             intentos_ingresados_list = [["?", "?", "?", "?", "?"], ["?", "?", "?", "?", "?"], ["?", "?", "?", "?", "?"],
                                 ["?", "?", "?", "?", "?"], ["?", "?", "?", "?", "?"]]
@@ -212,12 +230,14 @@ def main():
                 mostrar_palabra(lista_palabra_a_adivinar)
                 for intento in intentos_ingresados_list:
                     mostrar_palabra(intento)
+                print(f"Es el turno de {turno_actual}")
                 arriesgo = input("Arriesgo: ")
                 if validacion(arriesgo, intentos_ingresados_str):
                     arriesgo = dar_formato_al_intento(arriesgo)
                     colores = procesar_intento(palabra_a_adivinar, arriesgo, lista_palabra_a_adivinar)
                     acumular_intentos(arriesgo, contador_intentos, colores, intentos_ingresados_list, intentos_ingresados_str)
                     contador_intentos += 1
+                    turno_actual = cambiar_turno(lista_usuarios, turno_actual)
                     if palabra_a_adivinar == arriesgo:
                         juego_terminado(intentos_ingresados_list, palabra_a_adivinar)
                         victoria = True

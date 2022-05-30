@@ -38,8 +38,8 @@ def dar_formato_al_intento(palabra_ingresada):
     Recibe un string con tildes y devuelve sin tildes y en mayuscula.
     """
     palabra_mayus = palabra_ingresada.upper()
-    a = 'ÁÉÍÓÚÝÄËÏÖÜŸ'
-    b = 'AEIOUYAEIOUY'
+    a = "ÁÉÍÓÚÝÄËÏÖÜŸ"
+    b = "AEIOUYAEIOUY"
     palabra_sin_acento = palabra_mayus.maketrans(a, b)
     arriesgo = palabra_mayus.translate(palabra_sin_acento)
 
@@ -135,7 +135,7 @@ def cronometro(comienzo, final):
 
     return minutos, segundos
 
-def puntaje(intentos_ingresados_str,palabra_a_adivinar,puntos_por_partida):
+def asignar_puntaje(intentos_ingresados_str,palabra_a_adivinar,puntos_por_partida):
     """
     Asigna el puntaje correspondiente a la partida, y lo guarda en la lista de puntos por partida.
     """
@@ -156,23 +156,27 @@ def puntaje(intentos_ingresados_str,palabra_a_adivinar,puntos_por_partida):
 
     puntos_por_partida.append(puntos_obtenidos)
 
-def mostrar_puntaje(puntos_por_partida):
+    return puntos_obtenidos
+
+def mostrar_puntaje(dicc_puntajes_usuarios, puntaje, lista_usuarios, usuario1, partida):
     """
     Muestra por pantalla el puntaje obtenido/perdido, y en caso de que corresponda, el acumulado.
     """
-    acumulados = 0
-    puntaje_ultima_partida = puntos_por_partida[-1]
-    if len(puntos_por_partida) > 1:
-        acumulados = sum(puntos_por_partida)
-        if puntaje_ultima_partida>0:
-            print(f"Obtuviste un total de {puntaje_ultima_partida} puntos, tenes acumulados {acumulados} puntos")
+    usuario2 = cambiar_usuario(lista_usuarios, usuario1)
+    if partida > 0:
+        if puntaje>0:
+            print(f"{usuario1}, Obtuviste un total de {puntaje} puntos, tenes acumulados {dicc_puntajes_usuarios[usuario1]} puntos")
+            print(f"{usuario2}, Perdiste un total de {puntaje} puntos, tenes acumulados {dicc_puntajes_usuarios[usuario2]} puntos")
         else:
-            print(f"Perdiste un total de {-puntaje_ultima_partida} puntos, tenes acumulados {acumulados} puntos")
+            print(f"{usuario1}, Perdiste un total de {-puntaje} puntos, tenes acumulados {dicc_puntajes_usuarios[usuario1]} puntos")
+            print(f"{usuario2}, Perdiste un total de {-puntaje//2} puntos, tenes acumulados {dicc_puntajes_usuarios[usuario2]} puntos")
     else:
-        if puntaje_ultima_partida>0:
-            print(f"Obtuviste un total de {puntaje_ultima_partida} puntos.")
+        if puntaje>0:
+            print(f"{usuario1}, Obtuviste un total de {puntaje} puntos.")
+            print(f"{usuario2}, Perdiste un total de {puntaje} puntos.")
         else:
-            print(f"Perdiste un total de {-puntaje_ultima_partida} puntos.")
+            print(f"{usuario1}, Perdiste un total de {-puntaje} puntos.")
+            print(f"{usuario2}, Perdiste un total de {-puntaje//2} puntos.")
 
 def ingresar_usuarios():
     """
@@ -184,7 +188,7 @@ def ingresar_usuarios():
 
     return lista_usuarios
 
-def cambiar_turno(lista_usuarios, turno_actual):
+def cambiar_usuario(lista_usuarios, turno_actual):
     """
     Cambia el turno de un usuario al otro.
     """
@@ -193,6 +197,24 @@ def cambiar_turno(lista_usuarios, turno_actual):
 
     return turno_actual
 
+def crear_diccionario_puntajes(lista_usuarios):
+    """
+    Crea el diccionario de usuarios y puntajes.
+    """
+    dicc_puntajes_usuarios = {lista_usuarios[0]:0, lista_usuarios[1]:0}
+
+    return dicc_puntajes_usuarios
+
+def acumulador_de_puntos(dicc_puntajes_usuarios, lista_usuarios, usuario, puntaje):
+    """
+    Actualiza el diccionario de usuario y puntajes para llevar los acumulados.
+    """
+    if puntaje == -100:
+        dicc_puntajes_usuarios[usuario] += puntaje
+        dicc_puntajes_usuarios[cambiar_usuario(lista_usuarios, usuario)] += puntaje//2
+    else: 
+        dicc_puntajes_usuarios[usuario] += puntaje
+        dicc_puntajes_usuarios[cambiar_usuario(lista_usuarios, usuario)] -= puntaje
 
 
 def main():
@@ -203,6 +225,7 @@ def main():
     lista_usuarios = ingresar_usuarios()
     turno_actual = random.choice(lista_usuarios)
     turno_inicial = turno_actual
+    dicc_puntajes_usuarios = crear_diccionario_puntajes(lista_usuarios)
 
     while desea_jugar:
 
@@ -210,13 +233,19 @@ def main():
             volver_a_jugar = input("¿Desea volver a jugar?(S/N):")
             if volver_a_jugar in ["s", "S"]:
                 partida_terminada = False
-                turno_inicial = cambiar_turno(lista_usuarios, turno_inicial)
+                turno_inicial = cambiar_usuario(lista_usuarios, turno_inicial)
                 turno_actual = turno_inicial
+                partida += 1
             elif volver_a_jugar in ["n", "N"]:
                 desea_jugar = False
+                if dicc_puntajes_usuarios[turno_actual] > dicc_puntajes_usuarios[cambiar_usuario(lista_usuarios, turno_actual)]:
+                    print(f"El ganador es {turno_actual} con un total de {dicc_puntajes_usuarios[turno_actual]} puntos")
+                elif dicc_puntajes_usuarios[turno_actual] < dicc_puntajes_usuarios[cambiar_usuario(lista_usuarios, turno_actual)]:
+                    print(f"El ganador es {cambiar_usuario(lista_usuarios, turno_actual)} con un total de {dicc_puntajes_usuarios[cambiar_usuario(lista_usuarios, turno_actual)]} puntos")
+                else:
+                    print(f"Los jugadores empataron con un total de {dicc_puntajes_usuarios[turno_actual]} puntos")
         else:    
-            #palabra_a_adivinar = generar_palabra_a_adivinar().upper()
-            palabra_a_adivinar = "MARES"
+            palabra_a_adivinar = generar_palabra_a_adivinar().upper()
             intentos_ingresados_str = []
             intentos_ingresados_list = [["?", "?", "?", "?", "?"], ["?", "?", "?", "?", "?"], ["?", "?", "?", "?", "?"],
                                 ["?", "?", "?", "?", "?"], ["?", "?", "?", "?", "?"]]
@@ -224,6 +253,7 @@ def main():
             contador_intentos = 0
             victoria = False
             inicio_tiempo = time.time()
+
 
             while contador_intentos < 5 and victoria == False:
                 print("Palabra a adivinar: ", end = "")
@@ -237,21 +267,23 @@ def main():
                     colores = procesar_intento(palabra_a_adivinar, arriesgo, lista_palabra_a_adivinar)
                     acumular_intentos(arriesgo, contador_intentos, colores, intentos_ingresados_list, intentos_ingresados_str)
                     contador_intentos += 1
-                    turno_actual = cambiar_turno(lista_usuarios, turno_actual)
+                    turno_actual = cambiar_usuario(lista_usuarios, turno_actual)
                     if palabra_a_adivinar == arriesgo:
                         juego_terminado(intentos_ingresados_list, palabra_a_adivinar)
                         victoria = True
                         final_tiempo = time.time()
                         minutos_tardados, segundos_tardados = cronometro(inicio_tiempo, final_tiempo)
                         print("Ganaste! Tardaste", minutos_tardados ,"minutos y", segundos_tardados ,"segundos")
-                        puntaje(intentos_ingresados_str, palabra_a_adivinar, puntos_por_partida)
-                        mostrar_puntaje(puntos_por_partida)
+                        puntaje = asignar_puntaje(intentos_ingresados_str, palabra_a_adivinar, puntos_por_partida)
+                        acumulador_de_puntos(dicc_puntajes_usuarios, lista_usuarios, turno_actual, puntaje)
+                        mostrar_puntaje(dicc_puntajes_usuarios, puntaje, lista_usuarios, turno_actual, partida)
                         partida_terminada = True
                     elif contador_intentos == 5:
                         juego_terminado(intentos_ingresados_list, palabra_a_adivinar)
                         print("Perdiste!")
-                        puntaje(intentos_ingresados_str, palabra_a_adivinar, puntos_por_partida)
-                        mostrar_puntaje(puntos_por_partida)
+                        puntaje = asignar_puntaje(intentos_ingresados_str, palabra_a_adivinar, puntos_por_partida)
+                        acumulador_de_puntos(dicc_puntajes_usuarios, lista_usuarios, turno_actual, puntaje)
+                        mostrar_puntaje(dicc_puntajes_usuarios, puntaje, lista_usuarios, turno_actual, partida)
                         partida_terminada = True
 
                 print()

@@ -202,7 +202,7 @@ def contador_puntajes (puntos_obtenidos,usuarios,adjudicado,adjudicado_2):
 
 '''Devuelve la respuesta de seguir jugando.''' # Le agregue que devuelva tambien partida #
 def volver_a_jugar(partida):
-    desea_jugar = input("¿Desea volver a jugar?(S/N):")
+    desea_jugar = input("\n¿Desea volver a jugar?(S/N):")
     while desea_jugar not in ("N,n,S,s"):
         desea_jugar = input("¿Desea volver a jugar?(S/N):")        
     if desea_jugar in ("S,s"):
@@ -259,7 +259,7 @@ def fiuble():
     while (partida==0 and jugar=='') or jugar in ('s','S'):
         todos_turnos=turnos(partida, todos_turnos_2,todos_turnos_3)
         pal_adiv=generar_palabra_a_adivinar()
-        print("Palabra a adivinar: ? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?")
+        print("\nPalabra a adivinar: ? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?")
         print("Es el turno de", todos_turnos[0])
         inicio=time.time()
         intento=input("Arriesgo:")

@@ -1,4 +1,3 @@
-from functools import partialmethod
 from utiles import *
 import random
 import time

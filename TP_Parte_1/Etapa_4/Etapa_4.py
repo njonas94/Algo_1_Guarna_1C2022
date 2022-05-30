@@ -214,7 +214,7 @@ def contador_puntos(puntos_por_partida):
 '''Devuelve la respuesta de seguir jugando.'''
 def volver_a_jugar():
     desea_jugar = input("¿Desea volver a jugar?(S/N):")
-    while desea_jugar not in ("NnSs"):
+    while desea_jugar not in ('N','n','s','S'):
         desea_jugar = input("¿Desea volver a jugar?(S/N):")
     return  desea_jugar
 
@@ -223,7 +223,7 @@ def fiuble():
     puntos_por_partida=[] #Lista de puntos de cada partida#
     partida=0
     jugar=''
-    while (partida==0 and jugar=='') or jugar in 'sS':
+    while (partida==0 and jugar=='') or jugar in ('s','S'):
         pal_adiv=generar_palabra_a_adivinar()
         print("Palabra a adivinar: ? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?")
         inicio=time.time()

@@ -186,7 +186,6 @@ def contador_puntajes (puntos_obtenidos,usuarios,turnos,indice):
         usuarios[jugador_fallo] += -puntos_obtenidos
         print(f"{jugador_acierto.upper()}, ha ganado: {puntos_obtenidos} puntos. Tiene acumulados {usuarios[jugador_acierto]} puntos.")
         print(f"{jugador_fallo.upper()}, ha perdido: {puntos_obtenidos} puntos. Tiene acumulados {usuarios[jugador_fallo]} puntos.")
-    print(f"Puntajes parciales: {usuarios}")
     return usuarios
 
 '''Devuelve la respuesta de seguir jugando, de ser afirmativa devuelve el nuevo orden de los turnos.''' 

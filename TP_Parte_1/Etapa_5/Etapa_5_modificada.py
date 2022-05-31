@@ -230,7 +230,10 @@ def nueva_partida(orden_jugador):
 
 def determinar_ganador(usuarios):
     orden =sorted(usuarios.items(), key=lambda x:x[1], reverse=True)
-    print(f'\nEl ganador es {orden[0][0].upper()} con un total de {orden[0][1]} puntos.')
+    if orden[1][1] == orden[0][1]:
+        print(f'\nLos jugadores empataron con un total de {orden[1][1]} puntos')
+    else:    
+        print(f'\nEl ganador es {orden[0][0].upper()} con un total de {orden[0][1]} puntos.')
     
 #PRINCIPAL
 def fiuble():

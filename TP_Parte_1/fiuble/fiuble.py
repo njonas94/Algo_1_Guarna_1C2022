@@ -51,28 +51,29 @@ def cambiar_tilde(palabra_ingresada):
     b = 'aeiouyaeiouyaeiouaeiou'
     palabra_sin_acento = palabra_ingresada.maketrans(a, b)
     arriesgo = palabra_ingresada.translate(palabra_sin_acento)
+    
     return arriesgo
 
-def crear_lista_interrogantes(longitud_palabras):
+def crear_lista_interrogantes(LONGITUD_PALABRAS):
     """
     Autor : Aldair Torres
     Pre: recibe la palabra a adivinar para saber su longitud
     Post: Nos devuelve una lista conformada por signos de interrogacion
     """
     lista_interrogantes = []
-    for i in range(longitud_palabras):
+    for i in range(LONGITUD_PALABRAS):
         lista_interrogantes.append('?')
     return lista_interrogantes
 
 
-def crear_lista_intentos(cantidad_intentos, lista_interrogantes):
+def crear_lista_intentos(CANTIDAD_INTENTOS, lista_interrogantes):
     """
     Autor: Aldair Torres
     Pre: recibe una cantidad de intentos y una lista con interrogantes
     Post: Nos devuelve una lista de listas en donde se almacenas los intentos
     """
     lista_intentos = []
-    for i in range(cantidad_intentos):
+    for i in range(CANTIDAD_INTENTOS):
         lista_intentos.append(lista_interrogantes.copy())
     return lista_intentos
 
@@ -123,11 +124,6 @@ def procesar_intento(pal_adiv, intento, lista_palabra_a_adivinar):
         Devuelve una lista con las palabras ingresadas.
 '''
 def desarrollo_intentos(pal_adiv, intento, turnos, adivinar, palabras):
-    #lista de listas, cada lista posee las letras de cada palabra ingresada
-
-    #lista que contendrá las letras de la palabra a adivinar cuando se dé un acierto en el intento
-
-    #lista vacia que contendrá los intentos
     palabras_ingresadas=[]
     while len(palabras_ingresadas)<5:
         orden_ingreso=len(palabras_ingresadas)
@@ -292,17 +288,16 @@ def mostrar_palabra(palabra_ingresada):
 
 #PRINCIPAL
 def fiuble():
-    longitud_palabras = 5
-    cantidad_intentos = 5
-    partida = 0
+    LONGITUD_PALABRAS = 5
+    CANTIDAD_INTENTOS = 5
     jugar = ''
     usuarios_y_puntaje = ingreso_usuarios()#Diccionario: claves: nombres de usuario y valor: puntos acumulados
     turnos = orden_turnos(usuarios_y_puntaje)
-    while (partida==0 and jugar=='') or jugar in ('s','S'):
+    while jugar in ('s','S', ''):
         lista_de_intentos_ingresados = []
         pal_adiv = generar_palabra_a_adivinar()
-        adivinar = crear_lista_interrogantes(longitud_palabras)
-        palabras = crear_lista_intentos(cantidad_intentos, adivinar)
+        adivinar = crear_lista_interrogantes(LONGITUD_PALABRAS)
+        palabras = crear_lista_intentos(CANTIDAD_INTENTOS, adivinar)
         print("Palabra a adivinar: ", end = "")
         mostrar_palabra(adivinar)
         for intento in palabras:
@@ -311,9 +306,7 @@ def fiuble():
         inicio = time.time()
         intento = input("Arriesgo:")
         intento = validacion_intento_ingresado(intento, lista_de_intentos_ingresados)
-
         lista_de_intentos_ingresados = desarrollo_intentos(pal_adiv, intento, turnos, adivinar, palabras) #Esta lista, es la lista de str de palabras ingresadas#
-
         fin = time.time()
         tiempo = cronometro(inicio, fin)
         if pal_adiv in lista_de_intentos_ingresados:

@@ -151,13 +151,3 @@ def determinar_ganador(usuarios):
         print(f'\nLos jugadores empataron con un total de {orden[1][1]} puntos')
     else:    
         print(f'\nEl ganador es {orden[0][0].upper()} con un total de {orden[0][1]} puntos.')
-
-#FUNCION AGREGADA
-def nueva_partida(orden_jugador):
-    ''' 
-    Función que va alternando los turnos si los usuarios deciden jugar una nueva partida.
-    '''
-    orden_jugador.append(orden_jugador[1])
-    del(orden_jugador[0])
-    
-    return orden_jugador        

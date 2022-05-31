@@ -40,44 +40,44 @@ def crear_lista_intentos(CANTIDAD_INTENTOS, lista_interrogantes):
     
     return lista_intentos
 
-def procesar_intento(pal_adiv, intento, lista_palabra_a_adivinar):
+def procesar_intento(palabra_a_adivinar, intento, lista_letras_palabra_a_adivinar):
     '''
     Procesa el intento ingresado, creando una lista con el correspondiente color asignado a cada letra en el mismo indice que el string ingresado.
     '''
     colores = []
-    for pos in range(len(pal_adiv)):
-        if (pal_adiv.count(intento[pos]) == 1 and intento.count(intento[pos]) == 2):
+    for pos in range(len(palabra_a_adivinar)):
+        if (palabra_a_adivinar.count(intento[pos]) == 1 and intento.count(intento[pos]) == 2):
             pos_1 = intento.index(intento[pos])
             pos_2 = intento.rindex(intento[pos])
 
-            if ((pos == pos_1 and pos_1 == pal_adiv.index(intento[pos_1])) or (
-                    pos == pos_2 and pos_2 == pal_adiv.index(intento[pos_2]))):
+            if ((pos == pos_1 and pos_1 == palabra_a_adivinar.index(intento[pos_1])) or (
+                    pos == pos_2 and pos_2 == palabra_a_adivinar.index(intento[pos_2]))):
                 colores.append(obtener_color("Verde"))
-                lista_palabra_a_adivinar[pos] = pal_adiv[pos]
+                lista_letras_palabra_a_adivinar[pos] = palabra_a_adivinar[pos]
 
-            elif ((pos == pos_2 and pos_1 == pal_adiv.index(intento[pos_1])) or (
-                    pos == pos_1 and pos_2 == pal_adiv.index(intento[pos_2]))):
+            elif ((pos == pos_2 and pos_1 == palabra_a_adivinar.index(intento[pos_1])) or (
+                    pos == pos_1 and pos_2 == palabra_a_adivinar.index(intento[pos_2]))):
                 colores.append(obtener_color("GrisOscuro"))
 
-            elif (pos == pos_1 and pos_1 != pal_adiv.index(intento[pos_1]) and pos_2 != pal_adiv.index(intento[pos_1])):
+            elif (pos == pos_1 and pos_1 != palabra_a_adivinar.index(intento[pos_1]) and pos_2 != palabra_a_adivinar.index(intento[pos_1])):
                 colores.append(obtener_color("Amarillo"))
 
-            elif (pos == pos_2 and pos_1 != pal_adiv.index(intento[pos_1]) and pos_2 != pal_adiv.index(intento[pos_1])):
+            elif (pos == pos_2 and pos_1 != palabra_a_adivinar.index(intento[pos_1]) and pos_2 != palabra_a_adivinar.index(intento[pos_1])):
                 colores.append(obtener_color("GrisOscuro"))
 
-        elif intento[pos] not in pal_adiv:
+        elif intento[pos] not in palabra_a_adivinar:
             colores.append(obtener_color("GrisOscuro"))
 
-        elif intento[pos] in pal_adiv and intento[pos] != pal_adiv[pos]:
+        elif intento[pos] in palabra_a_adivinar and intento[pos] != palabra_a_adivinar[pos]:
             colores.append(obtener_color("Amarillo"))
 
-        elif intento[pos] == pal_adiv[pos]:
+        elif intento[pos] == palabra_a_adivinar[pos]:
             colores.append(obtener_color("Verde"))
-            lista_palabra_a_adivinar[pos] = pal_adiv[pos]
+            lista_letras_palabra_a_adivinar[pos] = palabra_a_adivinar[pos]
 
     return colores
 
-def desarrollo_intentos(pal_adiv, intento, turnos, adivinar, palabras):
+def desarrollo_intentos(adivinar, intento, turnos, lista_letras_de_adivinar, palabras):
     '''
     Función: desarrollo_intentos
     Parámetros:
@@ -88,18 +88,18 @@ def desarrollo_intentos(pal_adiv, intento, turnos, adivinar, palabras):
         Devuelve una lista con las palabras ingresadas.
     '''
     palabras_ingresadas=[]
-    while len(palabras_ingresadas)<5 and pal_adiv not in palabras_ingresadas:
+    while len(palabras_ingresadas)<5 and adivinar not in palabras_ingresadas:
         orden_ingreso=len(palabras_ingresadas)
         #print(lista, palabras_ingresadas, orden_ingreso)
-        colores = procesar_intento(pal_adiv, intento, adivinar)
+        colores = procesar_intento(adivinar, intento, lista_letras_de_adivinar)
         acumular_intentos(intento, orden_ingreso, colores, palabras, palabras_ingresadas)
 
         print("\nPalabra a adivinar: ", end = "")
-        mostrar_palabra(adivinar)
+        mostrar_palabra(lista_letras_de_adivinar)
         for intento in palabras:
             mostrar_palabra(intento)
             
-        if pal_adiv not in palabras_ingresadas and len(palabras_ingresadas)<5:
+        if adivinar not in palabras_ingresadas and len(palabras_ingresadas)<5:
             print("Es el turno de:", turnos[len(palabras_ingresadas)].upper())
             arriesgo=input("Arriesgo:")
             intento=validacion_intento_ingresado(arriesgo, palabras_ingresadas)

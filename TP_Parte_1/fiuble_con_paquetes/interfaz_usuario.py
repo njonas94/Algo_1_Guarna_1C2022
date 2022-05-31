@@ -8,14 +8,16 @@ def mostrar_palabra(palabra_ingresada):
         print(letra + " " + obtener_color("Defecto"), end = "")
     print()
 
-def juego_terminado(lista_de_intentos_ingresados, pal_adiv):
-    '''
-    Muestra en terminal la "Palabra a adivinar" y los intentos.
-    '''
-    print("Palabra a adivinar: ", end = "")
-    mostrar_palabra(pal_adiv)
-    for intento in lista_de_intentos_ingresados:
-        mostrar_palabra(intento)
+'''LA FUNCION DE JUEGO_TERMINADO SE PODRÍA BORRAR, NO ES LLAMADA POR NINGUNA FUNCION.
+   SU ESTRUCTURA SE ENCUENTRA REPETIDA EN JUGABILIDAD LINEA 97 A 100, Y EN FIUBLE LINEA 23 A 26'''
+#def juego_terminado(lista_de_intentos_ingresados, palabra_adivinar):
+#    '''
+#    Muestra en terminal la "Palabra a adivinar" y los intentos.
+#    '''
+#    print("Palabra a adivinar: ", end = "")
+#    mostrar_palabra(pal_adiv)
+#    for intento in lista_de_intentos_ingresados:
+#        mostrar_palabra(intento)
 
 def ingreso_usuarios():
     ''' 

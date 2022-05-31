@@ -53,14 +53,14 @@ def cambiar_tilde(palabra_ingresada):
     arriesgo = palabra_ingresada.translate(palabra_sin_acento)
     return arriesgo
 
-def crear_lista_interrogantes(palabra_advinar):
+def crear_lista_interrogantes(longitud_palabras):
     """
     Autor : Aldair Torres
     Pre: recibe la palabra a adivinar para saber su longitud
     Post: Nos devuelve una lista conformada por signos de interrogacion
     """
     lista_interrogantes = []
-    for i in range(len(palabra_advinar)):
+    for i in range(longitud_palabras):
         lista_interrogantes.append('?')
     return lista_interrogantes
 
@@ -73,7 +73,7 @@ def crear_lista_intentos(cantidad_intentos, lista_interrogantes):
     """
     lista_intentos = []
     for i in range(cantidad_intentos):
-        lista_intentos.append(lista_interrogantes)
+        lista_intentos.append(lista_interrogantes.copy())
     return lista_intentos
 
 '''
@@ -85,9 +85,9 @@ def crear_lista_intentos(cantidad_intentos, lista_interrogantes):
     Salidas:
         Devuelve una lista con las palabras ingresadas.
 '''
-def desarrollo_intentos(pal_adiv, intento, turnos, cantidad_intentos):
+def desarrollo_intentos(pal_adiv, intento, turnos, cantidad_intentos, longitud_palabra):
     #lista de listas, cada lista posee las letras de cada palabra ingresada
-    adivinar = crear_lista_interrogantes(pal_adiv)
+    adivinar = crear_lista_interrogantes(longitud_palabra)
     palabras = crear_lista_intentos(cantidad_intentos, adivinar)
     #lista que contendrá las letras de la palabra a adivinar cuando se dé un acierto en el intento
 
@@ -284,6 +284,7 @@ def mostrar_palabra(palabra_ingresada):
 
 #PRINCIPAL
 def fiuble():
+    longitud_palabras = 5
     cantidad_intentos = 5
     partida=0
     jugar=''
@@ -296,7 +297,7 @@ def fiuble():
         inicio=time.time()
         intento=input("Arriesgo:")
         intento=validar_intento_ingresado(intento)
-        lista_de_intentos_ingresados=desarrollo_intentos(pal_adiv, intento, turnos, cantidad_intentos) #Esta lista, es la lista de str de palabras ingresadas#
+        lista_de_intentos_ingresados=desarrollo_intentos(pal_adiv, intento, turnos, cantidad_intentos, longitud_palabras) #Esta lista, es la lista de str de palabras ingresadas#
         fin=time.time()
         minutos,segundos=cronometro(inicio, fin)
         if pal_adiv in lista_de_intentos_ingresados:

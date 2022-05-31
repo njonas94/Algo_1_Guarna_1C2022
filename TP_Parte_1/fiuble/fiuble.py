@@ -177,10 +177,12 @@ def cronometro(comienzo, final):
     if tiempo_tardado>=60:
         minutos=tiempo_tardado//60
         segundos=round(tiempo_tardado%60,0)
+        tiempo=[minutos, segundos]
     else:
         minutos=0
         segundos=round(tiempo_tardado,0)
-    return minutos, segundos
+        tiempo=[minutos, segundos]
+    return tiempo
 
 '''
     Función: puntaje
@@ -294,11 +296,11 @@ def fiuble():
     cantidad_intentos = 5
     partida = 0
     jugar = ''
-    usuarios_y_puntaje=ingreso_usuarios()#Diccionario: claves: nombres de usuario y valor: puntos acumulados
+    usuarios_y_puntaje = ingreso_usuarios()#Diccionario: claves: nombres de usuario y valor: puntos acumulados
     turnos = orden_turnos(usuarios_y_puntaje)
     while (partida==0 and jugar=='') or jugar in ('s','S'):
         lista_de_intentos_ingresados = []
-        pal_adiv=generar_palabra_a_adivinar()
+        pal_adiv = generar_palabra_a_adivinar()
         adivinar = crear_lista_interrogantes(longitud_palabras)
         palabras = crear_lista_intentos(cantidad_intentos, adivinar)
         print("Palabra a adivinar: ", end = "")
@@ -312,10 +314,10 @@ def fiuble():
 
         lista_de_intentos_ingresados = desarrollo_intentos(pal_adiv, intento, turnos, adivinar, palabras) #Esta lista, es la lista de str de palabras ingresadas#
 
-        fin=time.time()
-        minutos,segundos=cronometro(inicio, fin)
+        fin = time.time()
+        tiempo = cronometro(inicio, fin)
         if pal_adiv in lista_de_intentos_ingresados:
-            print('Ganaste! Tardaste',minutos,'minutos y',segundos,'segundos')
+            print('Ganaste! Tardaste',tiempo[0],'minutos y',tiempo[1],'segundos')
         else:
             print(f'Palabra a adivinar: {pal_adiv[0]} {pal_adiv[1]} {pal_adiv[2]} {pal_adiv[3]} {pal_adiv[4]} {obtener_color("Defecto")}\nPerdiste!')
         puntaje(lista_de_intentos_ingresados,pal_adiv,usuarios_y_puntaje,turnos)

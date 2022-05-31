@@ -46,24 +46,58 @@ def dar_formato_al_intento(palabra_ingresada):
     return arriesgo
 
 
-def validacion(palabra_ingresada, intentos_ingresados_str):
+#def validacion(palabra_ingresada, intentos_ingresados_str):
+#    """
+#    Devuelve True o False si la palabra ingresada cumple con lo solicitado en las reglas del juego e informa por terminal en caso de errores.
+#    """
+#    verificacion = False
+#    if not palabra_ingresada.isalpha():
+#        print("La palabra no tiene que contener numero ni caracteres especiales.")
+#    if len(palabra_ingresada) != 5:
+#        print("La palabra tiene que ser de 5 letras.")
+#    if dar_formato_al_intento(palabra_ingresada).lower() not in obtener_palabras_validas():
+#        print("La palabra no se encuentra en la lista de palabras válidas.")
+#    if palabra_ingresada.upper() in intentos_ingresados_str:
+#        print("La palabra ya habia sido ingresada.")
+#    #Consultar al profe sobre como tratar el if que quedo excesivamente largo    
+#    if palabra_ingresada.isalpha() and len(palabra_ingresada) == 5 and dar_formato_al_intento(palabra_ingresada).lower() in obtener_palabras_validas() and palabra_ingresada.upper() not in intentos_ingresados_str:
+#        verificacion = True
+
+#    return verificacion
+
+
+def es_alfabetico (palabra_ingresada):
+    if not palabra_ingresada.isalpha():
+        print("La palabra no tiene que contener numero ni caracteres especiales.")
+    else:
+        return True
+    
+def longitud_palabra (palabra_ingresada):
+    if len(palabra_ingresada) != 5:
+        print("La palabra tiene que ser de 5 letras.")
+    else:
+        return True
+
+def validar_palabra (palabra_ingresada):
+    if dar_formato_al_intento(palabra_ingresada).lower() not in obtener_palabras_validas():
+        print("La palabra no se encuentra en la lista de palabras válidas.")
+    else:
+        return True
+
+def validar_ingreso (palabra_ingresada, intentos_ingresados_str):
+    if palabra_ingresada.upper() in intentos_ingresados_str:
+        print("La palabra ya habia sido ingresada.")
+    else:
+        return True
+
+def validacion (palabra_ingresada, intentos_ingresados_str):
     """
     Devuelve True o False si la palabra ingresada cumple con lo solicitado en las reglas del juego e informa por terminal en caso de errores.
     """
-    verificacion = False
-    if not palabra_ingresada.isalpha():
-        print("La palabra no tiene que contener numero ni caracteres especiales.")
-    if len(palabra_ingresada) != 5:
-        print("La palabra tiene que ser de 5 letras.")
-    if dar_formato_al_intento(palabra_ingresada).lower() not in obtener_palabras_validas():
-        print("La palabra no se encuentra en la lista de palabras válidas.")
-    if palabra_ingresada.upper() in intentos_ingresados_str:
-        print("La palabra ya habia sido ingresada.")
-    #Consultar al profe sobre como tratar el if que quedo excesivamente largo    
-    if palabra_ingresada.isalpha() and len(palabra_ingresada) == 5 and dar_formato_al_intento(palabra_ingresada).lower() in obtener_palabras_validas() and palabra_ingresada.upper() not in intentos_ingresados_str:
-        verificacion = True
-
-    return verificacion
+    if es_alfabetico(palabra_ingresada) and longitud_palabra(palabra_ingresada) and validar_palabra(palabra_ingresada) and validar_ingreso(palabra_ingresada, intentos_ingresados_str): 
+        return True
+    else:
+        return False
 
 
 def procesar_intento(pal_adiv, intento, lista_palabra_a_adivinar):

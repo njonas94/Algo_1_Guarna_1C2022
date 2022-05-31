@@ -121,17 +121,15 @@ def acumular_intentos(palabra_ingresada, contador_intentos, colores, intentos_in
     for i in range(len(palabra_ingresada)):
         intentos_ingresados_list[contador_intentos][i] = colores[i] + palabra_ingresada[i]
 
-def volver_a_jugar(turnos):
+def volver_a_jugar():
     '''
     Devuelve la respuesta de seguir jugando, de ser afirmativa devuelve el nuevo orden de los turnos.
     '''
     desea_jugar = input("\n¿Desea volver a jugar?(S/N):")
     while desea_jugar not in ('N','n','s','S'):
         desea_jugar = input("¿Desea volver a jugar?(S/N):")
-    if desea_jugar in ('s','S'):
-        turnos = nueva_partida(turnos)
     
-    return  desea_jugar, turnos
+    return  desea_jugar
 
 def nueva_partida(orden_jugador):
     ''' 

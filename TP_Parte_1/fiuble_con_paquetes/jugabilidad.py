@@ -88,13 +88,13 @@ def desarrollo_intentos(pal_adiv, intento, turnos, adivinar, palabras):
         Devuelve una lista con las palabras ingresadas.
     '''
     palabras_ingresadas=[]
-    while len(palabras_ingresadas)<5:
+    while len(palabras_ingresadas)<5 and pal_adiv not in palabras_ingresadas:
         orden_ingreso=len(palabras_ingresadas)
         #print(lista, palabras_ingresadas, orden_ingreso)
         colores = procesar_intento(pal_adiv, intento, adivinar)
         acumular_intentos(intento, orden_ingreso, colores, palabras, palabras_ingresadas)
 
-        print("Palabra a adivinar: ", end = "")
+        print("\nPalabra a adivinar: ", end = "")
         mostrar_palabra(adivinar)
         for intento in palabras:
             mostrar_palabra(intento)
@@ -151,3 +151,13 @@ def determinar_ganador(usuarios):
         print(f'\nLos jugadores empataron con un total de {orden[1][1]} puntos')
     else:    
         print(f'\nEl ganador es {orden[0][0].upper()} con un total de {orden[0][1]} puntos.')
+
+#FUNCION AGREGADA
+def nueva_partida(orden_jugador):
+    ''' 
+    Función que va alternando los turnos si los usuarios deciden jugar una nueva partida.
+    '''
+    orden_jugador.append(orden_jugador[1])
+    del(orden_jugador[0])
+    
+    return orden_jugador        

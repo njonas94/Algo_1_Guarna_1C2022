@@ -9,20 +9,19 @@ def generar_palabra_a_adivinar():
     Salidas:
         Devuelve la palabra seleccionada aleatoriamente en mayúscula.
     '''
-
     palabras_validas = obtener_palabras_validas()
     palabra=random.choice(palabras_validas)
 
     return palabra.upper()
 
-'''
+def validacion_intento_ingresado(palabra_ingresada, palabras_ingresadas):
+    '''
     Función: validar_intento_ingresado
     Parámetro:
         palabra_ingresada: cadena de caracteres ingresado por el usuario.
     Salidas:
         Devuelve la palabra en mayúscula.
-'''
-def validacion_intento_ingresado(palabra_ingresada, palabras_ingresadas):
+    '''
     palabra_ingresada = cambiar_tilde(palabra_ingresada.lower())
     while not palabra_ingresada.isalpha() or palabra_ingresada.lower() not in obtener_palabras_validas() or (palabra_ingresada.upper() in palabras_ingresadas):
         if not palabra_ingresada.isalpha() and len(palabra_ingresada) != 5:
@@ -37,16 +36,17 @@ def validacion_intento_ingresado(palabra_ingresada, palabras_ingresadas):
             print("Palabra inválida, no puede contener números ni caracteres especiales.")
         palabra_ingresada = input("Ingrese una palabra valida de 5 letras: ")
         palabra_ingresada = cambiar_tilde(palabra_ingresada.lower())
+    
     return palabra_ingresada.upper()
 
-'''
+def cambiar_tilde(palabra_ingresada):
+    '''
     Función: cambiar_tilde
     Parámetro:
         palabra_ingresada: cadena de caracteres ingresado por el usuario.
     Salidas:
         Devuelve la palabra sin acentos.
-'''
-def cambiar_tilde(palabra_ingresada):
+    '''
     a = 'áéíóúýäëïöüÿàèìòùâêîôû'
     b = 'aeiouyaeiouyaeiouaeiou'
     palabra_sin_acento = palabra_ingresada.maketrans(a, b)
@@ -55,32 +55,33 @@ def cambiar_tilde(palabra_ingresada):
     return arriesgo
 
 def crear_lista_interrogantes(LONGITUD_PALABRAS):
-    """
+    '''
     Autor : Aldair Torres
     Pre: recibe la palabra a adivinar para saber su longitud
     Post: Nos devuelve una lista conformada por signos de interrogacion
-    """
+    '''
     lista_interrogantes = []
     for i in range(LONGITUD_PALABRAS):
         lista_interrogantes.append('?')
+    
     return lista_interrogantes
 
-
 def crear_lista_intentos(CANTIDAD_INTENTOS, lista_interrogantes):
-    """
+    '''
     Autor: Aldair Torres
     Pre: recibe una cantidad de intentos y una lista con interrogantes
     Post: Nos devuelve una lista de listas en donde se almacenas los intentos
-    """
+    '''
     lista_intentos = []
     for i in range(CANTIDAD_INTENTOS):
         lista_intentos.append(lista_interrogantes.copy())
+    
     return lista_intentos
 
 def procesar_intento(pal_adiv, intento, lista_palabra_a_adivinar):
-    """
+    '''
     Procesa el intento ingresado, creando una lista con el correspondiente color asignado a cada letra en el mismo indice que el string ingresado.
-    """
+    '''
     colores = []
     for pos in range(len(pal_adiv)):
         if (pal_adiv.count(intento[pos]) == 1 and intento.count(intento[pos]) == 2):
@@ -114,7 +115,8 @@ def procesar_intento(pal_adiv, intento, lista_palabra_a_adivinar):
 
     return colores
 
-'''
+def desarrollo_intentos(pal_adiv, intento, turnos, adivinar, palabras):
+    '''
     Función: desarrollo_intentos
     Parámetros:
         pal_adiv: palabra a adivinar.
@@ -122,8 +124,7 @@ def procesar_intento(pal_adiv, intento, lista_palabra_a_adivinar):
         todos_turnos: para ir alternando los usuarios
     Salidas:
         Devuelve una lista con las palabras ingresadas.
-'''
-def desarrollo_intentos(pal_adiv, intento, turnos, adivinar, palabras):
+    '''
     palabras_ingresadas=[]
     while len(palabras_ingresadas)<5:
         orden_ingreso=len(palabras_ingresadas)
@@ -143,32 +144,30 @@ def desarrollo_intentos(pal_adiv, intento, turnos, adivinar, palabras):
    
     return palabras_ingresadas
 
-'''
+def acumular_intentos(palabra_ingresada, contador_intentos, colores, intentos_ingresados_list, intentos_ingresados_str):
+    '''
     Función: acumular_intentos
+    Acumula los intentos ingresados en una lista, con el respectivo color de letra correspondiente asociado.
     Parámetros:
         palabra_ingresada: cadena de caracteres ingresado por el usuario.
         intentos_ingresados: lista vacia.
     Salidas:
         Devuelve la lista cargada con las palabras ingresadas.
-'''
-def acumular_intentos(palabra_ingresada, contador_intentos, colores, intentos_ingresados_list, intentos_ingresados_str):
-    """
-    Acumula los intentos ingresados en una lista, con el respectivo color de letra correspondiente asociado.
 
-    """
+    '''
     intentos_ingresados_str.append(palabra_ingresada)
     for i in range(len(palabra_ingresada)):
         intentos_ingresados_list[contador_intentos][i] = colores[i] + palabra_ingresada[i]
 
-'''
+def cronometro(comienzo, final):
+    '''
     Función: cronometro
     Parámetros:
         comienzo: inicia contador.
         final: detiene contador.
     Salidas:
         Devuelve los minutos y segundos tardados en finalizar el juego.
-'''
-def cronometro(comienzo, final):
+    '''
     tiempo_tardado=(final-comienzo)
     if tiempo_tardado>=60:
         minutos=tiempo_tardado//60
@@ -178,9 +177,11 @@ def cronometro(comienzo, final):
         minutos=0
         segundos=round(tiempo_tardado,0)
         tiempo=[minutos, segundos]
+    
     return tiempo
 
-'''
+def puntaje(lista,adivinar,usuarios,turnos):
+    '''
     Función: puntaje
     Parámetros:
         lista: lista de cadenas de caracteres.
@@ -188,8 +189,7 @@ def cronometro(comienzo, final):
         todos_turnos: lista vacia.
     Salidas:
         Devuelve la lista cargada con el puntaje obtenido una vez finalizada la partida.
-'''
-def puntaje(lista,adivinar,usuarios,turnos):
+    '''
     valores=[50,40,30,20,10,-50,-100]
     if adivinar not in lista and len(lista)==5:
         usuarios[turnos[0]]+= valores[-1]
@@ -209,10 +209,13 @@ def puntaje(lista,adivinar,usuarios,turnos):
             puntos_obtenidos=valores[4]
         indice = len(lista)-1
         usuarios = contador_puntajes (puntos_obtenidos,usuarios,turnos,indice)
+    
     return usuarios
 
-''' Funcion que acumula el puntaje para cada jugador.'''
 def contador_puntajes (puntos_obtenidos,usuarios,turnos,indice):
+    ''' 
+    Funcion que acumula el puntaje para cada jugador.
+    '''
     jugador_acierto = turnos[indice]
     if indice ==0:
         jugador_fallo = turnos[indice-2]
@@ -223,28 +226,37 @@ def contador_puntajes (puntos_obtenidos,usuarios,turnos,indice):
         usuarios[jugador_fallo] += -puntos_obtenidos
         print(f"{jugador_acierto.upper()}, ha ganado: {puntos_obtenidos} puntos. Tiene acumulados {usuarios[jugador_acierto]} puntos.")
         print(f"{jugador_fallo.upper()}, ha perdido: {puntos_obtenidos} puntos. Tiene acumulados {usuarios[jugador_fallo]} puntos.")
+    
     return usuarios
-
-'''Devuelve la respuesta de seguir jugando, de ser afirmativa devuelve el nuevo orden de los turnos.''' 
+ 
 def volver_a_jugar(turnos):
+    '''
+    Devuelve la respuesta de seguir jugando, de ser afirmativa devuelve el nuevo orden de los turnos.
+    '''
     desea_jugar = input("\n¿Desea volver a jugar?(S/N):")
     while desea_jugar not in ('N','n','s','S'):
         desea_jugar = input("¿Desea volver a jugar?(S/N):")
     if desea_jugar in ('s','S'):
         turnos = nueva_partida(turnos)
+    
     return  desea_jugar, turnos
 
-''' Carga un diccionario, las claves son los ususarios y el valor acumulara sus respectivos puntajes.'''
 def ingreso_usuarios():
+    ''' 
+    Carga un diccionario, las claves son los ususarios y el valor acumulara sus respectivos puntajes.
+    '''
     usuarios = {}
     usuario_1 = input("Ingreso usuario:")
     usuario_2 = input("Ingreso usuario:")
     usuarios[usuario_1] = 0
     usuarios[usuario_2] = 0
+    
     return usuarios
 
-''' Generador de turnos '''
 def orden_turnos (usuarios):
+    ''' 
+    Generador de turnos 
+    '''
     turnos = []
     nombre = list(usuarios.keys())
     master=random.choice(nombre)
@@ -254,12 +266,16 @@ def orden_turnos (usuarios):
             turnos.append(master)              
         else:
             turnos.append(nombre[indice-1])
+    
     return turnos
 
-''' Función que va alternando los turnos partida a partida'''
 def nueva_partida(orden_jugador):
+    ''' 
+    Función que va alternando los turnos partida a partida
+    '''
     orden_jugador.append(orden_jugador[1])
     del(orden_jugador[0])
+    
     return orden_jugador
 
 def determinar_ganador(usuarios):
@@ -270,18 +286,18 @@ def determinar_ganador(usuarios):
         print(f'\nEl ganador es {orden[0][0].upper()} con un total de {orden[0][1]} puntos.')
 
 def juego_terminado(lista_de_intentos_ingresados, pal_adiv):
-    """
+    '''
     Muestra en terminal la "Palabra a adivinar" y los intentos.
-    """
+    '''
     print("Palabra a adivinar: ", end = "")
     mostrar_palabra(pal_adiv)
     for intento in lista_de_intentos_ingresados:
         mostrar_palabra(intento)
 
 def mostrar_palabra(palabra_ingresada):
-    """
+    '''
     Muestra por pantalla las palabras en el formato deseado.
-    """
+    '''
     for letra in palabra_ingresada:
         print(letra + " " + obtener_color("Defecto"), end = "")
     print()
@@ -317,11 +333,4 @@ def fiuble():
         jugar, turnos = volver_a_jugar(turnos)
     determinar_ganador(usuarios_y_puntaje)
 fiuble()
-
-
-
-
-
-
-
 

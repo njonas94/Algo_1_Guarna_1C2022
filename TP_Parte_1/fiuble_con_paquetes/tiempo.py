@@ -4,7 +4,7 @@ def cronometro(comienzo, final):
     '''
     Función: cronometro
     Descripción: 
-        
+        Evalua y da formato al tiempo tardado en la ronda.
     Parámetros:
         Comienzo: tiempo en el que comienza el juego.
         Final: tiempo en el que termina el juego.

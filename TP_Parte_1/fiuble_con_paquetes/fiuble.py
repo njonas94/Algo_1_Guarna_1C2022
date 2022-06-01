@@ -17,7 +17,7 @@ def fiuble():
     LONGITUD_PALABRAS = 5
     CANTIDAD_INTENTOS = 5
     jugar = ''
-    usuarios_y_puntaje = ingreso_usuarios()
+    usuarios_y_puntaje = ingreso_jugadores()
     turnos = orden_turnos(usuarios_y_puntaje)
     while jugar in ('s','S', ''):
         lista_de_intentos_ingresados = []

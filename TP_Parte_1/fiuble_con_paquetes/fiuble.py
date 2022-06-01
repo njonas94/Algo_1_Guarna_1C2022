@@ -18,7 +18,7 @@ def fiuble():
     CANTIDAD_INTENTOS = 5
     jugar = ''
     usuarios_y_puntaje = ingreso_jugadores()
-    turnos = orden_turnos(usuarios_y_puntaje)
+    turnos = orden_turnos(usuarios_y_puntaje, CANTIDAD_INTENTOS)
     while jugar in ('s','S', ''):
         lista_de_intentos_ingresados = []
         palabra_a_adivinar = generar_palabra_a_adivinar()

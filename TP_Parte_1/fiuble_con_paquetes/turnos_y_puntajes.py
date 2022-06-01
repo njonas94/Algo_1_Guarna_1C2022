@@ -4,11 +4,12 @@ def puntaje(lista_intentos, palabra_adivinar, jugadores_y_puntos, turnos):
     '''
     Función: puntaje
     Descripción:
+        Asigna el puntaje correspondiente y lo carga en el diccionario de jugadores y puntos.
     Parámetros:
-        lista_intentos: lista de strings con los intentos ingresados
-        palabra_adivinar: palabra a adivinar en el juego
-        jugadores_y_puntos: diccionario con los jugadores y sus puntajes
-        turnos: lista con los turnos
+        lista_intentos: Lista de strings con los intentos ingresados.
+        palabra_adivinar: Palabra a adivinar en el juego.
+        jugadores_y_puntos: Diccionario con los jugadores y sus puntajes.
+        turnos: Lista con los turnos.
     Salidas:
         Devuelve el diccionario de los jugadores cargado con el puntaje obtenido una vez finalizada la partida.
         Imprime en caso de que los jugadores no hallan adivinado la palabra.
@@ -39,12 +40,12 @@ def contador_puntajes (puntos_obtenidos, jugadores_y_puntos, turnos, indice):
     '''
     Funcion: contador_puntajes
     Descripción:
-        Muestra y acumula los puntajes obtenidos en cada ronda
+        Muestra y acumula los puntajes obtenidos en cada ronda.
     Parametros:
-        Puntos_obtenidos: Puntos obtenidos al terminar cada ronda
-        jugadores_y_puntos: diccionario con los jugadores y sus respectivos puntos acumulados
-        Turnos: lista con los turnos
-        Indice:
+        Puntos_obtenidos: Puntos obtenidos al terminar cada ronda.
+        jugadores_y_puntos: Diccionario con los jugadores y sus respectivos puntos acumulados.
+        Turnos: Lista con los turnos.
+        Indice: Entero que se utiliza como indice para acceder a la lusta turnos.
     Salida:
         Nos devuelve el diccionario de jugadores modificado por el puntaje obtenido
     '''
@@ -61,22 +62,23 @@ def contador_puntajes (puntos_obtenidos, jugadores_y_puntos, turnos, indice):
     
     return jugadores_y_puntos
 
-def orden_turnos (jugadores_y_puntos):
+def orden_turnos (jugadores_y_puntos, CANTIDAD_INTENTOS):
     '''
     Funcion: orden_turnos
     Descripción:
-
+        Asigna el orden de los turnos de los jugadores.
     Parametros:
-        jugadores_y_puntos: diccionario con los jugadores y sus puntajes
+        jugadores_y_puntos: diccionario con los jugadores y sus puntajes.
+        CANTIDAD_INTENTOS: Nos pasa la cantidad de intentos que va a tener una partida.
     Salida:
-        Nos retorna una lista con los respectivos turnos para el juego
+        Nos retorna una lista con los respectivos turnos para el juego.
     '''
     turnos = []
     jugadores = list(jugadores_y_puntos.keys())
-    master=random.choice(jugadores)
+    master = random.choice(jugadores)
     indice = jugadores.index(master)
-    for i in range(5):
-        if i in (0,2,4):
+    for i in range(CANTIDAD_INTENTOS):
+        if i % 2 == 0:
             turnos.append(master)              
         else:
             turnos.append(jugadores[indice-1])
@@ -86,7 +88,8 @@ def orden_turnos (jugadores_y_puntos):
 def cambio_turnos (turnos):
     '''
     Función: cambio_turnos
-    Descripción: 
+    Descripción:
+        Alterna el turno entre los jugadores.
     Parametros:
         turnos: Lista con los turnos de los jugadores
     Salida:

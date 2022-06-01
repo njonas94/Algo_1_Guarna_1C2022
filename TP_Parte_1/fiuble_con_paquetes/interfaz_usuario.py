@@ -14,7 +14,7 @@ def mostrar_palabra(palabra_ingresada):
     print()
 
     
-def nombres_repetidos(CASO, jugador_1, jugador_2):
+def nombres_repetidos(CASO, jugador_1, jugador_2): #única función llamada por la función no modularizada dentro de ingreso_jugadores()
     '''
     Responsable: CASTRO, CARLA
     Función: nombres_repetidos
@@ -124,5 +124,36 @@ def ingreso_jugadores():
     jugador_1 = input('Ingreso usuario:')
     jugador_2 = input('Ingreso usuario:')
     validar_nombres_ingresados(jugador_1, jugador_2, jugadores_y_puntos)
+    
+        #VERIFICACION AL NOMBRAR USUARIOS, NO MODULARIZADO
+#     while not jugador_1.isalpha() or not jugador_2.isalpha() or jugador_2 == jugador_1:
+#         if not jugador_1.isalpha() and not jugador_2.isalpha(): #Usuarios inválidos
+#             print('Nombres inválidos, intente nuevamente. No usar números ni caracteres especiales.')
+#             jugador_1 = input('\nIngrese el nombre del 1er usuario:').upper()
+#             jugador_2 = input('Ingrese el nombre del 2do usuario:').upper()
+#             if jugador_2 == jugador_1 and jugador_1.isalpha():
+#                 CASO = 0
+#                 jugador_2 = nombres_repetidos(CASO, jugador_1, jugador_2)
+#                     
+#         elif not jugador_1.isalpha() and jugador_2.isalpha():
+#             print(f'Nombre "{jugador_1}" inválido, no usar números ni caracteres especiales. Nombre "{jugador_2}" no disponible.')
+#             jugador_1 = input('\nIngrese el nombre del 1er usuario:').upper()
+#             if jugador_1 == jugador_2:
+#                 CASO = 1
+#                 jugador_1 = nombres_repetidos(CASO, jugador_1, jugador_2)
+#             
+#         elif not jugador_2.isalpha() and jugador_1.isalpha():
+#             print(f'Nombre "{jugador_2}" inválido, no usar números ni caracteres especiales. Nombre "{jugador_1}" no disponible.')
+#             jugador_2 = input('\nIngrese el nombre del 2er usuario:').upper()
+#             if jugador_2 == jugador_1:
+#                 CASO = 0
+#                 jugador_2 = nombres_repetidos(CASO, jugador_1, jugador_2)
+#                 
+#         elif jugador_2 == jugador_1:
+#             print(f'Nombre "{jugador_1}" no disponible. Ingrese un nombre distinto.')
+#             jugador_2 = input('\nIngrese el nombre del 2er usuario:').upper()
+#         
+#     jugadores_y_puntos[jugador_1] = 0
+#     jugadores_y_puntos[jugador_2] = 0
 
     return jugadores_y_puntos

@@ -45,7 +45,7 @@ def contador_puntajes (puntos_obtenidos, jugadores_y_puntos, turnos, indice):
         Puntos_obtenidos: Puntos obtenidos al terminar cada ronda.
         jugadores_y_puntos: Diccionario con los jugadores y sus respectivos puntos acumulados.
         Turnos: Lista con los turnos.
-        Indice: Entero que se utiliza como indice para acceder a la lusta turnos.
+        Indice: Entero que se utiliza como indice para acceder a la lista turnos.
     Salida:
         Nos devuelve el diccionario de jugadores modificado por el puntaje obtenido
     '''

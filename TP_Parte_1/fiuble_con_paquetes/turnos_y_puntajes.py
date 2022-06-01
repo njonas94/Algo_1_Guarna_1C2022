@@ -4,10 +4,10 @@ def puntaje(lista_intentos, palabra_adivinar, jugadores_y_puntos, orden_turnos):
     '''
     Función: puntaje
     Parámetros:
-        lista_intentos: lista cargada con cadenas de caracteres.
-        palabra_adivinar: cadena de caracteres.
-        jugadores_y_puntos: diccionario cargado.
-        orden_turnos: lista cargada.
+        lista_intentos: lista de strings con los intentos ingresados
+        palabra_adivinar: palabra a adivinar en el juego
+        jugadores_y_puntos: diccionario con los jugadores y sus puntajes
+        orden_turnos: lista con los turnos
     Salidas:
         Devuelve la lista cargada con el puntaje obtenido una vez finalizada la partida.
     '''
@@ -34,9 +34,17 @@ def puntaje(lista_intentos, palabra_adivinar, jugadores_y_puntos, orden_turnos):
     return jugadores_y_puntos
 
 def contador_puntajes (puntos_obtenidos, usuarios, turnos, indice):
-    ''' 
-    Funcion que acumula el puntaje para cada jugador.
-    '''
+    """
+    Funcion: contador_puntajes
+        Muestra y acumula los puntajes obtenidos en cada ronda
+    Parametros:
+        Puntos_obtenidos: Puntos obtenidos al terminar cada ronda
+        Usuarios: diccionario con los usuarios y sus respectivos puntos acumulados
+        Turnos: lista con los turnos
+        Indice:
+    Salida:
+        Nos devuelve el diccionario de usuarios modificado por el puntaje obtenido
+    """
     jugador_acierto = turnos[indice]
     if indice ==0:
         jugador_fallo = turnos[indice-2]
@@ -51,9 +59,12 @@ def contador_puntajes (puntos_obtenidos, usuarios, turnos, indice):
     return usuarios
 
 def orden_turnos (usuarios):
-    ''' 
-    Generador de turnos 
-    '''
+    """
+    Parametros:
+        Usuarios: diccionario con los usuarios y sus puntajes
+    Salida:
+        Nos retorna una lista con los respectivos turnos para el juego
+    """
     turnos = []
     jugadores = list(usuarios.keys())
     master=random.choice(jugadores)

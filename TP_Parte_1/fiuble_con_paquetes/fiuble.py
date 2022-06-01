@@ -7,16 +7,20 @@ from validacion import *
 
 import random
 import time
-
+"""
+cambiar:
+- nueva partida en jugabilidad falta aclarar la salida
+- contador puntajes en turnos y puntajes falta aclarar un parametro
+"""
 #PRINCIPAL
 def fiuble():
     LONGITUD_PALABRAS = 5
     CANTIDAD_INTENTOS = 5
     jugar = ''
-    usuarios_y_puntaje = ingreso_usuarios()#Diccionario: claves: nombres de usuario y valor: puntos acumulados
+    usuarios_y_puntaje = ingreso_usuarios()
     turnos = orden_turnos(usuarios_y_puntaje)
     while jugar in ('s','S', ''):
-        lista_de_intentos_ingresados = [] #Lista de intentos, tipo string
+        lista_de_intentos_ingresados = []
         palabra_a_adivinar = generar_palabra_a_adivinar()
         lista_letras_palabra_adivinar = crear_lista_interrogantes(LONGITUD_PALABRAS)
         lista_letras_de_cada_intento = crear_lista_intentos(CANTIDAD_INTENTOS, lista_letras_palabra_adivinar) #Lista de listas, contiene los intentos ingresados,cada letra es un elemento.

@@ -4,10 +4,10 @@ def cronometro(comienzo, final):
     '''
     Función: cronometro
     Parámetros:
-        comienzo: inicia contador.
-        final: detiene contador.
+        Comienzo: tiempo en el que comienza el juego.
+        Final: tiempo en el que termina el juego.
     Salidas:
-        Devuelve los minutos y segundos tardados en finalizar el juego.
+        Devuelve una lista con los minutos y segundos tardados en finalizar el juego.
     '''
     tiempo_tardado=(final-comienzo)
     if tiempo_tardado>=60:

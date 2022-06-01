@@ -4,11 +4,10 @@ from utiles import *
 def mostrar_palabra(palabra_ingresada):
     '''
     Función: mostrar_palabra
-    Parametro:
-        palabra_ingresada: Palabra que segun el momento de su ejecución varía.    
     Descripción: 
         Recibe una palabra y la muestra en el formato deseado.
-    Salidas:
+    Parametro:
+        palabra_ingresada: Palabra que segun el momento de su ejecución varía.    
     '''
     for letra in palabra_ingresada:
         print(letra + ' ' + obtener_color('Defecto'), end = '')
@@ -18,7 +17,6 @@ def mostrar_palabra(palabra_ingresada):
 def ingreso_jugadores():
     '''
     Función: ingreso_jugadores
-    Parametro:
     Descripción: 
         Crea un diccionario con los nombres como claves y de valor sus puntajes.  
     Salidas:

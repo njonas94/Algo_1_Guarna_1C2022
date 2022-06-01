@@ -31,8 +31,8 @@ def fiuble():
         print('Es el turno de:',turnos[0].upper())
         inicio_cronometro = time.time()
         arriesgo = input('Arriesgo:')
-        arriesgo = validacion_intento_ingresado(arriesgo, lista_de_intentos_ingresados)
-        lista_de_intentos_ingresados = desarrollo_intentos(palabra_a_adivinar, arriesgo, turnos, lista_letras_palabra_adivinar, lista_letras_de_cada_intento) #Esta lista, es la lista de str de palabras ingresadas#
+        intento = validacion_intento_ingresado(arriesgo, lista_de_intentos_ingresados)
+        lista_de_intentos_ingresados = desarrollo_intentos(palabra_a_adivinar, intento, turnos, lista_letras_palabra_adivinar, lista_letras_de_cada_intento) #Esta lista, es la lista de str de palabras ingresadas#
         fin_cronometro = time.time()
         tiempo = cronometro(inicio_cronometro, fin_cronometro)
         if palabra_a_adivinar in lista_de_intentos_ingresados:

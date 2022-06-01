@@ -42,7 +42,7 @@ def fiuble():
         puntaje(lista_de_intentos_ingresados,palabra_a_adivinar,usuarios_y_puntaje,turnos)
         jugar = volver_a_jugar()
         if jugar in ('s','S'):
-            turnos = nueva_partida(turnos)
+            turnos = cambio_turnos(turnos)
     determinar_ganador(usuarios_y_puntaje)
 fiuble()
 

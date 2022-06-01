@@ -7,11 +7,11 @@ from validacion import *
 
 import random
 import time
-"""
+'''
 cambiar:
 - nueva partida en jugabilidad falta aclarar la salida
 - contador puntajes en turnos y puntajes falta aclarar un parametro
-"""
+'''
 #PRINCIPAL
 def fiuble():
     LONGITUD_PALABRAS = 5
@@ -24,13 +24,13 @@ def fiuble():
         palabra_a_adivinar = generar_palabra_a_adivinar()
         lista_letras_palabra_adivinar = crear_lista_interrogantes(LONGITUD_PALABRAS)
         lista_letras_de_cada_intento = crear_lista_intentos(CANTIDAD_INTENTOS, lista_letras_palabra_adivinar) #Lista de listas, contiene los intentos ingresados,cada letra es un elemento.
-        print("\nPalabra a adivinar: ", end = "")
+        print('\nPalabra a adivinar: ', end = '')
         mostrar_palabra(lista_letras_palabra_adivinar)
         for intento in lista_letras_de_cada_intento:
             mostrar_palabra(intento)
-        print("Es el turno de:",turnos[0].upper())
+        print('Es el turno de:',turnos[0].upper())
         inicio_cronometro = time.time()
-        arriesgo = input("Arriesgo:")
+        arriesgo = input('Arriesgo:')
         arriesgo = validacion_intento_ingresado(arriesgo, lista_de_intentos_ingresados)
         lista_de_intentos_ingresados = desarrollo_intentos(palabra_a_adivinar, arriesgo, turnos, lista_letras_palabra_adivinar, lista_letras_de_cada_intento) #Esta lista, es la lista de str de palabras ingresadas#
         fin_cronometro = time.time()

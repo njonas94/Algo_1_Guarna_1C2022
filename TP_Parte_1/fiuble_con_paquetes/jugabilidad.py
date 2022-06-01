@@ -33,7 +33,7 @@ def crear_lista_interrogantes(LONGITUD_PALABRAS):
     return lista_interrogantes
 
 def crear_lista_intentos(CANTIDAD_INTENTOS, lista_interrogantes):
-    """
+    '''
     Función: 
     Descripción: 
     Parametros:
@@ -41,7 +41,7 @@ def crear_lista_intentos(CANTIDAD_INTENTOS, lista_interrogantes):
         Lista_interrogantes: Una lista contenida con interrogantes
     Salida:
         Nos devuelve una lista de listas con la cantidad de intentos que va a tener el juego
-    """
+    '''
     lista_intentos = []
     for i in range(CANTIDAD_INTENTOS):
         lista_intentos.append(lista_interrogantes.copy())
@@ -49,7 +49,7 @@ def crear_lista_intentos(CANTIDAD_INTENTOS, lista_interrogantes):
     return lista_intentos
 
 def procesar_intento(palabra_a_adivinar, intento, lista_letras_palabra_a_adivinar):
-    """
+    '''
     Función: 
     Descripción: 
     Parametros:
@@ -59,7 +59,7 @@ def procesar_intento(palabra_a_adivinar, intento, lista_letras_palabra_a_adivina
     Salida:
         Modificamos lista_letras_palabra_adivinar si le pega a la letra y al lugar exacto y lo pintamos de verde
         Nos devuelve una lista con los colores que le pertenecen a cada intento ingresado
-    """
+    '''
     colores = []
     for pos in range(len(palabra_a_adivinar)):
         if (palabra_a_adivinar.count(intento[pos]) == 1 and intento.count(intento[pos]) == 2):
@@ -68,27 +68,27 @@ def procesar_intento(palabra_a_adivinar, intento, lista_letras_palabra_a_adivina
 
             if ((pos == pos_1 and pos_1 == palabra_a_adivinar.index(intento[pos_1])) or (
                     pos == pos_2 and pos_2 == palabra_a_adivinar.index(intento[pos_2]))):
-                colores.append(obtener_color("Verde"))
+                colores.append(obtener_color('Verde'))
                 lista_letras_palabra_a_adivinar[pos] = palabra_a_adivinar[pos]
 
             elif ((pos == pos_2 and pos_1 == palabra_a_adivinar.index(intento[pos_1])) or (
                     pos == pos_1 and pos_2 == palabra_a_adivinar.index(intento[pos_2]))):
-                colores.append(obtener_color("GrisOscuro"))
+                colores.append(obtener_color('GrisOscuro'))
 
             elif (pos == pos_1 and pos_1 != palabra_a_adivinar.index(intento[pos_1]) and pos_2 != palabra_a_adivinar.index(intento[pos_1])):
-                colores.append(obtener_color("Amarillo"))
+                colores.append(obtener_color('Amarillo'))
 
             elif (pos == pos_2 and pos_1 != palabra_a_adivinar.index(intento[pos_1]) and pos_2 != palabra_a_adivinar.index(intento[pos_1])):
-                colores.append(obtener_color("GrisOscuro"))
+                colores.append(obtener_color('GrisOscuro'))
 
         elif intento[pos] not in palabra_a_adivinar:
-            colores.append(obtener_color("GrisOscuro"))
+            colores.append(obtener_color('GrisOscuro'))
 
         elif intento[pos] in palabra_a_adivinar and intento[pos] != palabra_a_adivinar[pos]:
-            colores.append(obtener_color("Amarillo"))
+            colores.append(obtener_color('Amarillo'))
 
         elif intento[pos] == palabra_a_adivinar[pos]:
-            colores.append(obtener_color("Verde"))
+            colores.append(obtener_color('Verde'))
             lista_letras_palabra_a_adivinar[pos] = palabra_a_adivinar[pos]
 
     return colores
@@ -113,14 +113,14 @@ def desarrollo_intentos(adivinar, intento, turnos, lista_letras_de_adivinar, pal
         colores = procesar_intento(adivinar, intento, lista_letras_de_adivinar)
         acumular_intentos(intento, orden_ingreso, colores, palabras, palabras_ingresadas)
 
-        print("\nPalabra a adivinar: ", end = "")
+        print('\nPalabra a adivinar: ', end = '')
         mostrar_palabra(lista_letras_de_adivinar)
         for intento in palabras:
             mostrar_palabra(intento)
             
         if adivinar not in palabras_ingresadas and len(palabras_ingresadas)<5:
-            print("Es el turno de:", turnos[len(palabras_ingresadas)].upper())
-            arriesgo=input("Arriesgo:")
+            print('Es el turno de:', turnos[len(palabras_ingresadas)].upper())
+            arriesgo=input('Arriesgo:')
             intento=validacion_intento_ingresado(arriesgo, palabras_ingresadas)
    
     return palabras_ingresadas
@@ -146,40 +146,40 @@ def acumular_intentos(palabra_ingresada, contador_intentos, colores, intentos_in
         intentos_ingresados_list[contador_intentos][i] = colores[i] + palabra_ingresada[i]
 
 def volver_a_jugar():
-    """
+    '''
     Función: volver_a_jugar
     Descripción: 
         Pregunta y verifica la respuesta del usuario sobre si quiere volver a jugar o no
     Salida:
         Nos devuelve un string dependiendo si quiere volver a jugar o no del tipo (N.n) o (S,s)
-    """
-    desea_jugar = input("\n¿Desea volver a jugar?(S/N):")
+    '''
+    desea_jugar = input('\n¿Desea volver a jugar?(S/N):')
     while desea_jugar not in ('N','n','s','S'):
-        desea_jugar = input("¿Desea volver a jugar?(S/N):")
+        desea_jugar = input('¿Desea volver a jugar?(S/N):')
     
     return  desea_jugar
 
 def nueva_partida(orden_jugador):
-    """
+    '''
     Función: nueva_partida
     Descripción: 
     Parametros:
         Orden_jugador: Lista con los turnos de los jugadores
     Salida:
-    """
+    '''
     orden_jugador.append(orden_jugador[1])
     del(orden_jugador[0])
     
     return orden_jugador
 
 def determinar_ganador(usuarios):
-    """
+    '''
     Funcion: determinar_ganador
     Descripción:
         Ordena el diccionario en una lista y los compara para ver si hay un ganador o no
     Parametros:
         Usuarios: diccionario con los nombres de los jugadores y sus puntajes
-    """
+    '''
     orden =sorted(usuarios.items(), key=lambda x:x[1], reverse=True)
     if orden[1][1] == orden[0][1]:
         print(f'\nLos jugadores empataron con un total de {orden[1][1]} puntos')

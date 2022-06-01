@@ -16,8 +16,8 @@ def puntaje(lista_intentos, palabra_adivinar, jugadores_y_puntos, orden_turnos):
     if palabra_adivinar not in lista_intentos and len(lista_intentos)==5:
         jugadores_y_puntos[orden_turnos[0]]+= valores[-1]
         jugadores_y_puntos[orden_turnos[1]]+= valores[-2]
-        print(f"{orden_turnos[0].upper()}, ha perdido, 100 puntos. Tiene acumulados {jugadores_y_puntos[orden_turnos[0]]} puntos.")
-        print(f"{orden_turnos[1].upper()}, ha perdido, 50 puntos. Tiene acumulados {jugadores_y_puntos[orden_turnos[1]]} puntos.")
+        print(f'{orden_turnos[0].upper()}, ha perdido, 100 puntos. Tiene acumulados {jugadores_y_puntos[orden_turnos[0]]} puntos.')
+        print(f'{orden_turnos[1].upper()}, ha perdido, 50 puntos. Tiene acumulados {jugadores_y_puntos[orden_turnos[1]]} puntos.')
     elif palabra_adivinar in lista_intentos:
         if len(lista_intentos)==1:
             puntos_obtenidos=valores[0]
@@ -35,7 +35,7 @@ def puntaje(lista_intentos, palabra_adivinar, jugadores_y_puntos, orden_turnos):
     return jugadores_y_puntos
 
 def contador_puntajes (puntos_obtenidos, usuarios, turnos, indice):
-    """
+    '''
     Funcion: contador_puntajes
     Descripción:
         Muestra y acumula los puntajes obtenidos en cada ronda
@@ -46,7 +46,7 @@ def contador_puntajes (puntos_obtenidos, usuarios, turnos, indice):
         Indice:
     Salida:
         Nos devuelve el diccionario de usuarios modificado por el puntaje obtenido
-    """
+    '''
     jugador_acierto = turnos[indice]
     if indice ==0:
         jugador_fallo = turnos[indice-2]
@@ -55,13 +55,13 @@ def contador_puntajes (puntos_obtenidos, usuarios, turnos, indice):
     usuarios[jugador_acierto] += puntos_obtenidos
     if puntos_obtenidos > 0:
         usuarios[jugador_fallo] += -puntos_obtenidos
-        print(f"{jugador_acierto.upper()}, ha ganado: {puntos_obtenidos} puntos. Tiene acumulados {usuarios[jugador_acierto]} puntos.")
-        print(f"{jugador_fallo.upper()}, ha perdido: {puntos_obtenidos} puntos. Tiene acumulados {usuarios[jugador_fallo]} puntos.")
+        print(f'{jugador_acierto.upper()}, ha ganado: {puntos_obtenidos} puntos. Tiene acumulados {usuarios[jugador_acierto]} puntos.')
+        print(f'{jugador_fallo.upper()}, ha perdido: {puntos_obtenidos} puntos. Tiene acumulados {usuarios[jugador_fallo]} puntos.')
     
     return usuarios
 
 def orden_turnos (usuarios):
-    """
+    '''
     Funcion: orden_turnos
     Descripción:
 
@@ -69,7 +69,7 @@ def orden_turnos (usuarios):
         Usuarios: diccionario con los usuarios y sus puntajes
     Salida:
         Nos retorna una lista con los respectivos turnos para el juego
-    """
+    '''
     turnos = []
     jugadores = list(usuarios.keys())
     master=random.choice(jugadores)

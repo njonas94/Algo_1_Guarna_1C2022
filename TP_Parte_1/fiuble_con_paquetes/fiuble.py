@@ -13,7 +13,7 @@ def fiuble():
     LONGITUD_PALABRAS = 5
     CANTIDAD_INTENTOS = 5
     jugar = ''
-    usuarios_y_puntaje = ingreso_jugadores()
+    jugadores_y_puntos = ingreso_jugadores()
     turnos = orden_turnos(usuarios_y_puntaje, CANTIDAD_INTENTOS)
     while jugar in ('s','S', ''):
         lista_de_intentos_ingresados = []
@@ -35,10 +35,10 @@ def fiuble():
             print('Ganaste! Tardaste',tiempo[0],'minutos y',tiempo[1],'segundos')
         else:
             print(f'Palabra a adivinar: {palabra_a_adivinar[0]} {palabra_a_adivinar[1]} {palabra_a_adivinar[2]} {palabra_a_adivinar[3]} {palabra_a_adivinar[4]} {obtener_color("Defecto")}\nPerdiste!')
-        puntaje(lista_de_intentos_ingresados,palabra_a_adivinar,usuarios_y_puntaje,turnos)
+        puntaje(lista_de_intentos_ingresados,palabra_a_adivinar,jugadores_y_puntos,turnos)
         jugar = volver_a_jugar()
         if jugar in ('s','S'):
             turnos = cambio_turnos(turnos)
-    determinar_ganador(usuarios_y_puntaje)
+    determinar_ganador(jugadores_y_puntos)
 fiuble()
 

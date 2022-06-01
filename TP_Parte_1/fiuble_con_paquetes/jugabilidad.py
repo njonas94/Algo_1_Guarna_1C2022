@@ -96,7 +96,7 @@ def procesar_intento(palabra_a_adivinar, intento, lista_letras_palabra_a_adivina
 
     return colores
 
-def desarrollo_intentos(palabra_a_adivinar, intento, turnos, lista_letras_de_adivinar, palabras):
+def desarrollo_intentos(palabra_a_adivinar, intento, turnos, lista_letras_de_adivinar, lista_letras_de_cada_intento):
     '''
     Función: desarrollo_intentos
     Descripción:
@@ -106,7 +106,7 @@ def desarrollo_intentos(palabra_a_adivinar, intento, turnos, lista_letras_de_adi
         intento: cadena de caracteres ingresado por el usuario.
         todos_turnos: para ir alternando los usuarios.
         Lista_letras_adivinar: Lista que contiene las letras de la pálabra a adivinar.
-        Palabras: Lista de listas con los intentos ingresados separado en letras.
+        Lista_letras_de_cada_intento: Lista de listas con los intentos ingresados separado en letras.
     Salidas:
         Devuelve una lista con las palabras ingresadas.
     '''
@@ -115,11 +115,11 @@ def desarrollo_intentos(palabra_a_adivinar, intento, turnos, lista_letras_de_adi
         orden_ingreso=len(palabras_ingresadas)
         #print(lista, palabras_ingresadas, orden_ingreso)
         colores = procesar_intento(palabra_a_adivinar, intento, lista_letras_de_adivinar)
-        acumular_intentos(intento, orden_ingreso, colores, palabras, palabras_ingresadas)
+        acumular_intentos(intento, orden_ingreso, colores, lista_letras_de_cada_intento, palabras_ingresadas)
 
         print('\nPalabra a adivinar: ', end = '')
         mostrar_palabra(lista_letras_de_adivinar)
-        for intento in palabras:
+        for intento in lista_letras_de_cada_intento:
             mostrar_palabra(intento)
             
         if palabra_a_adivinar not in palabras_ingresadas and len(palabras_ingresadas)<5:
@@ -129,7 +129,7 @@ def desarrollo_intentos(palabra_a_adivinar, intento, turnos, lista_letras_de_adi
    
     return palabras_ingresadas
 
-def acumular_intentos(palabra_ingresada, orden_ingreso, colores, intentos_ingresados_list, intentos_ingresados_str):
+def acumular_intentos(palabra_ingresada, orden_ingreso, colores, lista_letras_de_cada_intento, palabras_ingresadas):
     '''
     Función: acumular_intentos
     Descripción:
@@ -145,9 +145,9 @@ def acumular_intentos(palabra_ingresada, orden_ingreso, colores, intentos_ingres
         Modifica la lista de listas con los intentos ingresados con el respectivo color a cada letra
 
     '''
-    intentos_ingresados_str.append(palabra_ingresada)
+    palabras_ingresadas.append(palabra_ingresada)
     for i in range(len(palabra_ingresada)):
-        intentos_ingresados_list[orden_ingreso][i] = colores[i] + palabra_ingresada[i]
+        lista_letras_de_cada_intento[orden_ingreso][i] = colores[i] + palabra_ingresada[i]
 
 def volver_a_jugar():
     '''

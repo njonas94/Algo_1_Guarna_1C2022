@@ -4,28 +4,30 @@ from utiles import *
 def mostrar_palabra(palabra_ingresada):
     '''
     Función: mostrar_palabra
+    Parametro:
+        palabra_ingresada: Palabra que segun el momento de su ejecución varía.    
     Descripción: 
-        Recibe la palabra y la muestra en el formato deseado.
-    Parámetros:
-
+        Recibe una palabra y la muestra en el formato deseado.
+    Salidas:
     '''
     for letra in palabra_ingresada:
         print(letra + ' ' + obtener_color('Defecto'), end = '')
     print()
 
 
-def ingreso_usuarios():
+def ingreso_jugadores():
     '''
-    Función: ingreso_usuarios
+    Función: ingreso_jugadores
+    Parametro:
     Descripción: 
-        Nos retorna un diccionario creado con los nombres como claves y de valor sus puntajes
+        Crea un diccionario con los nombres como claves y de valor sus puntajes.  
     Salidas:
-
+        Nos retorna el diccionario.
     '''
-    usuarios = {}
-    usuario_1 = input('Ingreso usuario:')
-    usuario_2 = input('Ingreso usuario:')
-    usuarios[usuario_1] = 0
-    usuarios[usuario_2] = 0
+    jugadores_y_puntos = {}
+    jugadores_1 = input('Ingreso usuario:')
+    jugadores_2 = input('Ingreso usuario:')
+    jugadores_y_puntos[jugadores_1] = 0
+    jugadores_y_puntos[jugadores_2] = 0
 
-    return usuarios
+    return jugadores_y_puntos

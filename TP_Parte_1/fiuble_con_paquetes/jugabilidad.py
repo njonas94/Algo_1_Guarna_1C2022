@@ -159,19 +159,6 @@ def volver_a_jugar():
     
     return  desea_jugar
 
-def nueva_partida(orden_jugador):
-    """
-    Función: nueva_partida
-    Descripción: 
-    Parametros:
-        Orden_jugador: Lista con los turnos de los jugadores
-    Salida:
-    """
-    orden_jugador.append(orden_jugador[1])
-    del(orden_jugador[0])
-    
-    return orden_jugador
-
 def determinar_ganador(usuarios):
     """
     Funcion: determinar_ganador

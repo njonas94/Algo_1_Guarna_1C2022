@@ -3,6 +3,8 @@ import time
 def cronometro(comienzo, final):
     '''
     Función: cronometro
+    Descripción: 
+        
     Parámetros:
         Comienzo: tiempo en el que comienza el juego.
         Final: tiempo en el que termina el juego.

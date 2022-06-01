@@ -3,7 +3,11 @@ from utiles import *
 
 def mostrar_palabra(palabra_ingresada):
     """
-    Recibe la palabra y la muestra en el formato deseado.
+    Función: mostrar_palabra
+    Descripción: 
+        Recibe la palabra y la muestra en el formato deseado.
+    Parámetros:
+
     """
     for letra in palabra_ingresada:
         print(letra + " " + obtener_color("Defecto"), end = "")
@@ -12,7 +16,11 @@ def mostrar_palabra(palabra_ingresada):
 
 def ingreso_usuarios():
     """
-    Nos retorna un diccionario creado con los nombres como claves y de valor sus puntajes
+    Función: ingreso_usuarios
+    Descripción: 
+        Nos retorna un diccionario creado con los nombres como claves y de valor sus puntajes
+    Salidas:
+        
     """
     usuarios = {}
     usuario_1 = input("Ingreso usuario:")

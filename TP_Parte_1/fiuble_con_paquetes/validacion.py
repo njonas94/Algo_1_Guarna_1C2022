@@ -3,6 +3,8 @@ from utiles import *
 def validacion_intento_ingresado(palabra_ingresada, lista_palabras_ingresadas):
     '''
     Función: validar_intento_ingresado
+    Descripción:   
+
     Parámetro:
         palabra_ingresada: cadena de caracteres ingresado por el usuario.
         lista_palabras_ingresadas: lista de cadenas de caracteres.
@@ -29,6 +31,8 @@ def validacion_intento_ingresado(palabra_ingresada, lista_palabras_ingresadas):
 def cambiar_tilde(palabra_ingresada):
     '''
     Función: cambiar_tilde
+    Descripción: 
+        
     Parámetro:
         palabra_ingresada: cadena de caracteres ingresado por el usuario.
     Salidas:

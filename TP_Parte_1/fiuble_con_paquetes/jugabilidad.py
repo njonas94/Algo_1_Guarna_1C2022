@@ -7,6 +7,7 @@ import random
 def generar_palabra_a_adivinar():
     '''
     Función: generar_palabra_a_adivinar
+    Descripción: 
         Selecciona una palabra al azar de las palabras validas
     Salidas:
         Devuelve la palabra seleccionada en mayúscula
@@ -18,6 +19,8 @@ def generar_palabra_a_adivinar():
 
 def crear_lista_interrogantes(LONGITUD_PALABRAS):
     '''
+    Función: 
+    Descripción: 
     Parametro:
         LONGITUD_PALABRAS: Recibimos la longitud de las palabras en entero
     Salida:
@@ -31,6 +34,8 @@ def crear_lista_interrogantes(LONGITUD_PALABRAS):
 
 def crear_lista_intentos(CANTIDAD_INTENTOS, lista_interrogantes):
     """
+    Función: 
+    Descripción: 
     Parametros:
         CANTIDAD_INTENTOS: Nos pasa la cantidad de intentos que va a tener una partida
         Lista_interrogantes: Una lista contenida con interrogantes
@@ -45,6 +50,8 @@ def crear_lista_intentos(CANTIDAD_INTENTOS, lista_interrogantes):
 
 def procesar_intento(palabra_a_adivinar, intento, lista_letras_palabra_a_adivinar):
     """
+    Función: 
+    Descripción: 
     Parametros:
         Palabra_adivinar: Palabra a adivinar en el juego
         Intento: Intento ingresado por el usuario
@@ -89,6 +96,7 @@ def procesar_intento(palabra_a_adivinar, intento, lista_letras_palabra_a_adivina
 def desarrollo_intentos(adivinar, intento, turnos, lista_letras_de_adivinar, palabras):
     '''
     Función: desarrollo_intentos
+    Descripción: 
     Parámetros:
         pal_adiv: palabra a adivinar.
         intento: cadena de caracteres ingresado por el usuario.
@@ -120,7 +128,8 @@ def desarrollo_intentos(adivinar, intento, turnos, lista_letras_de_adivinar, pal
 def acumular_intentos(palabra_ingresada, contador_intentos, colores, intentos_ingresados_list, intentos_ingresados_str):
     '''
     Función: acumular_intentos
-    Acumula los intentos ingresados en una lista, con el respectivo color de letra correspondiente asociado.
+    Descripción:
+        Acumula los intentos ingresados en una lista, con el respectivo color de letra correspondiente asociado.
     Parámetros:
         palabra_ingresada: cadena de caracteres ingresado por el usuario.
         Contador_intentos: numero que indica el turno
@@ -138,7 +147,9 @@ def acumular_intentos(palabra_ingresada, contador_intentos, colores, intentos_in
 
 def volver_a_jugar():
     """
-    Pregunta y verifica la respuesta del usuario sobre si quiere volver a jugar o no
+    Función: volver_a_jugar
+    Descripción: 
+        Pregunta y verifica la respuesta del usuario sobre si quiere volver a jugar o no
     Salida:
         Nos devuelve un string dependiendo si quiere volver a jugar o no del tipo (N.n) o (S,s)
     """
@@ -150,7 +161,8 @@ def volver_a_jugar():
 
 def nueva_partida(orden_jugador):
     """
-    No entiendo mucho esta funcion
+    Función: nueva_partida
+    Descripción: 
     Parametros:
         Orden_jugador: Lista con los turnos de los jugadores
     Salida:
@@ -163,6 +175,7 @@ def nueva_partida(orden_jugador):
 def determinar_ganador(usuarios):
     """
     Funcion: determinar_ganador
+    Descripción:
         Ordena el diccionario en una lista y los compara para ver si hay un ganador o no
     Parametros:
         Usuarios: diccionario con los nombres de los jugadores y sus puntajes

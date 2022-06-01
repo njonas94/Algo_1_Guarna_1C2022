@@ -3,6 +3,7 @@ import random
 def puntaje(lista_intentos, palabra_adivinar, jugadores_y_puntos, orden_turnos):
     '''
     Función: puntaje
+    Descripción:
     Parámetros:
         lista_intentos: lista de strings con los intentos ingresados
         palabra_adivinar: palabra a adivinar en el juego
@@ -36,6 +37,7 @@ def puntaje(lista_intentos, palabra_adivinar, jugadores_y_puntos, orden_turnos):
 def contador_puntajes (puntos_obtenidos, usuarios, turnos, indice):
     """
     Funcion: contador_puntajes
+    Descripción:
         Muestra y acumula los puntajes obtenidos en cada ronda
     Parametros:
         Puntos_obtenidos: Puntos obtenidos al terminar cada ronda
@@ -60,6 +62,9 @@ def contador_puntajes (puntos_obtenidos, usuarios, turnos, indice):
 
 def orden_turnos (usuarios):
     """
+    Funcion: orden_turnos
+    Descripción:
+
     Parametros:
         Usuarios: diccionario con los usuarios y sus puntajes
     Salida:

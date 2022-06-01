@@ -163,7 +163,7 @@ def volver_a_jugar():
     
     return  desea_jugar
 
-def determinar_ganador(usuarios):
+def determinar_ganador(jugadores_y_puntos):
     '''
     Funcion: determinar_ganador
     Descripción:
@@ -171,7 +171,7 @@ def determinar_ganador(usuarios):
     Parametros:
         Usuarios: diccionario con los nombres de los jugadores y sus puntajes
     '''
-    orden =sorted(usuarios.items(), key=lambda x:x[1], reverse=True)
+    orden =sorted(jugadores_y_puntos.items(), key=lambda x:x[1], reverse=True)
     if orden[1][1] == orden[0][1]:
         print(f'\nLos jugadores empataron con un total de {orden[1][1]} puntos')
     else:    

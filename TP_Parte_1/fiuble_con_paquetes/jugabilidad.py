@@ -8,9 +8,9 @@ def generar_palabra_a_adivinar():
     '''
     Función: generar_palabra_a_adivinar
     Descripción: 
-        Selecciona una palabra al azar de las palabras validas
+        Selecciona una palabra al azar de las palabras validas.
     Salidas:
-        Devuelve la palabra seleccionada en mayúscula
+        Devuelve la palabra seleccionada en mayúscula.
     '''
     palabras_validas = obtener_palabras_validas()
     palabra=random.choice(palabras_validas)
@@ -19,12 +19,13 @@ def generar_palabra_a_adivinar():
 
 def crear_lista_interrogantes(LONGITUD_PALABRAS):
     '''
-    Función: 
+    Función: crear_lista_interrogantes
     Descripción: 
+        Crea una lista el numero de interrogantes pasado por parametro.
     Parametro:
-        LONGITUD_PALABRAS: Recibimos la longitud de las palabras en entero
+        LONGITUD_PALABRAS: Recibimos la longitud de las palabras en entero.
     Salida:
-        Nos devuelve una lista del tamaño de la longitud pasada por parametro con incognitas adentro
+        Nos devuelve una lista del tamaño de la longitud pasada por parametro con incognitas adentro.
     '''
     lista_interrogantes = []
     for i in range(LONGITUD_PALABRAS):
@@ -34,8 +35,9 @@ def crear_lista_interrogantes(LONGITUD_PALABRAS):
 
 def crear_lista_intentos(CANTIDAD_INTENTOS, lista_interrogantes):
     '''
-    Función: 
-    Descripción: 
+    Función: crear_lista_intentos
+    Descripción:
+        Crea una lista con el numero de listas de interrogantes pasado por parametro
     Parametros:
         CANTIDAD_INTENTOS: Nos pasa la cantidad de intentos que va a tener una partida
         Lista_interrogantes: Una lista contenida con interrogantes
@@ -50,8 +52,9 @@ def crear_lista_intentos(CANTIDAD_INTENTOS, lista_interrogantes):
 
 def procesar_intento(palabra_a_adivinar, intento, lista_letras_palabra_a_adivinar):
     '''
-    Función: 
+    Función: procesar_intento
     Descripción: 
+        Compara el intento ingresado con la palabra a adivinar y guarda en una lista el strign del color que corresponde para cada caracter.
     Parametros:
         Palabra_adivinar: Palabra a adivinar en el juego
         Intento: Intento ingresado por el usuario
@@ -96,7 +99,8 @@ def procesar_intento(palabra_a_adivinar, intento, lista_letras_palabra_a_adivina
 def desarrollo_intentos(adivinar, intento, turnos, lista_letras_de_adivinar, palabras):
     '''
     Función: desarrollo_intentos
-    Descripción: 
+    Descripción:
+        Orquesta una ronda
     Parámetros:
         pal_adiv: palabra a adivinar.
         intento: cadena de caracteres ingresado por el usuario.

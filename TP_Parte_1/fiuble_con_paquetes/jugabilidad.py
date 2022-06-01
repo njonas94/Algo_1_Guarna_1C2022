@@ -100,13 +100,13 @@ def desarrollo_intentos(adivinar, intento, turnos, lista_letras_de_adivinar, pal
     '''
     Función: desarrollo_intentos
     Descripción:
-        Orquesta una ronda
+        Orquesta una ronda.
     Parámetros:
-        pal_adiv: palabra a adivinar.
+        adivinar: palabra a adivinar.
         intento: cadena de caracteres ingresado por el usuario.
-        todos_turnos: para ir alternando los usuarios
-        Lista_letras_adivinar: Lista que contiene las letras de la pálabra a adivinar
-        Palabras: Lista de listas con los intentos ingresados separado en letras
+        todos_turnos: para ir alternando los usuarios.
+        Lista_letras_adivinar: Lista que contiene las letras de la pálabra a adivinar.
+        Palabras: Lista de listas con los intentos ingresados separado en letras.
     Salidas:
         Devuelve una lista con las palabras ingresadas.
     '''

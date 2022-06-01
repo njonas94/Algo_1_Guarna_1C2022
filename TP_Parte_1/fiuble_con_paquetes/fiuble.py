@@ -7,11 +7,7 @@ from validacion import *
 
 import random
 import time
-'''
-cambiar:
-- nueva partida en jugabilidad falta aclarar la salida
-- contador puntajes en turnos y puntajes falta aclarar un parametro
-'''
+
 #PRINCIPAL
 def fiuble():
     LONGITUD_PALABRAS = 5

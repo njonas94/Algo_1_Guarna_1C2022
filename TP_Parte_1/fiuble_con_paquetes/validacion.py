@@ -1,62 +1,63 @@
 from utiles import *
 
-def cambiar_tilde(palabra_ingresada):
+def cambiar_tilde(intento_sin_validar):
     '''
     Función: cambiar_tilde
     Parámetro:
-        palabra_ingresada: cadena de caracteres ingresado por el usuario.
+        intento_sin_validar: cadena de caracteres ingresado por el usuario.
     Salidas:
         Devuelve la palabra sin acentos.
     '''
     a = 'áéíóúýäëïöüÿàèìòùâêîôû'
     b = 'aeiouyaeiouyaeiouaeiou'
-    palabra_sin_acento = palabra_ingresada.maketrans(a, b)
-    arriesgo = palabra_ingresada.translate(palabra_sin_acento)
+    palabra_sin_acento = intento_sin_validar.maketrans(a, b)
+    intento_sin_validar_sin_tilde = intento_sin_validar.translate(palabra_sin_acento)
 
-    return arriesgo
+    return intento_sin_validar_sin_tilde
 
-def no_es_alfabetico (palabra_ingresada):
-    return not palabra_ingresada.isalpha()
+def no_es_alfabetico (intento_sin_validar):
+    return not intento_sin_validar.isalpha()
 
-def longitud_palabra (palabra_ingresada):
-    return len(palabra_ingresada)!= 5
+def longitud_palabra (intento_sin_validar):
+    return len(intento_sin_validar)!= 5
 
-def validar_palabra (palabra_ingresada):
-    return not no_es_alfabetico (palabra_ingresada) and palabra_ingresada not in obtener_palabras_validas()
+def validar_palabra (intento_sin_validar):
+    return not no_es_alfabetico (intento_sin_validar) and intento_sin_validar not in obtener_palabras_validas()
 
-def validar_ingreso (palabra_ingresada, intentos_ingresados_str):
-    return palabra_ingresada.upper() in intentos_ingresados_str
+def validar_intento_duplicado (intento_sin_validar, lista_de_intentos_ingresados):
+    return intento_sin_validar.upper() in lista_de_intentos_ingresados
 
-def longitud_y_alfabetica(palabra_ingresada):
-    return not palabra_ingresada.isalpha() and len(palabra_ingresada) != 5
-def validacion_intento_ingresado(palabra_ingresada, lista_palabras_ingresadas):
+def longitud_y_alfabetica(intento_sin_validar):
+    return not intento_sin_validar.isalpha() and len(intento_sin_validar) != 5
+
+def validacion_intento_ingresado(intento_sin_validar, lista_de_intentos_ingresados):
     '''
-    Función: validar_intento_ingresado
+    Función: validacion_intento_ingresado
     Parámetro:
-        palabra_ingresada: cadena de caracteres ingresado por el usuario.
-        lista_palabras_ingresadas: lista de cadenas de caracteres.
+        intento_sin_validar: cadena de caracteres ingresado por el usuario.
+        lista_de_intentos_ingresados: lista de cadenas de caracteres.
     Salidas:
         Devuelve la palabra en mayúscula.
     '''
-    palabra_ingresada = cambiar_tilde(palabra_ingresada.lower())
-    while no_es_alfabetico (palabra_ingresada) or validar_palabra (palabra_ingresada) or validar_ingreso (palabra_ingresada, lista_palabras_ingresadas):
+    intento_sin_validar = cambiar_tilde(intento_sin_validar.lower())
+    while no_es_alfabetico (intento_sin_validar) or validar_palabra (intento_sin_validar) or validar_ingreso (intento_sin_validar, lista_de_intentos_ingresados):
 
-        if longitud_y_alfabetica(palabra_ingresada):
+        if longitud_y_alfabetica(intento_sin_validar):
             print("Palabra inválida, tiene que ser de 5 letras y no puede contener número/s ni caracteres especiales.")
 
-        elif no_es_alfabetico (palabra_ingresada):
+        elif no_es_alfabetico (intento_sin_validar):
             print("La palabra no tiene que contener numero ni caracteres especiales.")
 
-        elif longitud_palabra (palabra_ingresada): 
+        elif longitud_palabra (intento_sin_validar): 
             print("La palabra tiene que ser de 5 letras.")
 
-        elif validar_ingreso (palabra_ingresada, lista_palabras_ingresadas):
+        elif validar_intento_duplicado (intento_sin_validar, lista_de_intentos_ingresados):
             print("La palabra ya habia sido ingresada.")
 
-        elif validar_palabra (palabra_ingresada):
+        elif validar_palabra (intento_sin_validar):
             print("La palabra no se encuentra en la lista de palabras válidas.")
 
-        palabra_ingresada = input("Ingrese una palabra valida de 5 letras: ")
-        palabra_ingresada = cambiar_tilde(palabra_ingresada.lower())
+        intento_sin_validar = input("Ingrese una palabra valida de 5 letras: ")
+        intento_sin_validar = cambiar_tilde(intento_sin_validar.lower())
 
-    return palabra_ingresada.upper()
+    return intento_sin_validar.upper()

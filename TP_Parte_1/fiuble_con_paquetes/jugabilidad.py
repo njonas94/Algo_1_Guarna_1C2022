@@ -170,7 +170,7 @@ def determinar_ganador(jugadores_y_puntos):
     Descripción:
         Ordena el diccionario en una lista y los compara para ver si hay un ganador o no
     Parametros:
-        Usuarios: diccionario con los nombres de los jugadores y sus puntajes
+        jugadores_y_puntos: diccionario con los nombres de los jugadores y sus puntajes
     '''
     orden =sorted(jugadores_y_puntos.items(), key=lambda x:x[1], reverse=True)
     if orden[1][1] == orden[0][1]:

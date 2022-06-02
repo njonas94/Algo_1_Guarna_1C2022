@@ -121,8 +121,8 @@ def ingreso_jugadores():
         Nos retorna el diccionario.
     '''
     jugadores_y_puntos = {}
-    jugador_1 = input('Ingreso usuario:')
-    jugador_2 = input('Ingreso usuario:')
+    jugador_1 = input('Ingrese el nombre del 1er usuario:').upper()
+    jugador_2 = input('Ingrese el nombre del 2do usuario:').upper()
     validar_nombres_ingresados(jugador_1, jugador_2, jugadores_y_puntos)
     
         #VERIFICACION AL NOMBRAR USUARIOS, NO MODULARIZADO

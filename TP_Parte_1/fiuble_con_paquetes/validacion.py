@@ -40,7 +40,7 @@ def validacion_intento_ingresado(intento_sin_validar, lista_de_intentos_ingresad
         Devuelve la palabra en mayúscula.
     '''
     intento_sin_validar = cambiar_tilde(intento_sin_validar.lower())
-    while no_es_alfabetico (intento_sin_validar) or validar_palabra (intento_sin_validar) or validar_ingreso (intento_sin_validar, lista_de_intentos_ingresados):
+    while no_es_alfabetico (intento_sin_validar) or validar_palabra (intento_sin_validar) or validar_intento_duplicado (intento_sin_validar, lista_de_intentos_ingresados):
 
         if longitud_y_alfabetica(intento_sin_validar):
             print("Palabra inválida, tiene que ser de 5 letras y no puede contener número/s ni caracteres especiales.")

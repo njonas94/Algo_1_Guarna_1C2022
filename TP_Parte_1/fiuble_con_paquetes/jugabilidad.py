@@ -54,11 +54,11 @@ def procesar_intento(palabra_a_adivinar, intento, lista_letras_palabra_a_adivina
     '''
     Función: procesar_intento
     Descripción: 
-        Compara el intento ingresado con la palabra a adivinar y guarda en una lista el strign del color que corresponde para cada caracter.
+        Compara el intento ingresado con la palabra a adivinar y guarda en una lista el string del color que corresponde para cada caracter.
     Parametros:
-        Palabra_adivinar: Palabra a adivinar en el juego
-        Intento: Intento ingresado por el usuario
-        Lista_letras_palabra_adivinar: Una lista que contiene las letras de la palabra a adivinar
+        Palabra_adivinar: cadena de caracteres.
+        Intento: cadena de caracteres ingresado por el usuario.
+        Lista_letras_palabra_adivinar: Una lista cuyos elementos son caracteres de la palabra a adivinar.
     Salida:
         Modificamos lista_letras_palabra_adivinar si le pega a la letra y al lugar exacto y lo pintamos de verde
         Nos devuelve una lista con los colores que le pertenecen a cada intento ingresado
@@ -96,16 +96,17 @@ def procesar_intento(palabra_a_adivinar, intento, lista_letras_palabra_a_adivina
 
     return colores
 
-def desarrollo_intentos(palabra_a_adivinar, intento, turnos, lista_letras_de_adivinar, lista_letras_de_cada_intento):
+
+def desarrollo_intentos(palabra_a_adivinar, intento, turnos, lista_letras_palabra_a_adivinar, lista_letras_de_cada_intento):
     '''
     Función: desarrollo_intentos
     Descripción:
         Orquesta una ronda.
     Parámetros:
-        adivinar: palabra a adivinar.
+        palabra_a_adivinar: cadena de caracteres.
         intento: cadena de caracteres ingresado por el usuario.
-        todos_turnos: para ir alternando los usuarios.
-        Lista_letras_adivinar: Lista que contiene las letras de la pálabra a adivinar.
+        turnos: orden en que se alternan los usuarios.
+        lista_letras_palabra_a_adivinar: Lista que contiene las letras de la pálabra a adivinar.
         Lista_letras_de_cada_intento: Lista de listas con los intentos ingresados separado en letras.
     Salidas:
         Devuelve una lista con las palabras ingresadas.
@@ -114,11 +115,11 @@ def desarrollo_intentos(palabra_a_adivinar, intento, turnos, lista_letras_de_adi
     while len(palabras_ingresadas)<5 and palabra_a_adivinar not in palabras_ingresadas:
         orden_ingreso=len(palabras_ingresadas)
         #print(lista, palabras_ingresadas, orden_ingreso)
-        colores = procesar_intento(palabra_a_adivinar, intento, lista_letras_de_adivinar)
+        colores = procesar_intento(palabra_a_adivinar, intento, lista_letras_palabra_a_adivinar)
         acumular_intentos(intento, orden_ingreso, colores, lista_letras_de_cada_intento, palabras_ingresadas)
 
         print('\nPalabra a adivinar: ', end = '')
-        mostrar_palabra(lista_letras_de_adivinar)
+        mostrar_palabra(lista_letras_palabra_a_adivinar)
         for intento in lista_letras_de_cada_intento:
             mostrar_palabra(intento)
             
@@ -136,10 +137,10 @@ def acumular_intentos(palabra_ingresada, orden_ingreso, colores, lista_letras_de
         Acumula los intentos ingresados en una lista, con el respectivo color de letra correspondiente asociado.
     Parámetros:
         palabra_ingresada: cadena de caracteres ingresado por el usuario.
-        Contador_intentos: numero que indica el turno
+        orden_ingreso: numero que indica el turno
         Colores: lista con los colores correspondientes a la palabra
-        Intentos_ingresados_list: Lista de listas con los intentos ingresados por el usuario
-        Intentos_ingresados_str: Lista con los intentos en forma de cadenas
+        lista_letras_de_cada_intento: Lista de listas con los intentos ingresados por el usuario
+        palabras_ingresadas: Lista con los intentos en forma de cadenas
     Salidas:
         Acumula los intentos ingresados en una lista de strings
         Modifica la lista de listas con los intentos ingresados con el respectivo color a cada letra

@@ -42,7 +42,7 @@ def contador_puntajes (puntos_obtenidos, jugadores_y_puntos, turnos, indice):
     Descripción:
         Muestra y acumula los puntajes obtenidos en cada ronda.
     Parametros:
-        Puntos_obtenidos: Puntos obtenidos al terminar cada ronda.
+        Puntos_obtenidos: Numero entero, representa el puntaje al terminar la ronda.
         jugadores_y_puntos: Diccionario con los jugadores y sus respectivos puntos acumulados.
         Turnos: Lista con los turnos.
         Indice: Entero que se utiliza como indice para acceder a la lista turnos.

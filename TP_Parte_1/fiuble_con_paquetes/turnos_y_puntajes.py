@@ -1,12 +1,12 @@
 import random
 
-def puntaje(lista_intentos, palabra_adivinar, jugadores_y_puntos, turnos):
+def puntaje(lista_de_intentos_ingresados, palabra_adivinar, jugadores_y_puntos, turnos):
     '''
     Función: puntaje
     Descripción:
         Asigna el puntaje correspondiente y lo carga en el diccionario de jugadores y puntos.
     Parámetros:
-        lista_intentos: Lista de strings con los intentos ingresados.
+        lista_de_intentos_ingresados: Lista de strings con los intentos ingresados.
         palabra_adivinar: Palabra a adivinar en el juego.
         jugadores_y_puntos: Diccionario con los jugadores y sus puntajes.
         turnos: Lista con los turnos.
@@ -15,23 +15,23 @@ def puntaje(lista_intentos, palabra_adivinar, jugadores_y_puntos, turnos):
         Imprime en caso de que los jugadores no hallan adivinado la palabra.
     '''
     valores=[50,40,30,20,10,-50,-100]
-    if palabra_adivinar not in lista_intentos and len(lista_intentos)==5:
+    if palabra_adivinar not in lista_de_intentos_ingresados and len(lista_de_intentos_ingresados)==5:
         jugadores_y_puntos[turnos[0]]+= valores[-1]
         jugadores_y_puntos[turnos[1]]+= valores[-2]
         print(f'{turnos[0].upper()}, ha perdido, 100 puntos. Tiene acumulados {jugadores_y_puntos[turnos[0]]} puntos.')
         print(f'{turnos[1].upper()}, ha perdido, 50 puntos. Tiene acumulados {jugadores_y_puntos[turnos[1]]} puntos.')
-    elif palabra_adivinar in lista_intentos:
-        if len(lista_intentos)==1:
+    elif palabra_adivinar in lista_de_intentos_ingresados:
+        if len(lista_de_intentos_ingresados)==1:
             puntos_obtenidos=valores[0]
-        elif len(lista_intentos)==2:
+        elif len(lista_de_intentos_ingresados)==2:
             puntos_obtenidos=valores[1]
-        elif len(lista_intentos)==3:
+        elif len(lista_de_intentos_ingresados)==3:
             puntos_obtenidos=valores[2]
-        elif len(lista_intentos)==4:
+        elif len(lista_de_intentos_ingresados)==4:
             puntos_obtenidos=valores[3]
-        elif len(lista_intentos)==5:
+        elif len(lista_de_intentos_ingresados)==5:
             puntos_obtenidos=valores[4]
-        indice = len(lista_intentos)-1
+        indice = len(lista_de_intentos_ingresados)-1
         jugadores_y_puntos = contador_puntajes (puntos_obtenidos, jugadores_y_puntos, turnos, indice)
     
     return jugadores_y_puntos

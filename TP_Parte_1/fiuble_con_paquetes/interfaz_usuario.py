@@ -11,24 +11,7 @@ def mostrar_palabra(palabra_ingresada):
     '''
     for letra in palabra_ingresada:
         print(letra + ' ' + obtener_color('Defecto'), end = '')
-    print()
-
-    
-def validar_nombres_ingresados(jugador_1, jugador_2):
-    '''
-    Responsable: CASTRO, CARLA
-    Función: validar_nombres_ingresados
-    Parámetros:
-        jugador_1: cadena de caracteres.
-        jugador_2: cadena de caracteres.
-    Salida:
-        Devuelve el nombre del jugador_2.
-    '''
-    while jugador_2 == jugador_1:
-        print(f'Nombre "{jugador_1}" no disponible. Ingrese un nombre distinto.')
-        jugador_2 = input('\nIngrese el nombre del 2er usuario:').upper()
-       
-    return jugador_2    
+    print() 
     
        
 def ingreso_jugadores():
@@ -42,7 +25,9 @@ def ingreso_jugadores():
     jugadores_y_puntos = {}
     jugador_1 = input('Ingrese el nombre del 1er usuario:').upper()
     jugador_2 = input('Ingrese el nombre del 2do usuario:').upper()
-    jugador_2 = validar_nombres_ingresados(jugador_1, jugador_2)    
+    while jugador_1 == jugador_2:
+        print(f'Nombre "{jugador_1}" no disponible. Ingrese un nombre distinto.')
+        jugador_2 = input('\nIngrese el nombre del 2er usuario:').upper()   
     
     jugadores_y_puntos[jugador_1] = 0
     jugadores_y_puntos[jugador_2] = 0

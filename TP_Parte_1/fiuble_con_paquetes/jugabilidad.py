@@ -111,44 +111,44 @@ def desarrollo_intentos(palabra_a_adivinar, intento, turnos, lista_letras_palabr
     Salidas:
         Devuelve una lista con las palabras ingresadas.
     '''
-    palabras_ingresadas=[]
-    while len(palabras_ingresadas)<5 and palabra_a_adivinar not in palabras_ingresadas:
-        orden_ingreso=len(palabras_ingresadas)
+    lista_de_intentos_ingresados=[]
+    while len(lista_de_intentos_ingresados)<5 and palabra_a_adivinar not in lista_de_intentos_ingresados:
+        orden_ingreso=len(lista_de_intentos_ingresados)
         #print(lista, palabras_ingresadas, orden_ingreso)
         colores = procesar_intento(palabra_a_adivinar, intento, lista_letras_palabra_a_adivinar)
-        acumular_intentos(intento, orden_ingreso, colores, lista_letras_de_cada_intento, palabras_ingresadas)
+        acumular_intentos(intento, orden_ingreso, colores, lista_letras_de_cada_intento, lista_de_intentos_ingresados)
 
         print('\nPalabra a adivinar: ', end = '')
         mostrar_palabra(lista_letras_palabra_a_adivinar)
         for intento in lista_letras_de_cada_intento:
             mostrar_palabra(intento)
             
-        if palabra_a_adivinar not in palabras_ingresadas and len(palabras_ingresadas)<5:
-            print('Es el turno de:', turnos[len(palabras_ingresadas)].upper())
-            arriesgo=input('Arriesgo:')
-            intento=validacion_intento_ingresado(arriesgo, palabras_ingresadas)
+        if palabra_a_adivinar not in lista_de_intentos_ingresados and len(lista_de_intentos_ingresados)<5:
+            print('Es el turno de:', turnos[len(lista_de_intentos_ingresados)].upper())
+            intento_sin_validar=input('Arriesgo:')
+            intento=validacion_intento_ingresado(intento_sin_validar, lista_de_intentos_ingresados)
    
-    return palabras_ingresadas
+    return lista_de_intentos_ingresados
 
-def acumular_intentos(palabra_ingresada, orden_ingreso, colores, lista_letras_de_cada_intento, palabras_ingresadas):
+def acumular_intentos(intento, orden_ingreso, colores, lista_letras_de_cada_intento, lista_de_intentos_ingresados):
     '''
     Función: acumular_intentos
     Descripción:
         Acumula los intentos ingresados en una lista, con el respectivo color de letra correspondiente asociado.
     Parámetros:
-        palabra_ingresada: cadena de caracteres ingresado por el usuario.
+        intento: cadena de caracteres ingresado por el usuario.
         orden_ingreso: numero que indica el turno
         Colores: lista con los colores correspondientes a la palabra
         lista_letras_de_cada_intento: Lista de listas con los intentos ingresados por el usuario
-        palabras_ingresadas: Lista con los intentos en forma de cadenas
+        lista_de_intentos_ingresados: Lista con los intentos en forma de cadenas
     Salidas:
         Acumula los intentos ingresados en una lista de strings
         Modifica la lista de listas con los intentos ingresados con el respectivo color a cada letra
 
     '''
-    palabras_ingresadas.append(palabra_ingresada)
-    for i in range(len(palabra_ingresada)):
-        lista_letras_de_cada_intento[orden_ingreso][i] = colores[i] + palabra_ingresada[i]
+    lista_de_intentos_ingresados.append(intento)
+    for i in range(len(intento)):
+        lista_letras_de_cada_intento[orden_ingreso][i] = colores[i] + intento[i]
 
 def volver_a_jugar():
     '''

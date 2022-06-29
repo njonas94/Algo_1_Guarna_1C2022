@@ -7,7 +7,7 @@ from validacion import *
 
 import random
 import time
-
+MAX_PARTIDAS = 2 # aca va lo del archivo de configuracion
 #PRINCIPAL
 def fiuble():
     LONGITUD_PALABRAS = 5
@@ -15,7 +15,9 @@ def fiuble():
     jugar = ''
     jugadores_y_puntos = ingreso_jugadores()
     turnos = orden_turnos(jugadores_y_puntos, CANTIDAD_INTENTOS)
-    while jugar in ('s','S', ''):
+    partida = 0
+    while jugar in ('s','S', '') and partida < MAX_PARTIDAS:
+        partida += 1
         lista_de_intentos_ingresados = []
         palabra_a_adivinar = generar_palabra_a_adivinar()
         lista_letras_palabra_adivinar = crear_lista_interrogantes(LONGITUD_PALABRAS)
@@ -37,7 +39,8 @@ def fiuble():
             print(f'Palabra a adivinar: {palabra_a_adivinar[0]} {palabra_a_adivinar[1]} {palabra_a_adivinar[2]} {palabra_a_adivinar[3]} {palabra_a_adivinar[4]} {obtener_color("Defecto")}\nPerdiste!')
         puntaje(lista_de_intentos_ingresados,palabra_a_adivinar,jugadores_y_puntos,turnos)
         jugar = volver_a_jugar()
-        if jugar in ('s','S'):
+        if jugar in ('s','S') and partida<= MAX_PARTIDAS:
+            print(partida)
             turnos = cambio_turnos(turnos)
     determinar_ganador(jugadores_y_puntos)
 fiuble()

@@ -46,7 +46,7 @@ def validacion_intento_ingresado(intento_sin_validar, lista_de_intentos_ingresad
             print("Palabra inválida, tiene que ser de 5 letras y no puede contener número/s ni caracteres especiales.")
 
         elif no_es_alfabetico (intento_sin_validar):
-            print("La palabra no tiene que contener numero ni caracteres especiales.")
+            print("La palabra no tiene que contener número/s ni caracteres especiales.")
 
         elif longitud_palabra (intento_sin_validar): 
             print("La palabra tiene que ser de 5 letras.")

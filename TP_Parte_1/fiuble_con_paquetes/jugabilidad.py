@@ -1,101 +1,179 @@
-import re
-import os
-import pandas as pd
-import csv
+from utiles import *
+from interfaz_usuario import *
+from validacion import *
 
+import random
 
-def leer_archivos_texto(archivo):
-    """
-    Funcion: leer_archivo_texto
-    Descripcion:
-        Va leyendo el texto, elimina los signos que se encuentren en la palabra (¿?¡!-_.:,;) y los
-        elimina si no son alpha
+def generar_palabra_a_adivinar():
+    '''
+    Función: generar_palabra_a_adivinar
+    Descripción: 
+        Selecciona una palabra al azar de las palabras validas.
+    Salidas:
+        Devuelve la palabra seleccionada en mayúscula.
+    '''
+    palabras_validas = obtener_palabras_validas()
+    palabra=random.choice(palabras_validas)
+
+    return palabra.upper()
+
+def crear_lista_interrogantes(LONGITUD_PALABRAS):
+    '''
+    Función: crear_lista_interrogantes
+    Descripción: 
+        Crea una lista el numero de interrogantes pasado por parametro.
     Parametro:
-        archivo: Texto a leer
+        LONGITUD_PALABRAS: Recibimos la longitud de las palabras en entero.
     Salida:
-        No se como quiere recibir la persona que necesita esta funcion
-    """
-    for linea in archivo:
-        if linea:
-            linea = re.sub(r'[^\w\s]', '', linea)
-            linea = linea.rstrip("\n").split()
-            for palabra in linea:
-                if not palabra.isalpha():
-                    linea.remove(palabra)
+        Nos devuelve una lista del tamaño de la longitud pasada por parametro con incognitas adentro.
+    '''
+    lista_interrogantes = []
+    for i in range(LONGITUD_PALABRAS):
+        lista_interrogantes.append('?')
+    
+    return lista_interrogantes
 
-
-def ordenar_archivo_partidas(nombre_archivo):
-    """
-    Funcion: ordenar:archivo_partidas
-    Descripcion:
-        Lee el archivo, lo ordena de forma descendente y despues lo pasa al archivo csv
+def crear_lista_intentos(CANTIDAD_INTENTOS, lista_interrogantes):
+    '''
+    Función: crear_lista_intentos
+    Descripción:
+        Crea una lista con el numero de listas de interrogantes pasado por parametro
     Parametros:
-        nombre_archivo: nombre del archivo que se va a ordenar
-    """
-    lista_encabezado = ['Fecha partida', 'Hora finalizacion', 'Jugador', 'Aciertos', 'Intentos']
-    archivo = pd.read_csv(nombre_archivo)
-    archivo_ordenado = archivo.sort_values(by = ['Aciertos'], ascending = [False])
-    archivo_ordenado.to_csv(nombre_archivo, header = lista_encabezado, index = False)
+        CANTIDAD_INTENTOS: Nos pasa la cantidad de intentos que va a tener una partida
+        Lista_interrogantes: Una lista contenida con interrogantes
+    Salida:
+        Nos devuelve una lista de listas con la cantidad de intentos que va a tener el juego
+    '''
+    lista_intentos = []
+    for i in range(CANTIDAD_INTENTOS):
+        lista_intentos.append(lista_interrogantes.copy())
+    
+    return lista_intentos
 
-
-def crear_archivo_partidas(nombre_archivo, dicc_datos):
-    """
-    Funcion: crear_archivo_partidas
-    Descripcion:
-        Crea el archivo con encabezado y escribe las primeras lineas
+def procesar_intento(palabra_a_adivinar, intento, lista_letras_palabra_a_adivinar):
+    '''
+    Función: procesar_intento
+    Descripción: 
+        Compara el intento ingresado con la palabra a adivinar y guarda en una lista el string del color que corresponde para cada caracter.
     Parametros:
-        nombre_archivo: nombre para el archivo a crear
-        dicc_datos: diccionario con los datos extraidos de la partida
-    """
-    lista_encabezado = ['Fecha partida', 'Hora finalizacion', 'Jugador', 'Aciertos', 'Intentos']
-    with open(nombre_archivo, 'w', newline='') as archivo_partidas:
-        archivo = csv.DictWriter(archivo_partidas, fieldnames = lista_encabezado)
-        archivo.writeheader()
-        archivo.writerow(dicc_datos)
+        Palabra_adivinar: cadena de caracteres.
+        Intento: cadena de caracteres ingresado por el usuario.
+        Lista_letras_palabra_adivinar: Una lista cuyos elementos son caracteres de la palabra a adivinar.
+    Salida:
+        Modificamos lista_letras_palabra_adivinar si le pega a la letra y al lugar exacto y lo pintamos de verde
+        Nos devuelve una lista con los colores que le pertenecen a cada intento ingresado
+    '''
+    colores = []
+    for pos in range(len(palabra_a_adivinar)):
+        if (palabra_a_adivinar.count(intento[pos]) == 1 and intento.count(intento[pos]) == 2):
+            pos_1 = intento.index(intento[pos])
+            pos_2 = intento.rindex(intento[pos])
+
+            if ((pos == pos_1 and pos_1 == palabra_a_adivinar.index(intento[pos_1])) or (
+                    pos == pos_2 and pos_2 == palabra_a_adivinar.index(intento[pos_2]))):
+                colores.append(obtener_color('Verde'))
+                lista_letras_palabra_a_adivinar[pos] = palabra_a_adivinar[pos]
+
+            elif ((pos == pos_2 and pos_1 == palabra_a_adivinar.index(intento[pos_1])) or (
+                    pos == pos_1 and pos_2 == palabra_a_adivinar.index(intento[pos_2]))):
+                colores.append(obtener_color('GrisOscuro'))
+
+            elif (pos == pos_1 and pos_1 != palabra_a_adivinar.index(intento[pos_1]) and pos_2 != palabra_a_adivinar.index(intento[pos_1])):
+                colores.append(obtener_color('Amarillo'))
+
+            elif (pos == pos_2 and pos_1 != palabra_a_adivinar.index(intento[pos_1]) and pos_2 != palabra_a_adivinar.index(intento[pos_1])):
+                colores.append(obtener_color('GrisOscuro'))
+
+        elif intento[pos] not in palabra_a_adivinar:
+            colores.append(obtener_color('GrisOscuro'))
+
+        elif intento[pos] in palabra_a_adivinar and intento[pos] != palabra_a_adivinar[pos]:
+            colores.append(obtener_color('Amarillo'))
+
+        elif intento[pos] == palabra_a_adivinar[pos]:
+            colores.append(obtener_color('Verde'))
+            lista_letras_palabra_a_adivinar[pos] = palabra_a_adivinar[pos]
+
+    return colores
 
 
-def escribir_archivo_partidas(nombre_archivo, dicc_datos):
-    """
-    Funcion: escribir_archivo_partidas
-    Descripcion:
-        Añade una linea con los datos de la partida
+def desarrollo_intentos(palabra_a_adivinar, intento, turnos, lista_letras_palabra_a_adivinar, lista_letras_de_cada_intento):
+    '''
+    Función: desarrollo_intentos
+    Descripción:
+        Orquesta una ronda.
+    Parámetros:
+        palabra_a_adivinar: cadena de caracteres.
+        intento: cadena de caracteres ingresado por el usuario.
+        turnos: orden en que se alternan los usuarios.
+        lista_letras_palabra_a_adivinar: Lista que contiene las letras de la pálabra a adivinar.
+        Lista_letras_de_cada_intento: Lista de listas con los intentos ingresados separado en letras.
+    Salidas:
+        Devuelve una lista con las palabras ingresadas.
+    '''
+    lista_de_intentos_ingresados=[]
+    while len(lista_de_intentos_ingresados)<5 and palabra_a_adivinar not in lista_de_intentos_ingresados:
+        orden_ingreso=len(lista_de_intentos_ingresados)
+        #print(lista, palabras_ingresadas, orden_ingreso)
+        colores = procesar_intento(palabra_a_adivinar, intento, lista_letras_palabra_a_adivinar)
+        acumular_intentos(intento, orden_ingreso, colores, lista_letras_de_cada_intento, lista_de_intentos_ingresados)
+
+        print('\nPalabra a adivinar: ', end = '')
+        mostrar_palabra(lista_letras_palabra_a_adivinar)
+        for intento in lista_letras_de_cada_intento:
+            mostrar_palabra(intento)
+            
+        if palabra_a_adivinar not in lista_de_intentos_ingresados and len(lista_de_intentos_ingresados)<5:
+            print('Es el turno de:', turnos[len(lista_de_intentos_ingresados)].upper())
+            intento_sin_validar=input('Arriesgo:')
+            intento=validacion_intento_ingresado(intento_sin_validar, lista_de_intentos_ingresados)
+   
+    return lista_de_intentos_ingresados
+
+def acumular_intentos(intento, orden_ingreso, colores, lista_letras_de_cada_intento, lista_de_intentos_ingresados):
+    '''
+    Función: acumular_intentos
+    Descripción:
+        Acumula los intentos ingresados en una lista, con el respectivo color de letra correspondiente asociado.
+    Parámetros:
+        intento: cadena de caracteres ingresado por el usuario.
+        orden_ingreso: numero que indica el turno
+        Colores: lista con los colores correspondientes a la palabra
+        lista_letras_de_cada_intento: Lista de listas con los intentos ingresados por el usuario
+        lista_de_intentos_ingresados: Lista con los intentos en forma de cadenas
+    Salidas:
+        Acumula los intentos ingresados en una lista de strings
+        Modifica la lista de listas con los intentos ingresados con el respectivo color a cada letra
+
+    '''
+    lista_de_intentos_ingresados.append(intento)
+    for i in range(len(intento)):
+        lista_letras_de_cada_intento[orden_ingreso][i] = colores[i] + intento[i]
+
+def volver_a_jugar():
+    '''
+    Función: volver_a_jugar
+    Descripción: 
+        Pregunta y verifica la respuesta del usuario sobre si quiere volver a jugar o no
+    Salida:
+        Nos devuelve un string dependiendo si quiere volver a jugar o no del tipo (N.n) o (S,s)
+    '''
+    desea_jugar = input('\n¿Desea volver a jugar?(S/N):')
+    while desea_jugar not in ('N','n','s','S'):
+        desea_jugar = input('¿Desea volver a jugar?(S/N):')
+    
+    return  desea_jugar
+
+def determinar_ganador(jugadores_y_puntos):
+    '''
+    Funcion: determinar_ganador
+    Descripción:
+        Ordena el diccionario en una lista y los compara para ver si hay un ganador o no
     Parametros:
-        nombre_archivo: nombre del archivo a escribir
-        dicc_datos: diccionario con los datos extraidos de la partida
-    """
-    # Si tengo q pasar de dos jugadores, tengo que usar el writerows[dicc1, dicc2]
-    lista_encabezado = ['Fecha partida', 'Hora finalizacion', 'Jugador', 'Aciertos', 'Intentos']
-    with open(nombre_archivo, 'a', newline='') as archivo_partidas:
-        archivo = csv.DictWriter(archivo_partidas, fieldnames = lista_encabezado)
-        archivo.writerow(dicc_datos)
-
-
-def registro_partidas(dicc_datos):
-    """
-    Funcion: registro_partidas
-    Descripcion:
-        Determina si el archivo partidas.csv existe, para escribirlo o crearlo
-    Parametros:
-        dicc_datos: diccionario con los datos extraidos de la partida
-    """
-    nombre_archivo = 'partidas.csv'
-    if not os.path.isfile(nombre_archivo):
-        crear_archivo_partidas(nombre_archivo, dicc_datos)
-    else:
-        escribir_archivo_partidas(nombre_archivo, dicc_datos)
-
-
-""" 
-Pruebas de las funciones para ver si andan bien
-leer_archivos_texto(archivo = open('cuentos.txt', 'r'))
-dicc1 = {'Fecha partida': '231232', 'Hora finalizacion': '123412', 'Jugador': 'alda', 'Aciertos': 20, 'Intentos': 2}
-dicc2 = {'Fecha partida': '122211', 'Hora finalizacion': '112435', 'Jugador': 'eze', 'Aciertos': 31, 'Intentos': 8}
-dicc3 = {'Fecha partida': '112341', 'Hora finalizacion': '032312', 'Jugador': 'feli', 'Aciertos': 4, 'Intentos': 5}
-dicc4 = {'Fecha partida': '045635', 'Hora finalizacion': '231211', 'Jugador': 'jorge', 'Aciertos': 13, 'Intentos': 3}
-
-registro_partidas(dicc1)
-registro_partidas(dicc2)
-registro_partidas(dicc3)
-registro_partidas(dicc4)
-ordenar_archivo_partidas('partidas.csv')
-"""
+        jugadores_y_puntos: diccionario con los nombres de los jugadores y sus puntajes
+    '''
+    orden =sorted(jugadores_y_puntos.items(), key=lambda x:x[1], reverse=True)
+    if orden[1][1] == orden[0][1]:
+        print(f'\nLos jugadores empataron con un total de {orden[1][1]} puntos')
+    else:    
+        print(f'\nEl ganador es {orden[0][0].upper()} con un total de {orden[0][1]} puntos.')

@@ -13,7 +13,7 @@ def fiuble():
     LONGITUD_PALABRAS = 5
     CANTIDAD_INTENTOS = 5
     jugar = ''
-    jugadores_y_puntos = ingreso_jugadores()
+    jugadores_y_puntos = ingreso_jugadores() # acá deberiamos llamar a la interfaz grafica
     turnos = orden_turnos(jugadores_y_puntos, CANTIDAD_INTENTOS)
     partida = 0
     while jugar in ('s','S', '') and partida < MAX_PARTIDAS:

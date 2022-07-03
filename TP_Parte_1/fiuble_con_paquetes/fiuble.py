@@ -38,6 +38,7 @@ def fiuble():
         else:
             print(f'Palabra a adivinar: {palabra_a_adivinar[0]} {palabra_a_adivinar[1]} {palabra_a_adivinar[2]} {palabra_a_adivinar[3]} {palabra_a_adivinar[4]} {obtener_color("Defecto")}\nPerdiste!')
         puntaje(lista_de_intentos_ingresados,palabra_a_adivinar,jugadores_y_puntos,turnos)
+        fecha,hora_finalizacion=fecha_y_hora() #Fecha y Hora
         jugar = volver_a_jugar()
         if jugar in ('s','S') and partida<= MAX_PARTIDAS:
             print(partida)

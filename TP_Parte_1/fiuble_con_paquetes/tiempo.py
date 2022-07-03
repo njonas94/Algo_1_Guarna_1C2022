@@ -1,3 +1,4 @@
+from datetime import datetime
 import time
 
 def cronometro(comienzo, final):
@@ -22,3 +23,9 @@ def cronometro(comienzo, final):
         tiempo=[minutos, segundos]
     
     return tiempo
+
+def fecha_y_hora():
+    dia=datetime.today().strftime('%Y-%m-%d')
+    hora=datetime.today().strftime('%H:%M')
+    
+    return [dia,hora]

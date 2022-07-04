@@ -127,7 +127,7 @@ def validar_clave(clave,confirmacion_clave):
                 cantidad_especiales+=1
             posicion+=1
         
-    if condiciones_cumplidas==6 and cantidad_especiales==0 and clave==confirmacion_clave:
+    if condiciones_cumplidas==5 and cantidad_especiales==0 and clave==confirmacion_clave:
         estado='valido'
     else:
         estado='invalido'

@@ -4,6 +4,7 @@ from tiempo import *
 from turnos_y_puntajes import *
 from utiles import *
 from validacion import *
+from funcion_interfaz_grafica import*
 
 import random
 import time
@@ -13,7 +14,7 @@ def fiuble():
     LONGITUD_PALABRAS = 5
     CANTIDAD_INTENTOS = 5
     jugar = ''
-    jugadores_y_puntos = ingreso_jugadores() # acá deberiamos llamar a la interfaz grafica
+    jugadores_y_puntos = interfaz_ingresar()  # acá deberiamos llamar a la interfaz grafica
     turnos = orden_turnos(jugadores_y_puntos, CANTIDAD_INTENTOS)
     partida = 0
     while jugar in ('s','S', '') and partida < MAX_PARTIDAS:

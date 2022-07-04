@@ -30,7 +30,7 @@ def fiuble():
         inicio_cronometro = time.time()
         intento_sin_validar = input('Arriesgo:')
         intento = validacion_intento_ingresado(intento_sin_validar, lista_de_intentos_ingresados)
-        lista_de_intentos_ingresados = desarrollo_intentos(palabra_a_adivinar, intento, turnos, lista_letras_palabra_adivinar, lista_letras_de_cada_intento) #Esta lista, es la lista de str de palabras ingresadas#
+        lista_de_intentos_ingresados = desarrollo_intentos(palabra_a_adivinar, intento, turnos, lista_letras_palabra_adivinar, lista_letras_de_cada_intento, LONGITUD_PALABRAS) #Esta lista, es la lista de str de palabras ingresadas#
         fin_cronometro = time.time()
         tiempo = cronometro(inicio_cronometro, fin_cronometro)
         if palabra_a_adivinar in lista_de_intentos_ingresados:

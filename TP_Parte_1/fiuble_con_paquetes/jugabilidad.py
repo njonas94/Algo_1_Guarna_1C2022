@@ -50,7 +50,7 @@ def crear_lista_intentos(CANTIDAD_INTENTOS, lista_interrogantes):
     
     return lista_intentos
 
-def procesar_intento(palabra_a_adivinar, intento, lista_letras_palabra_a_adivinar):
+def procesar_intento(palabra_adivinar, intento, lista_letras_palabra_adivinar, longitud_palabras):
     '''
     Función: procesar_intento
     Descripción: 
@@ -64,40 +64,55 @@ def procesar_intento(palabra_a_adivinar, intento, lista_letras_palabra_a_adivina
         Nos devuelve una lista con los colores que le pertenecen a cada intento ingresado
     '''
     colores = []
-    for pos in range(len(palabra_a_adivinar)):
-        if (palabra_a_adivinar.count(intento[pos]) == 1 and intento.count(intento[pos]) == 2):
-            pos_1 = intento.index(intento[pos])
-            pos_2 = intento.rindex(intento[pos])
+    letras_amarillas = {}
 
-            if ((pos == pos_1 and pos_1 == palabra_a_adivinar.index(intento[pos_1])) or (
-                    pos == pos_2 and pos_2 == palabra_a_adivinar.index(intento[pos_2]))):
-                colores.append(obtener_color('Verde'))
-                lista_letras_palabra_a_adivinar[pos] = palabra_a_adivinar[pos]
+    for n in range(longitud_palabras):
+        colores.append("")
 
-            elif ((pos == pos_2 and pos_1 == palabra_a_adivinar.index(intento[pos_1])) or (
-                    pos == pos_1 and pos_2 == palabra_a_adivinar.index(intento[pos_2]))):
-                colores.append(obtener_color('GrisOscuro'))
-
-            elif (pos == pos_1 and pos_1 != palabra_a_adivinar.index(intento[pos_1]) and pos_2 != palabra_a_adivinar.index(intento[pos_1])):
-                colores.append(obtener_color('Amarillo'))
-
-            elif (pos == pos_2 and pos_1 != palabra_a_adivinar.index(intento[pos_1]) and pos_2 != palabra_a_adivinar.index(intento[pos_1])):
-                colores.append(obtener_color('GrisOscuro'))
-
-        elif intento[pos] not in palabra_a_adivinar:
-            colores.append(obtener_color('GrisOscuro'))
-
-        elif intento[pos] in palabra_a_adivinar and intento[pos] != palabra_a_adivinar[pos]:
-            colores.append(obtener_color('Amarillo'))
-
-        elif intento[pos] == palabra_a_adivinar[pos]:
-            colores.append(obtener_color('Verde'))
-            lista_letras_palabra_a_adivinar[pos] = palabra_a_adivinar[pos]
+    for posicion in range(len(intento)):
+        if intento[posicion] not in palabra_adivinar:
+            colores[posicion] = obtener_color('GrisOscuro')
+        elif intento[posicion] == palabra_adivinar[posicion]:
+            colores[posicion] = obtener_color('Verde')
+            lista_letras_palabra_adivinar[posicion] = palabra_adivinar[posicion]
+        elif intento[posicion] in letras_amarillas:
+            letras_amarillas[intento[posicion]].append(posicion)
+        else:
+            letras_amarillas[intento[posicion]] = [posicion]
+    
+    procesar_letras_amarillas(colores, letras_amarillas, intento, palabra_adivinar)
+    
 
     return colores
 
 
-def desarrollo_intentos(palabra_a_adivinar, intento, turnos, lista_letras_palabra_a_adivinar, lista_letras_de_cada_intento):
+def procesar_letras_amarillas(colores, letras_amarillas, intento, palabra_adivinar):
+    '''
+    Función: procesar_letras_amarillas
+    Descripción: 
+    Parametros:
+        Palabra_adivinar: cadena de caracteres.
+        Intento: cadena de caracteres ingresado por el usuario.
+        colores: 
+        letras_amarillas:
+    '''
+    for posible_letra_amarilla in letras_amarillas:
+        if intento.count(posible_letra_amarilla[0]) <= palabra_adivinar.count(posible_letra_amarilla[0]):
+            for i in letras_amarillas[posible_letra_amarilla]:
+                colores[i] = obtener_color('Amarillo')
+        else:
+            indices_gris = intento.count(posible_letra_amarilla[0]) - palabra_adivinar.count(posible_letra_amarilla[0])
+            while indices_gris > 0:
+                if colores[letras_amarillas[posible_letra_amarilla][-indices_gris]] == "":
+                    colores[letras_amarillas[posible_letra_amarilla][-indices_gris]] = obtener_color('GrisOscuro')
+                indices_gris -= 1
+
+    for i in range(len(colores)):
+        if colores[i] == "":
+            colores[i] = obtener_color('Amarillo')
+
+
+def desarrollo_intentos(palabra_a_adivinar, intento, turnos, lista_letras_palabra_a_adivinar, lista_letras_de_cada_intento, LONGITUD_PALABRAS):
     '''
     Función: desarrollo_intentos
     Descripción:
@@ -115,7 +130,7 @@ def desarrollo_intentos(palabra_a_adivinar, intento, turnos, lista_letras_palabr
     while len(lista_de_intentos_ingresados)<5 and palabra_a_adivinar not in lista_de_intentos_ingresados:
         orden_ingreso=len(lista_de_intentos_ingresados)
         #print(lista, palabras_ingresadas, orden_ingreso)
-        colores = procesar_intento(palabra_a_adivinar, intento, lista_letras_palabra_a_adivinar)
+        colores = procesar_intento(palabra_a_adivinar, intento, lista_letras_palabra_a_adivinar, LONGITUD_PALABRAS)
         acumular_intentos(intento, orden_ingreso, colores, lista_letras_de_cada_intento, lista_de_intentos_ingresados)
 
         print('\nPalabra a adivinar: ', end = '')

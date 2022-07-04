@@ -172,4 +172,4 @@ def interfaz_ingresar():
     
     root.mainloop()
     return jugadores_y_puntos
-interfaz_ingresar() #QUITAR EL COMENTARIO(#) CUANDO QUIERAN EJECUTAR SOLO LA FUNCION interfaz_grafica
+

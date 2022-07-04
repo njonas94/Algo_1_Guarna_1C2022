@@ -166,7 +166,7 @@ def cargar_jugador(nombre, clave):
     registro.write(nombre+','+clave+'\n')
     registro.close()
        
-def ingreso_jugadores(): #(jugador, jugadores_y_puntos):
+def ingreso_jugadores(jugador, jugadores_y_puntos):
     '''
     Función: ingreso_jugadores
     Parámetros:

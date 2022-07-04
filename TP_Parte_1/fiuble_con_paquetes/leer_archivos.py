@@ -4,7 +4,7 @@ import pandas as pd
 import csv
 
 
-def leer_archivos_texto(archivo):
+def leer_archivos_texto(archivo, numero_archivo):
     """
     Funcion: leer_archivo_texto
     Descripcion:
@@ -15,13 +15,8 @@ def leer_archivos_texto(archivo):
     Salida:
         No se como quiere recibir la persona que necesita esta funcion
     """
-    for linea in archivo:
-        if linea:
-            linea = re.sub(r'[^\w\s]', '', linea)
-            linea = linea.rstrip("\n").split()
-            for palabra in linea:
-                if not palabra.isalpha():
-                    linea.remove(palabra)
+    linea = archivo.readline()
+    return linea.rstrip('\n').split(" "), numero_archivo
 
 
 def ordenar_archivo_partidas(nombre_archivo):

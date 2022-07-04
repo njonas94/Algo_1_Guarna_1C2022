@@ -1,5 +1,5 @@
 from tkinter import *
-from interfaz_usuario_editada import *
+from interfaz_usuario import *
 
 def interfaz_ingresar():
     

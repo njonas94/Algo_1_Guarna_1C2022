@@ -104,9 +104,9 @@ def validar_clave(clave,confirmacion_clave):
     cantidad_guion=0
     cantidad_especiales=0
     posicion=0
-    if 8<=len(clave)<=12 and clave==confirmacion_clave:
-        condiciones_cumplidas+=2
-        while posicion<len(clave) and (2<=condiciones_cumplidas<=6 and cantidad_especiales==0):        
+    if 8<=len(clave)<=12:
+        condiciones_cumplidas+=1
+        while posicion<len(clave) and (1<=condiciones_cumplidas<=5 and cantidad_especiales==0):        
             if clave[posicion].isupper() and cantidad_mayusculas==0:
                 condiciones_cumplidas+=1
                 cantidad_mayusculas+=1
@@ -127,7 +127,7 @@ def validar_clave(clave,confirmacion_clave):
                 cantidad_especiales+=1
             posicion+=1
         
-    if condiciones_cumplidas==6 and cantidad_especiales==0:
+    if condiciones_cumplidas==6 and cantidad_especiales==0 and clave==confirmacion_clave:
         estado='valido'
     else:
         estado='invalido'

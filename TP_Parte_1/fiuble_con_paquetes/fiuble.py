@@ -8,13 +8,12 @@ from funcion_interfaz_grafica import*
 
 import random
 import time
-MAX_PARTIDAS = 2 # aca va lo del archivo de configuracion
 #PRINCIPAL
 def fiuble():
-    LONGITUD_PALABRAS = 5
     CANTIDAD_INTENTOS = 5
     jugar = ''
     jugadores_y_puntos = interfaz_ingresar()  # acá deberiamos llamar a la interfaz grafica
+    LONGITUD_PALABRAS,MAX_PARTIDAS,REINICIAR_PARTIDAS_CSV= leer_configuracion()
     turnos = orden_turnos(jugadores_y_puntos, CANTIDAD_INTENTOS)
     partida = 0
     while jugar in ('s','S', '') and partida < MAX_PARTIDAS:

@@ -5,5 +5,5 @@ def archivo_palabras(lista_ordenada):
     archivo.close()
 
 def ordenar_diccionario(diccionario_palabras):
-    lista = sorted(diccionario_palabras.items(), key=lambda x: x[0])
-    return lista
+    lista_ordenada = sorted(diccionario_palabras.items(), key=lambda x: x[0])
+    archivo_palabras(lista_ordenada)

@@ -5,7 +5,7 @@ from turnos_y_puntajes import *
 from utiles import *
 from validacion import *
 from funcion_interfaz_grafica import*
-
+from configuracion import *
 import random
 import time
 #PRINCIPAL

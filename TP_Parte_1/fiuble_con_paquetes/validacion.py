@@ -8,8 +8,8 @@ def cambiar_tilde(intento_sin_validar):
     Salidas:
         Devuelve la palabra sin acentos.
     '''
-    a = 'áéíóúýäëïöüÿàèìòùâêîôû'
-    b = 'aeiouyaeiouyaeiouaeiou'
+    a = 'áéíóúýäëïöüÿàèìòùâêîôûú'
+    b = 'aeiouyaeiouyaeiouaeiouu'
     palabra_sin_acento = intento_sin_validar.maketrans(a, b)
     intento_sin_validar_sin_tilde = intento_sin_validar.translate(palabra_sin_acento)
 

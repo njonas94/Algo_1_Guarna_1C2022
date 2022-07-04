@@ -177,16 +177,8 @@ def ingreso_jugadores(): #(jugador, jugadores_y_puntos):
     Salidas:
         Nos retorna el diccionario.
     '''
-#    if jugador not in jugadores_y_puntos.keys():
-#        jugadores_y_puntos[jugador] = 0 
-    jugadores_y_puntos = {}
-    jugador_1 = input('Ingrese el nombre del 1er usuario:').upper()
-    jugador_2 = input('Ingrese el nombre del 2do usuario:').upper()
-    while jugador_1 == jugador_2:
-        print(f'Nombre "{jugador_1}" no disponible. Ingrese un nombre distinto.')
-        jugador_2 = input('\nIngrese el nombre del 2er usuario:').upper()   
+    if jugador not in jugadores_y_puntos.keys():
+        jugadores_y_puntos[jugador] = 0 
     
-    jugadores_y_puntos[jugador_1] = 0
-    jugadores_y_puntos[jugador_2] = 0
 
     return jugadores_y_puntos

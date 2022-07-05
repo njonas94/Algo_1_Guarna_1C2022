@@ -3,7 +3,13 @@ from interfaz_usuario import *
 from validacion import *
 
 def interfaz_ingresar():
-    
+    ''' 
+        Función: interfaz_ingresar
+        Descripción:
+            Verifica el ingreso de un jugador registrado y lo carga al diccionario de puntaje.
+        Salida:
+            Devuelve un diccionario cargado con dos claves y valor inicial igual a cero.
+    '''    
     jugadores_y_puntos={}
     #---------------------------Funciones llamadas por la PRINCIPAL----------------#
     #___________________________BOTON INGRESAR__________________________#
@@ -53,6 +59,11 @@ def interfaz_ingresar():
         
     #___________________________BOTON REGISTRAR-Principal__________________________#    
     def interfaz_registro():
+        ''' 
+        Función: interfaz_registro
+        Descripción:
+            Verifica que el usuario nuevo y su contraseña sean válidos y los agrega al un archivo.csv.
+        ''' 
         #___________________________BOTON VOLVER A INGRESO-Secundario__________________________#
         def cerrar_ventana():
             root.deiconify()  
@@ -162,7 +173,7 @@ def interfaz_ingresar():
     claveLabel=Label(ingresoFrame, text="Contraseña:")
     claveLabel.grid(row=2,column=0, padx=20,pady=10)
     claveLabel.config(bg='#0B615E',fg='white')
-
+    #---------------------Cuadros---------------------------#
     nombre=StringVar()
     cuadroJugador=Entry(ingresoFrame,textvariable=nombre)
     cuadroJugador.grid(row=1,column=1, padx=30,pady=10)

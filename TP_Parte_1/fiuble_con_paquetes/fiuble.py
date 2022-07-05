@@ -7,6 +7,7 @@ from validacion import *
 from funcion_interfaz_grafica import*
 from configuracion import *
 from leer_archivos import *
+from para_alda import *
 import random
 import time
 
@@ -24,7 +25,7 @@ def fiuble():
     archivo2 = open("Las 1000 Noches y 1 Noche.txt")
     diccionario_palabras_validas = {}
     palabras_validas(archivo0, archivo1, archivo2, diccionario_palabras_validas, LONGITUD_PALABRAS)
-
+    usuarios_datos = crear_diccionario_usuarios_datos(turnos)
     while jugar in ('s','S', '') and partida < MAX_PARTIDAS:
         partida += 1
         lista_de_intentos_ingresados = []
@@ -48,6 +49,8 @@ def fiuble():
             mostrar_palabra_adivinar(palabra_a_adivinar)
         puntaje(lista_de_intentos_ingresados,palabra_a_adivinar,jugadores_y_puntos,turnos)
         fecha,hora_finalizacion=fecha_y_hora() #Fecha y Hora
+        cargar_hora(turnos,fecha,hora_finalizacion,usuarios_datos)
+        lista_para_alda = cargar_aciertos_e_intentos(lista_de_intentos_ingresados, palabra_a_adivinar, usuarios_datos, turnos)
         jugar = volver_a_jugar()
         if jugar in ('s','S') and partida<= MAX_PARTIDAS:
             turnos = cambio_turnos(turnos)

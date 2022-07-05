@@ -50,7 +50,6 @@ def fiuble():
         fecha,hora_finalizacion=fecha_y_hora() #Fecha y Hora
         jugar = volver_a_jugar()
         if jugar in ('s','S') and partida<= MAX_PARTIDAS:
-            print(partida)
             turnos = cambio_turnos(turnos)
     determinar_ganador(jugadores_y_puntos)
 fiuble()

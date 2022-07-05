@@ -54,6 +54,7 @@ def fiuble():
         jugar = volver_a_jugar()
         if jugar in ('s','S') and partida<= MAX_PARTIDAS:
             turnos = cambio_turnos(turnos)
+    limpiar_archivo(REINICIAR_PARTIDAS_CSV)
     determinar_ganador(jugadores_y_puntos)
 fiuble()
 

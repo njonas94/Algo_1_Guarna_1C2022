@@ -1417,8 +1417,6 @@ hartura,1,0,0
 hayamos,0,1,0
 hazañas,2,4,1
 helados,0,1,0
-hemano=,0,1,0
-hemosa=,0,2,0
 heraldo,1,0,0
 herejes,0,2,0
 heridas,0,9,0
@@ -1793,7 +1791,6 @@ medicos,2,1,6
 medirse,0,1,0
 meditar,0,0,1
 medrada,0,1,0
-meiico=,0,1,0
 mejilla,1,0,5
 mejores,3,1,6
 melones,1,0,0
@@ -2040,7 +2037,7 @@ paginas,0,1,4
 paisano,0,1,0
 pajaros,2,1,3
 palabra,5,10,17
-palacio,1,51,81
+palacio,1,52,81
 paladea,0,1,0
 paladin,1,1,0
 palaico,0,1,0
@@ -2118,7 +2115,7 @@ peligro,6,14,4
 pellejo,1,0,1
 peloton,0,1,0
 pelucas,0,0,1
-pemita=,0,1,0
+pemitia,0,2,0
 pendian,1,0,1
 penetro,0,4,1
 penosas,2,0,0
@@ -2306,10 +2303,10 @@ quejaba,3,0,0
 quejado,1,1,0
 quejare,0,0,1
 quejido,1,0,0
+quellos,0,1,0
 quemaba,1,0,0
 quemada,1,0,0
 quemado,0,1,1
-quenes=,0,1,0
 quereis,0,0,2
 querian,12,1,1
 querias,0,0,1
@@ -2554,6 +2551,7 @@ sainete,0,2,0
 salario,0,0,2
 saldras,2,0,2
 saldria,0,1,0
+salidad,0,1,0
 salidos,0,2,0
 saliera,2,2,1
 saliese,1,0,0

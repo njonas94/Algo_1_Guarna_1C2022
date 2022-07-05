@@ -20,7 +20,7 @@ def fiuble():
     partida = 0
     archivo0 = open("Cuentos.txt")
     archivo1 = open("La araña negra - tomo 1.txt")
-    archivo2 = open("Las 1000 Noches y 1 Noche.txt", "rt")
+    archivo2 = open("Las 1000 Noches y 1 Noche.txt")
     diccionario_palabras_validas = {}
     palabras_validas(archivo0, archivo1, archivo2, diccionario_palabras_validas, LONGITUD_PALABRAS)
     usuarios_datos = crear_diccionario_usuarios_datos(turnos)

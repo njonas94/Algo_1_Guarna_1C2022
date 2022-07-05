@@ -112,7 +112,7 @@ def procesar_letras_amarillas(colores, letras_amarillas, intento, palabra_adivin
             colores[i] = obtener_color('Amarillo')
 
 
-def desarrollo_intentos(palabra_a_adivinar, intento, turnos, lista_letras_palabra_a_adivinar, lista_letras_de_cada_intento, diccionario_palabras_validas, LONGITUD_PALABRAS):
+def desarrollo_intentos(palabra_a_adivinar, intento, turnos, lista_letras_palabra_a_adivinar, lista_letras_de_cada_intento, diccionario_palabras_validas, LONGITUD_PALABRAS, CANTIDAD_INTENTOS):
     '''
     Función: desarrollo_intentos
     Descripción:
@@ -127,7 +127,7 @@ def desarrollo_intentos(palabra_a_adivinar, intento, turnos, lista_letras_palabr
         Devuelve una lista con las palabras ingresadas.
     '''
     lista_de_intentos_ingresados=[]
-    while len(lista_de_intentos_ingresados)<5 and palabra_a_adivinar not in lista_de_intentos_ingresados:
+    while len(lista_de_intentos_ingresados)<CANTIDAD_INTENTOS and palabra_a_adivinar not in lista_de_intentos_ingresados:
         orden_ingreso = len(lista_de_intentos_ingresados)
         #print(lista, palabras_ingresadas, orden_ingreso)
         colores = procesar_intento(palabra_a_adivinar, intento, lista_letras_palabra_a_adivinar, LONGITUD_PALABRAS)

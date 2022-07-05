@@ -1,29 +1,31 @@
 from interfaz_usuario import *
 from procesar_archivos import *
 
-def impresion(variable,valor,datos,info):
+
+def impresion(parametro, valor_parametro, lista_datos, contador):
     '''
     Función: impresion
     Descripción:
         Asigna valores Defaults o por Configuración a una lista.
     Parametros:
-        variable: String proveniente del archivo.
-        valor: String proveniente del archivo.
-        datos: Lista.
-        info: Entero que funciona como contador.
+        Parametro: String proveniente del archivo.
+        valor_parametro: valor del parametro proveniente del archivo.
+        lista_datos: Lista de datos sobre la partida
+        contador: Entero que funciona como contador.
     Salida:
         Retorna lista con los valores agregados.
     '''
-    default=['7','5','False']
-    if variable!='' and valor=='':
-        print('{}: {} y fue asignada por omisión'.format(variable, valor))
-        datos.append(default[info])
-    elif valor!='' and variable!='':
-        print('{}: {} y fue asignada por configuración'.format(variable, valor))
-        datos.append(valor)
-    return datos
+    lista_default = ['7', '5', 'False']
+    if parametro != '' and valor_parametro == '':
+        print('{}: {} y fue asignada por omisión'.format(parametro, valor_parametro))
+        lista_datos.append(lista_default[contador])
+    elif valor_parametro != '' and parametro != '':
+        print('{}: {} y fue asignada por configuración'.format(parametro, valor_parametro))
+        lista_datos.append(valor_parametro)
+    return lista_datos
 
-def leer_configuracion ():
+
+def leer_configuracion():
     '''
     Función: leer_configuracion
     Descripción:
@@ -31,20 +33,20 @@ def leer_configuracion ():
     Salida:
         lista_final: Lista con los valores agregados.
     '''
-    datos=[]
-    lista_final=[]
-    info=0
+    lista_datos = []
+    lista_final_datos = []
+    contador = 0
     archivo = open("configuracion.csv", "r")
-    variable, valor= leer_archivo(archivo,',')
-    while (variable!='' and valor=='') or (variable!='' and valor!='' ):
-        lista=impresion(variable,valor,datos,info)
-        variable, valor= leer_archivo(archivo,',')
-        if lista[info].isdigit():
-            lista_final.append(int(lista[info]))
-        elif lista[info] == 'False':
-            lista_final.append(False)
+    parametro, valor_parametro = leer_archivo(archivo, ',')
+    while (parametro != '' and valor_parametro == '') or (parametro != '' and valor_parametro != ''):
+        lista = impresion(parametro, valor_parametro, lista_datos, contador)
+        parametro, valor_parametro = leer_archivo(archivo, ',')
+        if lista[contador].isdigit():
+            lista_final_datos.append(int(lista[contador]))
+        elif lista[contador] == 'False':
+            lista_final_datos.append(False)
         else:
-            lista_final.append(bool(lista[info]))
-        info+=1
+            lista_final_datos.append(bool(lista[contador]))
+        contador += 1
 
-    return lista_final
+    return lista_final_datos

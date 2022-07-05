@@ -35,10 +35,9 @@ def crear_archivo_partidas(nombre_archivo):
     """
     Funcion: crear_archivo_partidas
     Descripcion:
-        Crea el archivo con encabezado y escribe las primeras lineas
+        Crea el archivo con encabezado.
     Parametros:
         nombre_archivo: nombre para el archivo a crear
-        dicc_datos: diccionario con los datos extraidos de la partida
     """
     lista_encabezado = ['Fecha partida', 'Hora finalizacion', 'Jugador', 'Aciertos', 'Intentos']
     with open(nombre_archivo, 'w', newline='') as archivo_partidas:
@@ -52,8 +51,8 @@ def escribir_archivo_partidas(nombre_archivo, lista_dicc_datos):
     Descripcion:
         Añade una linea con los datos de la partida
     Parametros:
-        nombre_archivo: nombre del archivo a escribir
-        dicc_datos: diccionario con los datos extraidos de la partida
+        nombre_archivo: nombre del archivo a escribir.
+        lista_dicc_datos: Lista de diccionarios por jugador.
     """
     # Si tengo q pasar de dos jugadores, tengo que usar el writerows[dicc1, dicc2]
     lista_encabezado = ['Fecha partida', 'Hora finalizacion', 'Jugador', 'Aciertos', 'Intentos']
@@ -63,6 +62,16 @@ def escribir_archivo_partidas(nombre_archivo, lista_dicc_datos):
 
 
 def dar_formato_dicc(lista_datos):
+    '''
+    Función: dar_formato_dicc
+    Descripicón:
+        Agrega a un diccionario los datos provenientes del parametro
+        y por cada jugador agrega un diccionario a la lista_dicc_datos.
+    Parametro:
+        lista_datos: Lista de listas.
+    Salidas:
+        lista_dicc_datos: Lista de diccionarios.
+    '''
     lista_dicc_datos = []
     for lista in lista_datos:
         dicc_datos = {}
@@ -175,16 +184,42 @@ def palabras_validas(archivo0, archivo1, archivo2, diccionario_palabras_validas,
 
 
 def escribir_archivo_palabras(lista_ordenada):
+    '''
+    Función: archivo_palabras
+    Descripción:
+        Escrbie/reemplaza en el archivo, las palabras provenientes de la lista que recibe como parametro, ordenadas
+        de forma alfabetica.
+    Parametros:
+        lista_ordenada: Lista ordenada alfabeticamente.
+        
+    '''
     archivo = open("palabras.csv","w")
     for palabra in lista_ordenada:
         archivo.write(palabra[0] + "," + str(palabra[1][0]) + "," + str(palabra[1][1]) + "," + str(palabra[1][2]) + "\n")
     archivo.close()
 
 def ordenar_diccionario(diccionario_palabras):
+    '''
+    Función: ordenar_diccionario
+    Descripción:
+        Ordena un diccionario alfabeticamente e invoca a la función archivo_palabras.
+    Parametros: 
+        diccionario_palabras: Diccionario con palabras.
+    '''
     lista_ordenada = sorted(diccionario_palabras.items(), key=lambda x: x[0])
     escribir_archivo_palabras(lista_ordenada)
 
 def leer_archivo(archivo, default):
+    '''
+    Función: leer_archivo
+    Descripción: 
+        Recibe un archivo del cual lee una linea.
+    Parametros:
+        archivo: Archivo csv.
+        default: Archivo default.
+    Salida:
+	    Devuelve lista de string con lo leido en el archivo.
+    '''
     linea=archivo.readline()
     if linea:
         lista=linea.rstrip('\n').split(',')

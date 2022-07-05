@@ -31,7 +31,7 @@ def ordenar_archivo_partidas(nombre_archivo):
     archivo_ordenado.to_csv(nombre_archivo, header = lista_encabezado, index = False)
 
 
-def crear_archivo_partidas(nombre_archivo, dicc_datos):
+def crear_archivo_partidas(nombre_archivo):
     """
     Funcion: crear_archivo_partidas
     Descripcion:
@@ -44,10 +44,9 @@ def crear_archivo_partidas(nombre_archivo, dicc_datos):
     with open(nombre_archivo, 'w', newline='') as archivo_partidas:
         archivo = csv.DictWriter(archivo_partidas, fieldnames = lista_encabezado)
         archivo.writeheader()
-        archivo.writerow(dicc_datos)
 
 
-def escribir_archivo_partidas(nombre_archivo, dicc_datos):
+def escribir_archivo_partidas(nombre_archivo, lista_dicc_datos):
     """
     Funcion: escribir_archivo_partidas
     Descripcion:
@@ -60,10 +59,24 @@ def escribir_archivo_partidas(nombre_archivo, dicc_datos):
     lista_encabezado = ['Fecha partida', 'Hora finalizacion', 'Jugador', 'Aciertos', 'Intentos']
     with open(nombre_archivo, 'a', newline='') as archivo_partidas:
         archivo = csv.DictWriter(archivo_partidas, fieldnames = lista_encabezado)
-        archivo.writerow(dicc_datos)
+        archivo.writerows(lista_dicc_datos)
 
 
-def registro_partidas(dicc_datos):
+def dar_formato_dicc(lista_datos):
+    lista_dicc_datos = []
+    for lista in lista_datos:
+        dicc_datos = {}
+        dicc_datos['Fecha partida'] = lista[0]
+        dicc_datos['Hora finalizacion'] = lista[1]
+        dicc_datos['Jugador'] = lista[2]
+        dicc_datos['Aciertos'] = lista[3]
+        dicc_datos['Intentos'] = lista[4]
+        lista_dicc_datos.append(dicc_datos)
+    return lista_dicc_datos
+
+
+
+def registro_partidas(lista_datos):
     """
     Funcion: registro_partidas
     Descripcion:
@@ -71,11 +84,14 @@ def registro_partidas(dicc_datos):
     Parametros:
         dicc_datos: diccionario con los datos extraidos de la partida
     """
+    lista_dicc_datos = dar_formato_dicc(lista_datos)
     nombre_archivo = 'partidas.csv'
     if not os.path.isfile(nombre_archivo):
-        crear_archivo_partidas(nombre_archivo, dicc_datos)
+        crear_archivo_partidas(nombre_archivo)
+        escribir_archivo_partidas(nombre_archivo, lista_dicc_datos)
     else:
-        escribir_archivo_partidas(nombre_archivo, dicc_datos)
+        escribir_archivo_partidas(nombre_archivo, lista_dicc_datos)
+    ordenar_archivo_partidas(nombre_archivo)
 
 def procesar_linea(lista_linea, LONGITUD_PALABRAS):
     """
@@ -283,10 +299,10 @@ def limpiar_archivo(REINICIAR_PARTIDAS_CSV):
     Parametro:
         REINICIAR_PARTIDAS_CSV: Variable booleana del archivo configuración.
     '''
+    print(REINICIAR_PARTIDAS_CSV)
     if REINICIAR_PARTIDAS_CSV:
-        reinicio = open("partidas.csv","w")
-        reinicio.close()
-    return
+        print(1)
+        crear_archivo_partidas('partidas.csv')
 
 
 """ 

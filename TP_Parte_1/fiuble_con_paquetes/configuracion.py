@@ -22,6 +22,8 @@ def leer_configuracion ():
         variable, valor= leer_archivo(archivo,',')
         if lista[info].isdigit():
             lista_final.append(int(lista[info]))
+        elif lista[info] == 'False':
+            lista_final.append(False)
         else:
             lista_final.append(bool(lista[info]))
         info+=1

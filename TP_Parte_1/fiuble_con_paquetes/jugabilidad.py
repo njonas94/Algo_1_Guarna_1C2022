@@ -94,8 +94,8 @@ def procesar_letras_amarillas(colores, letras_amarillas, intento, palabra_adivin
     Parametros:
         Palabra_adivinar: cadena de caracteres.
         Intento: cadena de caracteres ingresado por el usuario.
-        colores: 
-        letras_amarillas:
+        colores: lista con los colores para asignarle a las letras.
+        letras_amarillas: lista con las posibles letras amarillas.
     '''
     for posible_letra_amarilla in letras_amarillas:
         if intento.count(posible_letra_amarilla[0]) <= palabra_adivinar.count(posible_letra_amarilla[0]):

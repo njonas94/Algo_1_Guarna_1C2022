@@ -104,7 +104,7 @@ def procesar_linea(lista_linea, LONGITUD_PALABRAS):
     Salida:
         Devuelve una nueva lista, solo con las palabras de longitud deseada, sin caracteres especiales y en minuscula.
     """
-    caracteres_especiales = '''_-.,¡!¿?$%#/<>:;«»"()[]1234567890'''
+    caracteres_especiales = '''�_-.,¡!¿?$%#/<>:;«»"()[]1234567890'''
     lista_palabras = []
 
     lista_linea = lista_linea.rstrip('\n').split(" ")
@@ -171,22 +171,13 @@ def palabras_validas(archivo0, archivo1, archivo2, diccionario_palabras_validas,
         cargar_diccionario(diccionario_palabras_validas, lista2, 2)
         linea2 = leer_archivos_texto(archivo2)
 
+    ordenar_diccionario(diccionario_palabras_validas)
 
-def archivo_palabras(lista_ordenada):
-    archivo = open("palabras.csv","w")
-    for palabra in lista_ordenada:
-        archivo.write(palabra[0] + "," + str(palabra[1][0]) + "," + str(palabra[1][1]) + "," + str(palabra[1][2]) + "\n")
-    archivo.close()
-
-def ordenar_diccionario(diccionario_palabras):
-    lista_ordenada = sorted(diccionario_palabras.items(), key=lambda x: x[0])
-    
-    return lista_ordenada
 
 def escribir_archivo_palabras(lista_ordenada):
     archivo = open("palabras.csv","w")
     for palabra in lista_ordenada:
-        archivo.write(palabra[0] + "," + str(palabra[1]) + "," + str(palabra[2]) + "," + str(palabra[3]) + "\n")
+        archivo.write(palabra[0] + "," + str(palabra[1][0]) + "," + str(palabra[1][1]) + "," + str(palabra[1][2]) + "\n")
     archivo.close()
 
 def ordenar_diccionario(diccionario_palabras):
@@ -299,9 +290,7 @@ def limpiar_archivo(REINICIAR_PARTIDAS_CSV):
     Parametro:
         REINICIAR_PARTIDAS_CSV: Variable booleana del archivo configuración.
     '''
-    print(REINICIAR_PARTIDAS_CSV)
     if REINICIAR_PARTIDAS_CSV:
-        print(1)
         crear_archivo_partidas('partidas.csv')
 
 

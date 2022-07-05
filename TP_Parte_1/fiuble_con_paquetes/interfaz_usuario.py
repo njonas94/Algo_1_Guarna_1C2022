@@ -13,6 +13,14 @@ def mostrar_palabra(palabra_ingresada):
         print(letra + ' ' + obtener_color('Defecto'), end = '')
     print() 
 
+def mostrar_palabra_adivinar(palabra_a_adivinar):
+    print("Palabra a adivinar: ", end = "")
+    for i in range(len(palabra_a_adivinar)):
+        print(f"{palabra_a_adivinar[i]} ", end = "")
+    print("\n")
+    obtener_color("Defecto")
+    print("Perdiste!")
+
 #____________________________Funciones etapa 7 relacionadas con INTERFAZ GRAFICA________________________#
        
 def leer_archivo(archivo, default):#FUNCION 2

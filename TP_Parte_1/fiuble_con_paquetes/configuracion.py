@@ -24,3 +24,5 @@ def leer_configuracion ():
         else:
             lista_final.append(bool(lista[info]))
         info+=1
+
+    return lista_final

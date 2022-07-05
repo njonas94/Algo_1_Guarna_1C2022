@@ -4,7 +4,7 @@ from validacion import *
 
 import random
 
-def generar_palabra_a_adivinar():
+def generar_palabra_a_adivinar(diccionario_palabras_validas):
     '''
     Función: generar_palabra_a_adivinar
     Descripción: 
@@ -12,7 +12,7 @@ def generar_palabra_a_adivinar():
     Salidas:
         Devuelve la palabra seleccionada en mayúscula.
     '''
-    palabras_validas = obtener_palabras_validas()
+    palabras_validas = list(diccionario_palabras_validas.keys())
     palabra=random.choice(palabras_validas)
 
     return palabra.upper()
@@ -112,7 +112,7 @@ def procesar_letras_amarillas(colores, letras_amarillas, intento, palabra_adivin
             colores[i] = obtener_color('Amarillo')
 
 
-def desarrollo_intentos(palabra_a_adivinar, intento, turnos, lista_letras_palabra_a_adivinar, lista_letras_de_cada_intento, LONGITUD_PALABRAS):
+def desarrollo_intentos(palabra_a_adivinar, intento, turnos, lista_letras_palabra_a_adivinar, lista_letras_de_cada_intento, diccionario_palabras_validas, LONGITUD_PALABRAS):
     '''
     Función: desarrollo_intentos
     Descripción:
@@ -128,7 +128,7 @@ def desarrollo_intentos(palabra_a_adivinar, intento, turnos, lista_letras_palabr
     '''
     lista_de_intentos_ingresados=[]
     while len(lista_de_intentos_ingresados)<5 and palabra_a_adivinar not in lista_de_intentos_ingresados:
-        orden_ingreso=len(lista_de_intentos_ingresados)
+        orden_ingreso = len(lista_de_intentos_ingresados)
         #print(lista, palabras_ingresadas, orden_ingreso)
         colores = procesar_intento(palabra_a_adivinar, intento, lista_letras_palabra_a_adivinar, LONGITUD_PALABRAS)
         acumular_intentos(intento, orden_ingreso, colores, lista_letras_de_cada_intento, lista_de_intentos_ingresados)
@@ -141,7 +141,7 @@ def desarrollo_intentos(palabra_a_adivinar, intento, turnos, lista_letras_palabr
         if palabra_a_adivinar not in lista_de_intentos_ingresados and len(lista_de_intentos_ingresados)<5:
             print('Es el turno de:', turnos[len(lista_de_intentos_ingresados)].upper())
             intento_sin_validar=input('Arriesgo:')
-            intento=validacion_intento_ingresado(intento_sin_validar, lista_de_intentos_ingresados)
+            intento = validacion_intento_ingresado(intento_sin_validar, lista_de_intentos_ingresados, diccionario_palabras_validas, LONGITUD_PALABRAS)
    
     return lista_de_intentos_ingresados
 

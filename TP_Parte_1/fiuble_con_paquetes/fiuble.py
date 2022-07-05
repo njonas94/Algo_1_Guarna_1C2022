@@ -6,8 +6,11 @@ from utiles import *
 from validacion import *
 from funcion_interfaz_grafica import*
 from configuracion import *
+from leer_archivos import *
 import random
 import time
+
+
 #PRINCIPAL
 def fiuble():
     CANTIDAD_INTENTOS = 5
@@ -16,10 +19,16 @@ def fiuble():
     LONGITUD_PALABRAS,MAX_PARTIDAS,REINICIAR_PARTIDAS_CSV= leer_configuracion()
     turnos = orden_turnos(jugadores_y_puntos, CANTIDAD_INTENTOS)
     partida = 0
+    archivo0 = open("Cuentos.txt")
+    archivo1 = open("La araña negra - tomo 1.txt")
+    archivo2 = open("Las 1000 Noches y 1 Noche.txt")
+    diccionario_palabras_validas = {}
+    palabras_validas(archivo0, archivo1, archivo2, diccionario_palabras_validas, LONGITUD_PALABRAS)
+
     while jugar in ('s','S', '') and partida < MAX_PARTIDAS:
         partida += 1
         lista_de_intentos_ingresados = []
-        palabra_a_adivinar = generar_palabra_a_adivinar()
+        palabra_a_adivinar = generar_palabra_a_adivinar(diccionario_palabras_validas)
         lista_letras_palabra_adivinar = crear_lista_interrogantes(LONGITUD_PALABRAS)
         lista_letras_de_cada_intento = crear_lista_intentos(CANTIDAD_INTENTOS, lista_letras_palabra_adivinar) #Lista de listas, contiene los intentos ingresados,cada letra es un elemento.
         print('\nPalabra a adivinar: ', end = '')
@@ -29,8 +38,8 @@ def fiuble():
         print('Es el turno de:',turnos[0].upper())
         inicio_cronometro = time.time()
         intento_sin_validar = input('Arriesgo:')
-        intento = validacion_intento_ingresado(intento_sin_validar, lista_de_intentos_ingresados)
-        lista_de_intentos_ingresados = desarrollo_intentos(palabra_a_adivinar, intento, turnos, lista_letras_palabra_adivinar, lista_letras_de_cada_intento, LONGITUD_PALABRAS) #Esta lista, es la lista de str de palabras ingresadas#
+        intento = validacion_intento_ingresado(intento_sin_validar, lista_de_intentos_ingresados, diccionario_palabras_validas, LONGITUD_PALABRAS)
+        lista_de_intentos_ingresados = desarrollo_intentos(palabra_a_adivinar, intento, turnos, lista_letras_palabra_adivinar, lista_letras_de_cada_intento, diccionario_palabras_validas, LONGITUD_PALABRAS) #Esta lista, es la lista de str de palabras ingresadas#
         fin_cronometro = time.time()
         tiempo = cronometro(inicio_cronometro, fin_cronometro)
         if palabra_a_adivinar in lista_de_intentos_ingresados:

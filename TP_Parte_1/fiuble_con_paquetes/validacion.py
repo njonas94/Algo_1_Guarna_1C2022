@@ -1,5 +1,3 @@
-from utiles import *
-
 def cambiar_tilde(intento_sin_validar):
     '''
     Función: cambiar_tilde
@@ -18,19 +16,19 @@ def cambiar_tilde(intento_sin_validar):
 def no_es_alfabetico (intento_sin_validar):
     return not intento_sin_validar.isalpha()
 
-def longitud_palabra (intento_sin_validar):
-    return len(intento_sin_validar)!= 5
+def longitud_palabra (intento_sin_validar, LONGITUD_PALABRAS):
+    return len(intento_sin_validar)!= LONGITUD_PALABRAS
 
-def validar_palabra (intento_sin_validar):
-    return not no_es_alfabetico (intento_sin_validar) and intento_sin_validar not in obtener_palabras_validas()
+def validar_palabra (intento_sin_validar, diccionario_palabras_validas):
+    return not no_es_alfabetico (intento_sin_validar) and intento_sin_validar not in diccionario_palabras_validas
 
 def validar_intento_duplicado (intento_sin_validar, lista_de_intentos_ingresados):
     return intento_sin_validar.upper() in lista_de_intentos_ingresados
 
-def longitud_y_alfabetica(intento_sin_validar):
-    return not intento_sin_validar.isalpha() and len(intento_sin_validar) != 5
+def longitud_y_alfabetica(intento_sin_validar, LONGITUD_PALABRAS):
+    return not intento_sin_validar.isalpha() and len(intento_sin_validar) != LONGITUD_PALABRAS
 
-def validacion_intento_ingresado(intento_sin_validar, lista_de_intentos_ingresados):
+def validacion_intento_ingresado(intento_sin_validar, lista_de_intentos_ingresados, diccionario_palabras_validas, LONGITUD_PALABRAS):
     '''
     Función: validacion_intento_ingresado
     Parámetro:
@@ -40,21 +38,21 @@ def validacion_intento_ingresado(intento_sin_validar, lista_de_intentos_ingresad
         Devuelve la palabra en mayúscula.
     '''
     intento_sin_validar = cambiar_tilde(intento_sin_validar.lower())
-    while no_es_alfabetico (intento_sin_validar) or validar_palabra (intento_sin_validar) or validar_intento_duplicado (intento_sin_validar, lista_de_intentos_ingresados):
+    while no_es_alfabetico (intento_sin_validar) or validar_palabra (intento_sin_validar, diccionario_palabras_validas) or validar_intento_duplicado (intento_sin_validar, lista_de_intentos_ingresados):
 
-        if longitud_y_alfabetica(intento_sin_validar):
+        if longitud_y_alfabetica(intento_sin_validar, LONGITUD_PALABRAS):
             print("Palabra inválida, tiene que ser de 5 letras y no puede contener número/s ni caracteres especiales.")
 
         elif no_es_alfabetico (intento_sin_validar):
             print("La palabra no tiene que contener número/s ni caracteres especiales.")
 
-        elif longitud_palabra (intento_sin_validar): 
+        elif longitud_palabra (intento_sin_validar, LONGITUD_PALABRAS): 
             print("La palabra tiene que ser de 5 letras.")
 
         elif validar_intento_duplicado (intento_sin_validar, lista_de_intentos_ingresados):
             print("La palabra ya habia sido ingresada.")
 
-        elif validar_palabra (intento_sin_validar):
+        elif validar_palabra (intento_sin_validar, diccionario_palabras_validas):
             print("La palabra no se encuentra en la lista de palabras válidas.")
 
         intento_sin_validar = input("Ingrese una palabra valida de 5 letras: ")

@@ -1,5 +1,5 @@
 import os
-import pandas as pd
+#import pandas as pd
 import csv
 from validacion import *
 
@@ -77,14 +77,14 @@ def registro_partidas(dicc_datos):
     else:
         escribir_archivo_partidas(nombre_archivo, dicc_datos)
 
-def procesar_linea(lista_linea, longitud_palabra):
+def procesar_linea(lista_linea, LONGITUD_PALABRAS):
     """
     Funcion: procesar_linea
     Descripcion:
         Determina si el archivo partidas.csv existe, para escribirlo o crearlo
     Parametros:
         lista_linea: lista generada con las palabras en una linea leida de un archivo.
-        longitud_palabra: entero con la longitud de las palabras para jugar
+        LONGITUD_PALABRAS: entero con la longitud de las palabras para jugar
     Salida:
         Devuelve una nueva lista, solo con las palabras de longitud deseada, sin caracteres especiales y en minuscula.
     """
@@ -101,7 +101,7 @@ def procesar_linea(lista_linea, longitud_palabra):
         lista_linea[indice] = lista_linea[indice].lower()
 
     for palabra in lista_linea:
-        if len(palabra) == longitud_palabra:
+        if len(palabra) == LONGITUD_PALABRAS:
             lista_palabras.append(palabra)
 
     return lista_palabras
@@ -125,33 +125,36 @@ def cargar_diccionario(diccionario, lista_palabras, numero_archivo):
             diccionario[palabra][numero_archivo] += 1
 
 
-#archivo0 = open("Cuentos.txt")
-#archivo1 = open("La araña negra - tomo 1.txt")
-#archivo2 = open("Las 1000 Noches y 1 Noche.txt")
-
-#linea0 = leer_archivos_texto(archivo0)
-#linea1 = leer_archivos_texto(archivo1)
-#linea2 = leer_archivos_texto(archivo2)
-linea_problematica = "prólogo último la concha de tu madre"
-diccionario = {}
-diccionario1 = {}
-
-"""
-while linea0:
-    lista0 = procesar_linea(linea0, 7)
-    cargar_diccionario(diccionario, lista0, 0)
+def palabras_validas(archivo0, archivo1, archivo2, diccionario_palabras_validas, LONGITUD_PALABRAS):
+    """
+    Funcion: palabras_validas
+    Descripcion:
+        Determina si el archivo partidas.csv existe, para escribirlo o crearlo
+    Parametros:
+        archivo0: 1er archivo abierto.
+        archivo1: 2do archivo abierto.
+        archivo2: 3er archivo abierto.
+        diccionario_palabras_validas: diccionario con las palabras y el contador por archivo.
+    """
     linea0 = leer_archivos_texto(archivo0)
-
-while linea1:
-    lista1 = procesar_linea(linea1, 7)
-    cargar_diccionario(diccionario, lista1, 1)
     linea1 = leer_archivos_texto(archivo1)
-
-while linea2:
-    lista2 = procesar_linea(linea2, 7)
-    cargar_diccionario(diccionario, lista2, 2)
     linea2 = leer_archivos_texto(archivo2)
-"""
+
+    while linea0:
+        lista0 = procesar_linea(linea0, LONGITUD_PALABRAS)
+        cargar_diccionario(diccionario_palabras_validas, lista0, 0)
+        linea0 = leer_archivos_texto(archivo0)
+
+    while linea1:
+        lista1 = procesar_linea(linea1, LONGITUD_PALABRAS)
+        cargar_diccionario(diccionario_palabras_validas, lista1, 1)
+        linea1 = leer_archivos_texto(archivo1)
+
+    while linea2:
+        lista2 = procesar_linea(linea2, LONGITUD_PALABRAS)
+        cargar_diccionario(diccionario_palabras_validas, lista2, 2)
+        linea2 = leer_archivos_texto(archivo2)
+
 
 def archivo_palabras(lista_ordenada):
     archivo = open("palabras.csv","w")
@@ -164,9 +167,6 @@ def ordenar_diccionario(diccionario_palabras):
     
     return lista_ordenada
 
-lista = procesar_linea(linea_problematica, 7)
-dicc = {}
-cargar_diccionario(dicc, lista, 1)
 
 
 """ 

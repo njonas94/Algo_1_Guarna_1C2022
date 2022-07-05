@@ -48,7 +48,8 @@ def fiuble():
         puntaje(lista_de_intentos_ingresados,palabra_a_adivinar,jugadores_y_puntos,turnos)
         fecha,hora_finalizacion=fecha_y_hora() #Fecha y Hora
         cargar_hora(turnos,fecha,hora_finalizacion,usuarios_datos)
-        lista_para_alda = cargar_aciertos_e_intentos(lista_de_intentos_ingresados, palabra_a_adivinar, usuarios_datos, turnos)
+        lista_de_datos_jugadores = cargar_aciertos_e_intentos(lista_de_intentos_ingresados, palabra_a_adivinar, usuarios_datos, turnos)
+        registro_partidas(lista_de_datos_jugadores)
         jugar = volver_a_jugar()
         if jugar in ('s','S') and partida<= MAX_PARTIDAS:
             turnos = cambio_turnos(turnos)

@@ -1,4 +1,4 @@
-from utiles import *
+from interfaz_usuario import *
 
 def mostrar_palabra(palabra_ingresada):
     '''
@@ -28,14 +28,6 @@ def mostrar_palabra_adivinar(palabra_a_adivinar):
     print("Perdiste!")
 
 #____________________________Funciones etapa 7 relacionadas con INTERFAZ GRAFICA________________________#
-       
-def leer_archivo(archivo, default):#FUNCION 2
-    linea=archivo.readline()
-    if linea:
-        lista=linea.rstrip('\n').split(',')
-    else:
-        lista=default.split(',')    
-    return lista
 
 def cargar_jugador(nombre, clave):
     registro=open('usuarios.csv','a')
@@ -57,3 +49,12 @@ def ingreso_jugadores(jugador, jugadores_y_puntos):
         jugadores_y_puntos[jugador] = 0 
     
     return jugadores_y_puntos
+
+def obtener_color(color):
+    colores = {
+        'Verde': '\x1b[32m',
+        'Amarillo': '\x1b[33m',
+        'GrisOscuro': '\x1b[90m',
+        'Defecto': '\x1b[39m'
+    }
+    return colores[color]

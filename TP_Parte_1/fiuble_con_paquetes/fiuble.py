@@ -1,12 +1,11 @@
 from interfaz_usuario import *
 from jugabilidad import *
-from tiempo import *
-from turnos_y_puntajes import *
 from utiles import *
+from turnos_y_puntajes import *
 from validacion import *
-from funcion_interfaz_grafica import*
+from interfaz_grafica import*
 from configuracion import *
-from leer_archivos import *
+from procesar_archivos import *
 from para_alda import *
 import random
 import time

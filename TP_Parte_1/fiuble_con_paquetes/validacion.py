@@ -1,17 +1,5 @@
-def cambiar_tilde(intento_sin_validar):
-    '''
-    Función: cambiar_tilde
-    Parámetro:
-        intento_sin_validar: cadena de caracteres ingresado por el usuario.
-    Salidas:
-        Devuelve la palabra sin acentos.
-    '''
-    a = 'áéíóúýäëïöüÿàèìòùâêîôûú'
-    b = 'aeiouyaeiouyaeiouaeiouu'
-    palabra_sin_acento = intento_sin_validar.maketrans(a, b)
-    intento_sin_validar_sin_tilde = intento_sin_validar.translate(palabra_sin_acento)
-
-    return intento_sin_validar_sin_tilde
+from utiles import *
+from procesar_archivos import *
 
 def no_es_alfabetico (intento_sin_validar):
     return not intento_sin_validar.isalpha()
@@ -121,7 +109,7 @@ def validar_usuario(usuario):
         estado='valido'
     else:
         estado='invalido'
-        
+
     return estado
             
 def validar_clave(clave,confirmacion_clave):

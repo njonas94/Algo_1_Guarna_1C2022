@@ -2,7 +2,6 @@ from interfaz_usuario import *
 from jugabilidad import *
 from tiempo import *
 from turnos_y_puntajes import *
-from utiles import *
 from validacion import *
 
 import random

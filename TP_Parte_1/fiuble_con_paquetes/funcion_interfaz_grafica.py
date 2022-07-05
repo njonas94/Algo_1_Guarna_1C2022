@@ -1,5 +1,6 @@
 from tkinter import *
 from interfaz_usuario import *
+from validacion import *
 
 def interfaz_ingresar():
     

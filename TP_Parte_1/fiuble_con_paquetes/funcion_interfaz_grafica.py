@@ -11,11 +11,8 @@ def interfaz_ingresar():
         condicion=validar_ingreso(cuadroJugador.get(), cuadroClave.get())    
         if condicion:
             mensaje='Registrado'
-            
-            botonEnviar=Button(ingresoFrame, text='Ingresar',command=diccionario_jugadores)
-            botonEnviar.grid(row=4,column=1, padx=10,pady=10)
-            botonEnviar.config(bg="#088A85",fg='white')
-               
+            diccionario_jugadores()
+                          
         else:
             mensaje='No registrado'
         Permiso=Label(ingresoFrame,text=mensaje)
@@ -28,13 +25,27 @@ def interfaz_ingresar():
         Permiso.config(bg='#0B615E',fg='white')
         
     def diccionario_jugadores():
-        if 0<=len(jugadores_y_puntos.keys())<2:
+        nombre_ingresado, clave_usuario = validar_registro(cuadroJugador.get(), cuadroClave.get(),cuadroClave.get())
+        if 0<=len(jugadores_y_puntos.keys())<2 and nombre_ingresado=='ocupado':
             ingreso_jugadores(cuadroJugador.get(), jugadores_y_puntos)
             
         if len(jugadores_y_puntos.keys())==2:
+            botonIngresar.grid_forget()
             botonJugar=Button(root, text='Comenzar',command=cerrar_interfaz)
             botonJugar.pack()
             botonJugar.config(bg="#0B615E",fg='white')
+    
+    def consulta():
+        control()
+        condicion=validar_ingreso(cuadroJugador.get(), cuadroClave.get())    
+        if condicion:
+            mensaje='Registrado'
+               
+        else:
+            mensaje='No registrado'
+        Permiso=Label(ingresoFrame,text=mensaje)
+        Permiso.grid(row=3,column=1, padx=10,pady=10)
+        Permiso.config(bg='#0B615E',fg='white') 
             
     def cerrar_interfaz():
         root.destroy()
@@ -162,9 +173,13 @@ def interfaz_ingresar():
     cuadroClave=Entry(ingresoFrame,show="*",textvariable=contrasenia)
     cuadroClave.grid(row=2,column=1, padx=30,pady=10)
     #---------------------Botones---------------------------#    
-    botonIngresar=Button(ingresoFrame, text='Consultar registro',command=permiso_ingreso)
-    botonIngresar.grid(row=3,column=0, padx=20,pady=10)
+    botonIngresar=Button(ingresoFrame, text='Ingresar',command=permiso_ingreso)
+    botonIngresar.grid(row=4,column=0, padx=20,pady=10)
     botonIngresar.config(bg="#088A85",fg='white')
+    
+    botonConsulta=Button(ingresoFrame, text='Consulta registro',command=consulta)
+    botonConsulta.grid(row=3,column=0, padx=20,pady=10)
+    botonConsulta.config(bg="#088A85",fg='white')
     
     botonRegistrar=Button(ingresoFrame, text='Registrarse',command=interfaz_registro)
     botonRegistrar.grid(row=4,column=0, padx=10,pady=10)

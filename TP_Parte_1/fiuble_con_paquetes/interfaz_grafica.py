@@ -55,9 +55,6 @@ def interfaz_ingresar():
     def interfaz_registro():
         #___________________________BOTON VOLVER A INGRESO-Secundario__________________________#
         def cerrar_ventana():
-            '''
-            Función que se llama cuando se pulsa el botón de volver a Ingreso 
-            '''
             root.deiconify()  
             root_registro.destroy()  
         #___________________________BOTON REGISTRAR-Secundario__________________________#

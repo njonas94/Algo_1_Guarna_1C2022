@@ -36,7 +36,7 @@ def leer_configuracion():
     lista_datos = []
     lista_final_datos = []
     contador = 0
-    archivo = open("configuracion.csv", "r")
+    archivo = open("configuracion_def.csv", "r")
     parametro, valor_parametro = leer_archivo(archivo, ',')
     while (parametro != '' and valor_parametro == '') or (parametro != '' and valor_parametro != ''):
         lista = impresion(parametro, valor_parametro, lista_datos, contador)

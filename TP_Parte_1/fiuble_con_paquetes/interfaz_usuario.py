@@ -27,8 +27,6 @@ def mostrar_palabra_adivinar(palabra_a_adivinar):
     obtener_color("Defecto")
     print("Perdiste!")
 
-#____________________________Funciones etapa 7 relacionadas con INTERFAZ GRAFICA________________________#
-
 def cargar_jugador(nombre, clave):
     registro=open('usuarios.csv','a')
     registro.write(nombre+','+clave+'\n')

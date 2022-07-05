@@ -2,6 +2,18 @@ from interfaz_usuario import *
 from procesar_archivos import *
 
 def impresion(variable,valor,datos,info):
+    '''
+    Función: impresion
+    Descripción:
+        Asigna valores Defaults o por Configuración a una lista.
+    Parametros:
+        variable: String proveniente del archivo.
+        valor: String proveniente del archivo.
+        datos: Lista.
+        info: Entero que funciona como contador.
+    Salida:
+        Retorna lista con los valores agregados.
+    '''
     default=['7','5','False']
     if variable!='' and valor=='':
         print('{}: {} y fue asignada por omisión'.format(variable, valor))
@@ -12,6 +24,13 @@ def impresion(variable,valor,datos,info):
     return datos
 
 def leer_configuracion ():
+    '''
+    Función: leer_configuracion
+    Descripción:
+        Lee un archivo y agrega los valores del archivo/defaults a una lista.
+    Salida:
+        lista_final: Lista con los valores agregados.
+    '''
     datos=[]
     lista_final=[]
     info=0

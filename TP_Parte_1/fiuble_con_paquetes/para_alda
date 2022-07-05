@@ -85,3 +85,16 @@ def cargar_aciertos_e_intentos(lista_de_intentos_ingresados, palabra_adivinar, u
             usuarios_datos[jugador_acierto][-2]+=1
             usuarios_datos[jugador_fallo][-1]+=2               
     return usuarios_datos.values()
+    
+    def limpiar_archivo(REINICIAR_PARTIDAS_CSV):
+    '''
+    Función: limpiar_archivo
+    Descripcion:
+        Resetear el archivo partidas.csv al final del juego en caso que asi se indique.
+    Parametro:
+        REINICIAR_PARTIDAS_CSV: Variable booleana del archivo configuración.
+    '''
+    if REINICIAR_PARTIDAS_CSV:
+        reinicio = open("partidas.csv","w")
+        reinicio.close()
+    return

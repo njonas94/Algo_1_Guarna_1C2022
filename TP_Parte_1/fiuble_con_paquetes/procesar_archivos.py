@@ -21,14 +21,19 @@ def ordenar_archivo_partidas(nombre_archivo):
     """
     Funcion: ordenar:archivo_partidas
     Descripcion:
-        Lee el archivo, lo ordena de forma descendente y despues lo pasa al archivo csv
+        Lee el archivo, lo ordena de forma descendente y escribe en el archivo csv
     Parametros:
         nombre_archivo: nombre del archivo que se va a ordenar
     """
-    lista_encabezado = ['Fecha partida', 'Hora finalizacion', 'Jugador', 'Aciertos', 'Intentos']
-    archivo = pd.read_csv(nombre_archivo)
-    archivo_ordenado = archivo.sort_values(by = ['Aciertos'], ascending = [False])
-    archivo_ordenado.to_csv(nombre_archivo, header = lista_encabezado, index = False)
+    with open(nombre_archivo, "r") as archivo:
+        linea = archivo.readline()
+        lista_datos = []
+        while linea:
+            linea = linea.rstrip('\n').split(",")
+            lista_datos.append(linea)
+            linea = archivo.readline()
+        lista_datos.sort(key = lambda x: x[3], reverse = True)
+        escribir_archivo_partidas(nombre_archivo, lista_datos, 'w')
 
 
 def crear_archivo_partidas(nombre_archivo):
@@ -39,13 +44,11 @@ def crear_archivo_partidas(nombre_archivo):
     Parametros:
         nombre_archivo: nombre para el archivo a crear
     """
-    lista_encabezado = ['Fecha partida', 'Hora finalizacion', 'Jugador', 'Aciertos', 'Intentos']
-    with open(nombre_archivo, 'w', newline='') as archivo_partidas:
-        archivo = csv.DictWriter(archivo_partidas, fieldnames = lista_encabezado)
-        archivo.writeheader()
+    archivo_partidas = open(nombre_archivo, 'w')
+    archivo_partidas.close()
 
 
-def escribir_archivo_partidas(nombre_archivo, lista_dicc_datos):
+def escribir_archivo_partidas(nombre_archivo, lista_datos, modo_apertura):
     """
     Funcion: escribir_archivo_partidas
     Descripcion:
@@ -55,34 +58,9 @@ def escribir_archivo_partidas(nombre_archivo, lista_dicc_datos):
         lista_dicc_datos: Lista de diccionarios por jugador.
     """
     # Si tengo q pasar de dos jugadores, tengo que usar el writerows[dicc1, dicc2]
-    lista_encabezado = ['Fecha partida', 'Hora finalizacion', 'Jugador', 'Aciertos', 'Intentos']
-    with open(nombre_archivo, 'a', newline='') as archivo_partidas:
-        archivo = csv.DictWriter(archivo_partidas, fieldnames = lista_encabezado)
-        archivo.writerows(lista_dicc_datos)
-
-
-def dar_formato_dicc(lista_datos):
-    '''
-    Función: dar_formato_dicc
-    Descripicón:
-        Agrega a un diccionario los datos provenientes del parametro
-        y por cada jugador agrega un diccionario a la lista_dicc_datos.
-    Parametro:
-        lista_datos: Lista de listas.
-    Salidas:
-        lista_dicc_datos: Lista de diccionarios.
-    '''
-    lista_dicc_datos = []
-    for lista in lista_datos:
-        dicc_datos = {}
-        dicc_datos['Fecha partida'] = lista[0]
-        dicc_datos['Hora finalizacion'] = lista[1]
-        dicc_datos['Jugador'] = lista[2]
-        dicc_datos['Aciertos'] = lista[3]
-        dicc_datos['Intentos'] = lista[4]
-        lista_dicc_datos.append(dicc_datos)
-    return lista_dicc_datos
-
+    with open(nombre_archivo, modo_apertura, newline='') as archivo_partidas:
+        archivo = csv.writer(archivo_partidas)
+        archivo.writerows(lista_datos)
 
 
 def registro_partidas(lista_datos):
@@ -93,13 +71,12 @@ def registro_partidas(lista_datos):
     Parametros:
         dicc_datos: diccionario con los datos extraidos de la partida
     """
-    lista_dicc_datos = dar_formato_dicc(lista_datos)
     nombre_archivo = 'partidas.csv'
     if not os.path.isfile(nombre_archivo):
         crear_archivo_partidas(nombre_archivo)
-        escribir_archivo_partidas(nombre_archivo, lista_dicc_datos)
+        escribir_archivo_partidas(nombre_archivo, lista_datos, 'a')
     else:
-        escribir_archivo_partidas(nombre_archivo, lista_dicc_datos)
+        escribir_archivo_partidas(nombre_archivo, lista_datos, 'a')
     ordenar_archivo_partidas(nombre_archivo)
 
 def procesar_linea(lista_linea, LONGITUD_PALABRAS):

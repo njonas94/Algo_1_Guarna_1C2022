@@ -29,13 +29,13 @@ def validacion_intento_ingresado(intento_sin_validar, lista_de_intentos_ingresad
     while no_es_alfabetico (intento_sin_validar) or validar_palabra (intento_sin_validar, diccionario_palabras_validas) or validar_intento_duplicado (intento_sin_validar, lista_de_intentos_ingresados):
 
         if longitud_y_alfabetica(intento_sin_validar, LONGITUD_PALABRAS):
-            print("Palabra inválida, tiene que ser de 5 letras y no puede contener número/s ni caracteres especiales.")
+            print(f"Palabra inválida, tiene que ser de {LONGITUD_PALABRAS} letras y no puede contener número/s ni caracteres especiales.")
 
         elif no_es_alfabetico (intento_sin_validar):
             print("La palabra no tiene que contener número/s ni caracteres especiales.")
 
         elif longitud_palabra (intento_sin_validar, LONGITUD_PALABRAS): 
-            print("La palabra tiene que ser de 5 letras.")
+            print(f"La palabra tiene que ser de {LONGITUD_PALABRAS} letras.")
 
         elif validar_intento_duplicado (intento_sin_validar, lista_de_intentos_ingresados):
             print("La palabra ya habia sido ingresada.")
@@ -43,7 +43,7 @@ def validacion_intento_ingresado(intento_sin_validar, lista_de_intentos_ingresad
         elif validar_palabra (intento_sin_validar, diccionario_palabras_validas):
             print("La palabra no se encuentra en la lista de palabras válidas.")
 
-        intento_sin_validar = input("Ingrese una palabra valida de 5 letras: ")
+        intento_sin_validar = input(f"Ingrese una palabra valida de {LONGITUD_PALABRAS} letras: ")
         intento_sin_validar = cambiar_tilde(intento_sin_validar.lower())
 
     return intento_sin_validar.upper()

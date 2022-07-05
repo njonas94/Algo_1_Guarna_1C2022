@@ -6,7 +6,6 @@ from validacion import *
 from interfaz_grafica import*
 from configuracion import *
 from procesar_archivos import *
-from para_alda import *
 import random
 import time
 

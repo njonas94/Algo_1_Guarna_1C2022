@@ -90,6 +90,7 @@ def procesar_letras_amarillas(colores, letras_amarillas, intento, palabra_adivin
     '''
     Función: procesar_letras_amarillas
     Descripción: 
+        Se encarga de asignar color amarillo o gris a las posibles letras amarillas.
     Parametros:
         Palabra_adivinar: cadena de caracteres.
         Intento: cadena de caracteres ingresado por el usuario.

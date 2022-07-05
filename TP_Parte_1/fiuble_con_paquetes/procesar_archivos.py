@@ -113,14 +113,14 @@ def procesar_linea(lista_linea, LONGITUD_PALABRAS):
     Salida:
         Devuelve una nueva lista, solo con las palabras de longitud deseada, sin caracteres especiales y en minuscula.
     """
-    caracteres_especiales = '''�_-.,¡!¿?$%#/<>:;«»"()[]1234567890'''
     lista_palabras = []
 
     lista_linea = lista_linea.rstrip('\n').split(" ")
 
     for indice in range(len(lista_linea)):
-        for caracter in caracteres_especiales:
-            lista_linea[indice] = lista_linea[indice].replace(caracter,"")
+        for caracter in lista_linea[indice]:
+            if not caracter.isalpha():
+                lista_linea[indice] = lista_linea[indice].replace(caracter,"")
 
         lista_linea[indice] = cambiar_tilde(lista_linea[indice])
         lista_linea[indice] = lista_linea[indice].lower()

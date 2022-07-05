@@ -14,6 +14,13 @@ def mostrar_palabra(palabra_ingresada):
     print() 
 
 def mostrar_palabra_adivinar(palabra_a_adivinar):
+    '''
+    Función: mostrar_palabra_adivinar
+    Descripción: 
+        Recibe una palabra y la muestra en el formato deseado.
+    Parametro:
+        palabra_a_adivinar: Palabra a adivinar, que se mostrará al terminar la partida.    
+    '''
     print("Palabra a adivinar: ", end = "")
     for i in range(len(palabra_a_adivinar)):
         print(f"{palabra_a_adivinar[i]} ", end = "")

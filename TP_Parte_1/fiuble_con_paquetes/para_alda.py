@@ -34,6 +34,7 @@ def cargar_hora(turnos,fecha,hora,usuarios_datos):
         usuarios_datos[jugador][1]=hora
     return usuarios_datos
 
+
 def cargar_aciertos_e_intentos(lista_de_intentos_ingresados, palabra_adivinar, usuarios_datos, turnos):
     '''
     Función: cargar_aciertos_e_intentos
@@ -86,7 +87,8 @@ def cargar_aciertos_e_intentos(lista_de_intentos_ingresados, palabra_adivinar, u
             usuarios_datos[jugador_fallo][-1]+=2               
     return usuarios_datos.values()
     
-    def limpiar_archivo(REINICIAR_PARTIDAS_CSV):
+    
+def limpiar_archivo(REINICIAR_PARTIDAS_CSV):
     '''
     Función: limpiar_archivo
     Descripcion:

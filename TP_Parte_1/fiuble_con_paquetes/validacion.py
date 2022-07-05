@@ -87,7 +87,6 @@ def validar_usuario(usuario):
     condiciones_cumplidas=0
     cantidad_letras=0
     cantidad_numeros=0
-    cantidad_guion_bajo=0
     cantidad_especiales=0
     posicion=0
     if 4<=len(usuario)<=15 and "_" in usuario:

@@ -5,14 +5,14 @@ def interfaz_ingresar():
     
     jugadores_y_puntos={}
     #---------------------------Funciones llamadas por la PRINCIPAL----------------#
-    #___________________________BOTON CONSULTAR__________________________#
+    #___________________________BOTON INGRESAR__________________________#
     def permiso_ingreso():
         control()
         condicion=validar_ingreso(cuadroJugador.get(), cuadroClave.get())    
         if condicion:
             mensaje='Registrado'
             diccionario_jugadores()
-                          
+               
         else:
             mensaje='No registrado'
         Permiso=Label(ingresoFrame,text=mensaje)
@@ -34,7 +34,7 @@ def interfaz_ingresar():
             botonJugar=Button(root, text='Comenzar',command=cerrar_interfaz)
             botonJugar.pack()
             botonJugar.config(bg="#0B615E",fg='white')
-    
+               
     def consulta():
         control()
         condicion=validar_ingreso(cuadroJugador.get(), cuadroClave.get())    
@@ -46,7 +46,7 @@ def interfaz_ingresar():
         Permiso=Label(ingresoFrame,text=mensaje)
         Permiso.grid(row=3,column=1, padx=10,pady=10)
         Permiso.config(bg='#0B615E',fg='white') 
-            
+    
     def cerrar_interfaz():
         root.destroy()
         
@@ -174,7 +174,7 @@ def interfaz_ingresar():
     cuadroClave.grid(row=2,column=1, padx=30,pady=10)
     #---------------------Botones---------------------------#    
     botonIngresar=Button(ingresoFrame, text='Ingresar',command=permiso_ingreso)
-    botonIngresar.grid(row=4,column=0, padx=20,pady=10)
+    botonIngresar.grid(row=4,column=1, padx=20,pady=10)
     botonIngresar.config(bg="#088A85",fg='white')
     
     botonConsulta=Button(ingresoFrame, text='Consulta registro',command=consulta)

@@ -20,8 +20,10 @@ def validacion_intento_ingresado(intento_sin_validar, lista_de_intentos_ingresad
     '''
     Función: validacion_intento_ingresado
     Parámetro:
-        intento_sin_validar: cadena de caracteres ingresado por el usuario.
-        lista_de_intentos_ingresados: lista de cadenas de caracteres.
+        intento_sin_validar: Cadena de caracteres ingresado por el usuario.
+        lista_de_intentos_ingresados: Lista de cadenas de caracteres.
+        diccionario_palabras_validas: Diccionario de palabras validas.
+        LONGITUD_PALABRAS: Entero que determina el largo de las palabras.
     Salidas:
         Devuelve la palabra en mayúscula.
     '''

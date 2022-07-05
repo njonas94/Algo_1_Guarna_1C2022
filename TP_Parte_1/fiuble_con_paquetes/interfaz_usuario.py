@@ -28,6 +28,14 @@ def mostrar_palabra_adivinar(palabra_a_adivinar):
     print("Perdiste!")
 
 def cargar_jugador(nombre, clave):
+    '''
+    Función: cargar_jugador
+    Descripción:
+        Carga al archivo.csv el nombre y clave que recibe por parametro.
+    Parametro:
+        nombre: String que recibe como parametro.
+        clave: String que recibe como parametro.
+    '''
     registro=open('usuarios.csv','a')
     registro.write(nombre+','+clave+'\n')
     registro.close()

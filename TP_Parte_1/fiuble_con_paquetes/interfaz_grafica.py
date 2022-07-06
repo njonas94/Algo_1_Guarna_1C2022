@@ -41,7 +41,8 @@ def interfaz_ingresar():
             botonJugar=Button(root, text='Comenzar',command=cerrar_interfaz)
             botonJugar.pack()
             botonJugar.config(bg="#0B615E",fg='white')
-               
+    
+    #___________________________BOTON CONSULTAR__________________________#
     def consulta():
         control()
         condicion=validar_ingreso(cuadroJugador.get(), cuadroClave.get())    
@@ -115,7 +116,7 @@ def interfaz_ingresar():
         root_registro.iconbitmap("icono.ico")
         #---------------------Frames---------------------------#
         ingreso_registro=Frame(root_registro)
-        ingreso_registro.pack(padx = "50", pady="30")
+        ingreso_registro.pack(padx = "50", pady="20")
         ingreso_registro.config(bg="#0B615E")
         #---------------------Etiquetas---------------------------#
         jugador_registro=Label(ingreso_registro, text='Usuario:')
@@ -130,9 +131,14 @@ def interfaz_ingresar():
         confirmacion_clave.grid(row=3,column=0,sticky="e", padx=10,pady=10)
         confirmacion_clave.config(bg='#0B615E',fg='white')
         
-        situacionLabel=Label(ingreso_registro, text="Situacion del registro:")
+        situacionLabel=Label(ingreso_registro, text="Estado del registro:")
         situacionLabel.grid(row=4,column=0,sticky="e", padx=10,pady=10)
-        situacionLabel.config(bg='#0B615E',fg='white')                
+        situacionLabel.config(bg='#0B615E',fg='white')
+        
+        condiciones='Usuario: Debe contener entre 4 a 15 caracteres,letras, números y guion bajo\nContraseña: Debe contener entre 8 a 12 caracteres, mayúscula, minúscula, número, y “_” o “-“'
+        condicionUsuario=Label(root_registro, text=condiciones)
+        condicionUsuario.pack()
+        condicionUsuario.config(bg='#0B615E',fg='white')
         #---------------------Cuadros---------------------------#
         usuario=StringVar()
         cuadroJugador_registro=Entry(ingreso_registro,textvariable=usuario)

@@ -17,7 +17,7 @@ def impresion(parametro, valor_parametro, lista_datos, contador):
     '''
     lista_default = ['7', '5', 'False']
     if parametro != '' and valor_parametro == '':
-        print('{}: {} y fue asignada por omisión'.format(parametro, valor_parametro))
+        print('{}: {} y fue asignada por omisión'.format(parametro, lista_default[contador]))
         lista_datos.append(lista_default[contador])
     elif valor_parametro != '' and parametro != '':
         print('{}: {} y fue asignada por configuración'.format(parametro, valor_parametro))

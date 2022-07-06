@@ -24,12 +24,12 @@ def interfaz_ingresar():
             mensaje='No registrado'
         Permiso=Label(ingresoFrame,text=mensaje)
         Permiso.grid(row=3,column=1, padx=10,pady=10)
-        Permiso.config(bg='#3767A6',fg='white')
+        Permiso.config(bg='#053259',fg='white')
     
     def control():
         Permiso=Label(ingresoFrame,text='\t\t')
         Permiso.grid(row=3,column=1, padx=10,pady=10)
-        Permiso.config(bg='#3767A6',fg='white')
+        Permiso.config(bg='#053259',fg='white')
         
     def diccionario_jugadores():
         nombre_ingresado, clave_usuario = validar_registro(cuadroJugador.get(), cuadroClave.get(),cuadroClave.get())
@@ -53,7 +53,7 @@ def interfaz_ingresar():
             mensaje='No registrado'
         Permiso=Label(ingresoFrame,text=mensaje)
         Permiso.grid(row=3,column=1, padx=10,pady=10)
-        Permiso.config(bg='#3767A6',fg='white') 
+        Permiso.config(bg='#053259',fg='white') 
     
     def cerrar_interfaz():
         root.destroy()
@@ -99,12 +99,12 @@ def interfaz_ingresar():
             
             info=Label(ingreso_registro,text=informacion)
             info.grid(row=4,column=1,padx=10,pady=10)
-            info.config(bg='#3767A6',fg='white') 
+            info.config(bg='#053259',fg='white') 
                     
         def control_ventana():   
             info=Label(ingreso_registro,text='\t\t\t\t')
             info.grid(row=4,column=1,padx=10,pady=10)
-            info.config(bg='#3767A6',fg='white')
+            info.config(bg='#053259',fg='white')
         
         root.withdraw()
         #_____________________Ventana Secundaria______________________________#

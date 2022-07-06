@@ -165,7 +165,7 @@ def acumular_intentos(intento, orden_ingreso, colores, lista_letras_de_cada_inte
     for i in range(len(intento)):
         lista_letras_de_cada_intento[orden_ingreso][i] = colores[i] + intento[i]
 
-def volver_a_jugar():
+def volver_a_jugar(partida, MAX_PARTIDAS):
     '''
     Función: volver_a_jugar
     Descripción: 
@@ -173,9 +173,11 @@ def volver_a_jugar():
     Salida:
         Nos devuelve un string dependiendo si quiere volver a jugar o no del tipo (N.n) o (S,s)
     '''
-    desea_jugar = input('\n¿Desea volver a jugar?(S/N):')
-    while desea_jugar not in ('N','n','s','S'):
-        desea_jugar = input('¿Desea volver a jugar?(S/N):')
+    desea_jugar = ''
+    if partida < MAX_PARTIDAS:
+        desea_jugar = input('\n¿Desea volver a jugar?(S/N):')
+        while desea_jugar not in ('N','n','s','S'):
+            desea_jugar = input('¿Desea volver a jugar?(S/N):')
     
     return  desea_jugar
 

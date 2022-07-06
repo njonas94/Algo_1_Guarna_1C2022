@@ -24,12 +24,12 @@ def interfaz_ingresar():
             mensaje='No registrado'
         Permiso=Label(ingresoFrame,text=mensaje)
         Permiso.grid(row=3,column=1, padx=10,pady=10)
-        Permiso.config(bg='#0B615E',fg='white')
+        Permiso.config(bg='#3767A6',fg='white')
     
     def control():
         Permiso=Label(ingresoFrame,text='\t\t')
         Permiso.grid(row=3,column=1, padx=10,pady=10)
-        Permiso.config(bg='#0B615E',fg='white')
+        Permiso.config(bg='#3767A6',fg='white')
         
     def diccionario_jugadores():
         nombre_ingresado, clave_usuario = validar_registro(cuadroJugador.get(), cuadroClave.get(),cuadroClave.get())
@@ -40,7 +40,7 @@ def interfaz_ingresar():
             botonIngresar.grid_forget()
             botonJugar=Button(root, text='Comenzar',command=cerrar_interfaz)
             botonJugar.pack()
-            botonJugar.config(bg="#0B615E",fg='white')
+            botonJugar.config(bg="#7756BF",fg='white')
     
     #___________________________BOTON CONSULTAR__________________________#
     def consulta():
@@ -53,7 +53,7 @@ def interfaz_ingresar():
             mensaje='No registrado'
         Permiso=Label(ingresoFrame,text=mensaje)
         Permiso.grid(row=3,column=1, padx=10,pady=10)
-        Permiso.config(bg='#0B615E',fg='white') 
+        Permiso.config(bg='#3767A6',fg='white') 
     
     def cerrar_interfaz():
         root.destroy()
@@ -99,12 +99,12 @@ def interfaz_ingresar():
             
             info=Label(ingreso_registro,text=informacion)
             info.grid(row=4,column=1,padx=10,pady=10)
-            info.config(bg='#0B615E',fg='white') 
+            info.config(bg='#3767A6',fg='white') 
                     
         def control_ventana():   
             info=Label(ingreso_registro,text='\t\t\t\t')
             info.grid(row=4,column=1,padx=10,pady=10)
-            info.config(bg='#0B615E',fg='white')
+            info.config(bg='#3767A6',fg='white')
         
         root.withdraw()
         #_____________________Ventana Secundaria______________________________#
@@ -112,33 +112,33 @@ def interfaz_ingresar():
         root_registro.title('Registro FIUBLE')
         root_registro.resizable(0,0)
         root_registro.geometry("500x280")
-        root_registro.config(bg = "#088A85")   
+        root_registro.config(bg = "#3767A6")   
         root_registro.iconbitmap("icono.ico")
         #---------------------Frames---------------------------#
         ingreso_registro=Frame(root_registro)
         ingreso_registro.pack(padx = "50", pady="20")
-        ingreso_registro.config(bg="#0B615E")
+        ingreso_registro.config(bg="#053259")
         #---------------------Etiquetas---------------------------#
         jugador_registro=Label(ingreso_registro, text='Usuario:')
         jugador_registro.grid(row=1,column=0, padx=10,pady=10)
-        jugador_registro.config(bg='#0B615E',fg='white')
+        jugador_registro.config(bg='#053259',fg='white')
 
         clave_registro=Label(ingreso_registro, text="Contraseña:")
         clave_registro.grid(row=2,column=0, padx=10,pady=10)
-        clave_registro.config(bg='#0B615E',fg='white')
+        clave_registro.config(bg='#053259',fg='white')
 
         confirmacion_clave=Label(ingreso_registro, text="Reingrese contraseña:")
         confirmacion_clave.grid(row=3,column=0,sticky="e", padx=10,pady=10)
-        confirmacion_clave.config(bg='#0B615E',fg='white')
+        confirmacion_clave.config(bg='#053259',fg='white')
         
         situacionLabel=Label(ingreso_registro, text="Estado del registro:")
         situacionLabel.grid(row=4,column=0,sticky="e", padx=10,pady=10)
-        situacionLabel.config(bg='#0B615E',fg='white')
+        situacionLabel.config(bg='#053259',fg='white')
         
         condiciones='Usuario: Debe contener entre 4 a 15 caracteres,letras, números y guion bajo\nContraseña: Debe contener entre 8 a 12 caracteres, mayúscula, minúscula, número, y “_” o “-“'
         condicionUsuario=Label(root_registro, text=condiciones)
         condicionUsuario.pack()
-        condicionUsuario.config(bg='#0B615E',fg='white')
+        condicionUsuario.config(bg='#053259',fg='white')
         #---------------------Cuadros---------------------------#
         usuario=StringVar()
         cuadroJugador_registro=Entry(ingreso_registro,textvariable=usuario)
@@ -154,31 +154,31 @@ def interfaz_ingresar():
         #---------------------Botones---------------------------#    
         botonRegistro=Button(ingreso_registro, text='Registrar', command=registrar_jugador)
         botonRegistro.grid(row=5,column=1, padx=10,pady=10)
-        botonRegistro.config(bg="#088A85",fg='white')
+        botonRegistro.config(bg="#7756BF",fg='white')
         
         botonRegresar=Button(ingreso_registro, text='Volver a Ingreso', command=cerrar_ventana)
         botonRegresar.grid(row=5,column=0, padx=10,pady=10)
-        botonRegresar.config(bg="#088A85",fg='white')
+        botonRegresar.config(bg="#7756BF",fg='white')
         
 #______________________________Ventana Principal___________________________________#
     root=Tk()
     root.title('Ingreso FIUBLE')
     root.resizable(0,0)
     root.geometry("450x280")
-    root.config(bg = "#088A85")   
+    root.config(bg = "#3767A6")   
     root.iconbitmap("icono.ico")
     #---------------------Frames---------------------------#
     ingresoFrame=Frame(root)
     ingresoFrame.pack(padx = "30", pady="30")
-    ingresoFrame.config(bg="#0B615E")
+    ingresoFrame.config(bg="#053259")
     #---------------------Etiquetas---------------------------#
     jugadorLabel=Label(ingresoFrame, text='Usuario:')
     jugadorLabel.grid(row=1,column=0, padx=20,pady=10)
-    jugadorLabel.config(bg='#0B615E',fg='white')
+    jugadorLabel.config(bg='#053259',fg='white')
 
     claveLabel=Label(ingresoFrame, text="Contraseña:")
     claveLabel.grid(row=2,column=0, padx=20,pady=10)
-    claveLabel.config(bg='#0B615E',fg='white')
+    claveLabel.config(bg='#053259',fg='white')
     #---------------------Cuadros---------------------------#
     nombre=StringVar()
     cuadroJugador=Entry(ingresoFrame,textvariable=nombre)
@@ -190,15 +190,15 @@ def interfaz_ingresar():
     #---------------------Botones---------------------------#    
     botonIngresar=Button(ingresoFrame, text='Ingresar',command=permiso_ingreso)
     botonIngresar.grid(row=4,column=1, padx=20,pady=10)
-    botonIngresar.config(bg="#088A85",fg='white')
+    botonIngresar.config(bg="#7756BF",fg='white')
     
     botonConsulta=Button(ingresoFrame, text='Consulta registro',command=consulta)
     botonConsulta.grid(row=3,column=0, padx=20,pady=10)
-    botonConsulta.config(bg="#088A85",fg='white')
+    botonConsulta.config(bg="#7756BF",fg='white')
     
     botonRegistrar=Button(ingresoFrame, text='Registrarse',command=interfaz_registro)
     botonRegistrar.grid(row=4,column=0, padx=10,pady=10)
-    botonRegistrar.config(bg="#088A85",fg='white')
+    botonRegistrar.config(bg="#7756BF",fg='white')
     
     root.mainloop()
     return jugadores_y_puntos

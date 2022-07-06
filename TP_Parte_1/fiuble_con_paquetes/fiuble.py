@@ -24,7 +24,7 @@ def fiuble():
     diccionario_palabras_validas = {}
     palabras_validas(archivo0, archivo1, archivo2, diccionario_palabras_validas, LONGITUD_PALABRAS)
     usuarios_datos = crear_diccionario_usuarios_datos(turnos)
-    while jugar in ('s','S', '') and partida <= MAX_PARTIDAS:
+    while jugar in ('s','S', '') and partida < MAX_PARTIDAS:
         partida += 1
         lista_de_intentos_ingresados = []
         palabra_a_adivinar = generar_palabra_a_adivinar(diccionario_palabras_validas)
@@ -50,8 +50,8 @@ def fiuble():
         cargar_hora(turnos,fecha,hora_finalizacion,usuarios_datos)
         lista_de_datos_jugadores = cargar_aciertos_e_intentos(lista_de_intentos_ingresados, palabra_a_adivinar, usuarios_datos, turnos)
         registro_partidas(lista_de_datos_jugadores)
-        jugar = volver_a_jugar()
-        if jugar in ('s','S') and partida<= MAX_PARTIDAS:
+        jugar = volver_a_jugar(partida, MAX_PARTIDAS)
+        if jugar in ('s','S') and partida < MAX_PARTIDAS:
             turnos = cambio_turnos(turnos)
     limpiar_archivo(REINICIAR_PARTIDAS_CSV)
     determinar_ganador(jugadores_y_puntos)

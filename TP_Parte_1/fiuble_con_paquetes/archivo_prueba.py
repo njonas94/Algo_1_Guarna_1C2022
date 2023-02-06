@@ -1,6 +1,5 @@
 from interfaz_usuario import *
 from jugabilidad import *
-from tiempo import *
 from turnos_y_puntajes import *
 from validacion import *
 
@@ -74,7 +73,7 @@ def validar_palabra (palabra_ingresada):
     >>> validar_palabra ('budin')
     True
     """
-    return not no_es_alfabetico (palabra_ingresada) and palabra_ingresada not in obtener_palabras_validas()
+    return not no_es_alfabetico (palabra_ingresada) and palabra_ingresada not in palabras_validas()
 print(doctest.testmod())
 
 def validar_ingreso (palabra_ingresada, intentos_ingresados_str):
